@@ -1,0 +1,110 @@
+baseURL = "https://blog.cs2680.com/"
+title = "CS2680 Student Blog"
+copyright = "&copy; 2026 The President and Fellows of Harvard College"
+locale = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+enableRobotsTXT = true
+summaryLength = 40
+# A post dated in the future is still published. Hugo hides future-dated content
+# by default, which would silently drop a submission whose date was mistyped or
+# written in a timezone ahead of the build machine's.
+buildFuture = true
+# prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
+# See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
+ignoreErrors = ["error-remote-getjson"]
+
+# ------------------------------
+# The look comes from assets/css/course.css, a verbatim copy of
+# https://cs2680.com/css/main.css, plus assets/css/blog.css for the
+# blog's own components. There is no theme directory.
+# ------------------------------
+
+[params]
+  # The big line at the top of every page, as the course site sets it.
+  courseTitle = "CS2680 Modern AI Systems: Agents and System Optimizations"
+  tagline = "Student Blog"
+  courseURL = "https://cs2680.com/"
+  description = "Student writing from CS2680 Modern AI Systems at Harvard SEAS: the Assignment 3 and Assignment 5 optimization writeups."
+  keywords = ["AI Systems", "MLSys", "LLM", "agents", "inference optimization", "CS2680"]
+  # Sections whose posts count as blog posts on the home page.
+  mainSections = ["assignment3", "assignment5"]
+  # KaTeX everywhere; the cost and latency arithmetic shows up in most posts.
+  math = true
+
+[taxonomies]
+  author = "authors"
+  tag = "tags"
+
+# needed to render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    lineNumbersInTable = true
+    tabWidth = 2
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "assignment3"
+    name = "Assignment 3"
+    url = "/assignment3/"
+    weight = 20
+  [[menu.main]]
+    identifier = "assignment5"
+    name = "Assignment 5"
+    url = "/assignment5/"
+    weight = 30
+  [[menu.main]]
+    identifier = "authors"
+    name = "Authors"
+    url = "/authors/"
+    weight = 40
+  [[menu.main]]
+    identifier = "publish"
+    name = "Publish"
+    url = "/publish/"
+    weight = 50
+  [[menu.main]]
+    identifier = "course"
+    name = "Course site"
+    url = "https://cs2680.com/"
+    weight = 60
+
+[privacy]
+
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+
+  [privacy.x]
+    disabled = false
+    enableDNT = true
+    simple = true
+
+  [privacy.instagram]
+    disabled = false
+    simple = true
+
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
+
+[services]
+
+  [services.instagram]
+    disableInlineCSS = true
+
+  [services.x]
+    disableInlineCSS = true

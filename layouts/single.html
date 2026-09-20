@@ -1,0 +1,64 @@
+{{ define "main" }}
+{{- $section := .CurrentSection }}
+{{- $authors := or .Params.authors slice }}
+{{/* A post lives in an assignment section; a standalone page (the publishing
+     guide) does not, and carries no byline. */}}
+{{- $isPost := and $section $section.IsSection }}
+
+{{- with $section }}
+{{- if .IsSection }}
+<a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
+{{- end }}
+{{- end }}
+
+<article class="note-body">
+  <header class="post-header">
+    <h1>{{ .Title }}</h1>
+    {{- if $isPost }}
+    <div class="post-meta">
+      {{- with $section }}{{ if .IsSection }}
+      <a class="post-badge" href="{{ .RelPermalink }}">
+        {{- or .Params.label (printf "Assignment %v" .Params.assignment) | default .Title -}}
+      </a>
+      {{- end }}{{ end }}
+      {{- if .Draft }}<span class="post-badge post-badge-draft">Draft</span>{{ end }}
+      {{- with $authors }}
+      <span class="post-author">
+        {{- range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/authors/%s" (urlize $a)) | relURL }}">{{ $a }}</a>{{ end -}}
+      </span>
+      {{- else }}{{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}{{ end }}
+      {{- with .Params.github }}
+      <a href="https://github.com/{{ . }}" target="_blank" rel="noopener"><code>{{ . }}</code></a>
+      {{- end }}
+      {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
+      {{- with .ReadingTime }}<span>{{ . }} min read</span>{{ end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{ .Content }}
+
+  <footer class="post-footer">
+    {{- with .Params.tags }}
+    <ul class="tag-list">
+      {{- range . }}
+      <li><a class="tag-pill" href="{{ (printf "/tags/%s" (urlize .)) | relURL }}">{{ . }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+
+    {{- $prev := .PrevInSection }}
+    {{- $next := .NextInSection }}
+    {{- if or $prev $next }}
+    <nav class="post-nav">
+      {{- with $prev }}
+      <a href="{{ .RelPermalink }}"><span class="nav-dir">&larr; Previous</span><span class="nav-title">{{ .Title }}</span></a>
+      {{- end }}
+      {{- with $next }}
+      <a class="nav-next" href="{{ .RelPermalink }}"><span class="nav-dir">Next &rarr;</span><span class="nav-title">{{ .Title }}</span></a>
+      {{- end }}
+    </nav>
+    {{- end }}
+  </footer>
+</article>
+{{ end }}

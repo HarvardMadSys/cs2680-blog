@@ -1,0 +1,6 @@
+{{/* A collapsed block, for long logs and traces in an optimization writeup:
+     {{< collapse summary="Full profile output" >}} ... {{< /collapse >}} */}}
+<details class="instructor-note"{{ if eq (.Get "open") "true" }} open{{ end }}>
+  <summary>{{ or (.Get "summary") (.Get 0) | markdownify }}</summary>
+  <div style="padding: 0 14px 10px;">{{ .Inner | markdownify }}</div>
+</details>

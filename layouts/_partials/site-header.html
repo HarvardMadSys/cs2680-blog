@@ -1,0 +1,40 @@
+{{/* The course site's header, with the blog's menu in it. Markup follows
+     https://cs2680.com/header.html so the two bars are the same object:
+     white bar, 3px crimson rule, SEAS logo on the text column's left edge.
+     The menu comes from [[menu.main]] in hugo.toml. */}}
+{{- $cur := .RelPermalink -}}
+<div class="container site-header">
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ "" | relURL }}"><img class="seas-logo-header"
+          src="{{ "seas-logo.png" | relURL }}" alt="Harvard SEAS logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav">
+          {{- range site.Menus.main }}
+          {{- $url := .URL }}
+          {{- $external := hasPrefix $url "http" }}
+          {{- $active := false }}
+          {{- if not $external }}
+            {{- $u := $url | relLangURL }}
+            {{- if eq $u ($.Site.Home.RelPermalink) }}
+              {{- $active = $.IsHome }}
+            {{- else }}
+              {{- $active = hasPrefix $cur $u }}
+            {{- end }}
+          {{- end }}
+          <li class="nav-item nav-justified"><a class="nav-link mx-0 mx-xl-2{{ if $active }} active{{ end }}"
+              href="{{ if $external }}{{ $url }}{{ else }}{{ $url | relURL }}{{ end }}"
+              {{- if $external }} target="_blank" rel="noopener"{{ end }}
+              {{- if $active }} aria-current="page"{{ end }}>{{ .Name }}{{ if $external }} &#8599;{{ end }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="header-spacer"></div>
+</div>

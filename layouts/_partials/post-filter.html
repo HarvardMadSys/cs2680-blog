@@ -1,0 +1,50 @@
+{{/* Filter for a long list of posts. Hidden until the script runs, because
+     without JS it would be a box that does nothing. `.` is the noun for the
+     count, e.g. "posts". */}}
+<div class="post-filter" id="post-filter" hidden>
+  <input type="search" id="post-filter-input" placeholder="Filter by title, author, or tag&hellip;"
+    aria-label="Filter posts by title, author, or tag" autocomplete="off">
+  <span class="filter-count" id="post-filter-count" aria-live="polite"></span>
+</div>
+<script>
+  // The list is below this script in the document, so wait for the parse.
+  document.addEventListener('DOMContentLoaded', function () {
+    var box = document.getElementById('post-filter');
+    var input = document.getElementById('post-filter-input');
+    var count = document.getElementById('post-filter-count');
+    var list = document.getElementById('post-list');
+    var empty = document.getElementById('post-filter-empty');
+    if (!box || !input || !list) return;
+
+    var cards = Array.prototype.slice.call(list.querySelectorAll('[data-filter]'));
+    if (cards.length < 2) return;
+
+    var noun = {{ or . "posts" }};
+    box.hidden = false;
+    box.classList.add('is-ready');
+
+    var render = function (shown) {
+      count.textContent = shown === cards.length
+        ? cards.length + ' ' + noun
+        : shown + ' of ' + cards.length + ' ' + noun;
+      if (empty) empty.hidden = shown !== 0;
+    };
+
+    var apply = function () {
+      // Every word must match, so "jane cache" narrows rather than widens.
+      var terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+      var shown = 0;
+      cards.forEach(function (card) {
+        var hay = card.getAttribute('data-filter') || '';
+        var hit = terms.every(function (t) { return hay.indexOf(t) !== -1; });
+        card.hidden = !hit;
+        if (hit) shown++;
+      });
+      render(shown);
+    };
+
+    render(cards.length);
+    input.addEventListener('input', apply);
+    input.addEventListener('search', apply);
+  });
+</script>

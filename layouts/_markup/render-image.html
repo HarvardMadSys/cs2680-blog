@@ -1,0 +1,17 @@
+{{/* An image with a title becomes a captioned figure:
+       ![alt text](throughput.png "Figure 1. Throughput against batch size")
+     Without a title it stays a plain image. */}}
+{{- $src := .Destination -}}
+{{- if not (urls.Parse $src).IsAbs -}}
+  {{- with .PageInner.Resources.GetMatch $src -}}
+    {{- $src = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Title -}}
+<figure class="post-figure">
+  <img src="{{ $src | safeURL }}" alt="{{ .Text }}" loading="lazy">
+  <figcaption>{{ .Title }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ .Text }}" loading="lazy">
+{{- end -}}

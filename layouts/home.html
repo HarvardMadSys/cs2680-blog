@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
+<div class="title2">{{ or site.Params.tagline "Student Blog" }}</div>
+
+{{- with .Content }}
+<div class="blog-lede">{{ . }}</div>
+{{- end }}
+
+{{/* The assignments that publish here. A section opts in with
+     `assignment: 3` in its _index.md; order comes from `weight`. */}}
+{{- $assignments := where (where site.Sections "Params.assignment" "!=" nil) "Params.hidden" "!=" true }}
+{{- with sort $assignments "Weight" }}
+<div class="section">
+  <h1>Where the posts come from</h1>
+  <p>
+    Assignments 3 and 5 are the two optimization assignments, worth 20% each. Both are submitted
+    as a post published here, so the whole class can read what everyone else tried.
+  </p>
+  <div class="assignment-tiles">
+    {{- range . }}
+    {{- $posts := .RegularPages }}
+    <a class="assignment-tile" href="{{ .RelPermalink }}">
+      <span class="tile-index">{{ printf "%02d" (int .Params.assignment) }}</span>
+      <span class="tile-label">{{ or .Params.label (printf "Assignment %v" .Params.assignment) }}</span>
+      <span class="tile-title">{{ or .Params.heading .Title }}</span>
+      <span class="tile-summary">{{ or .Description (.Summary | plainify | chomp) }}</span>
+      <span class="tile-foot">
+        <span class="tile-count">{{ len $posts }} post{{ if ne (len $posts) 1 }}s{{ end }}</span>
+        {{- with .Params.due }}<span>due {{ . }}</span>{{ end }}
+        {{- with .Params.weightPct }}<span>{{ . }}% of the grade</span>{{ end }}
+      </span>
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{- end }}
+
+{{- $recent := first 12 (where site.RegularPages "Section" "in" site.Params.mainSections) }}
+{{- with $recent }}
+<div class="section">
+  <h1>Latest posts</h1>
+  <div class="post-list" id="post-list">
+    {{- range . }}
+    {{ partial "post-card.html" . }}
+    {{- end }}
+  </div>
+</div>
+{{- end }}
+
+{{- with .Site.GetPage "/publish" }}
+<div class="section">
+  <h1>Publishing your post</h1>
+  <p>
+    Posts are pull requests against this site's repository. The
+    <a href="{{ .RelPermalink }}">publishing guide</a> walks through it end to end:
+    write the Markdown, open the PR, and the post appears here once it is merged.
+  </p>
+</div>
+{{- end }}
+{{ end }}

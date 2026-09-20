@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{- $posts := .Pages.ByDate.Reverse }}
+
+<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
+<div class="title2">{{ .Title }}</div>
+
+<div class="section">
+  {{- with .Parent }}
+  <a class="back-link" href="{{ .RelPermalink }}">&larr; All {{ lower .Title }}</a>
+  {{- end }}
+  <div class="page-kicker">{{ .Data.Singular }}</div>
+  <h1>{{ .Title }}</h1>
+  {{- with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
+
+  {{- if $posts }}
+  {{ partial "post-filter.html" "posts" }}
+  <div class="post-list" id="post-list">
+    {{- range $posts }}
+    {{ partial "post-card.html" . }}
+    {{- end }}
+  </div>
+  <div class="empty-state" id="post-filter-empty" hidden>
+    <p>No post matches that filter.</p>
+  </div>
+  {{- else }}
+  <div class="empty-state"><p>No posts here yet.</p></div>
+  {{- end }}
+</div>
+{{ end }}

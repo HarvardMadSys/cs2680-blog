@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ or site.Language.Locale "en" }}">
+{{ partial "head.html" . }}
+
+<body>
+  {{ partial "site-header.html" . }}
+
+  <div class="container page">
+    <div class="row">
+      <div class="col-12">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
+  </div>
+
+  {{ partial "site-footer.html" . }}
+</body>
+
+</html>

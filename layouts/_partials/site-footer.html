@@ -1,0 +1,16 @@
+{{/* The course site's footer, verbatim but for the first line, which names
+     the blog and points back at the course. */}}
+<footer class="site-footer">
+  <div class="container">
+    <p><a href="{{ site.Params.courseURL | default "https://cs2680.com/" }}" target="_blank" rel="noopener">CS2680 course site</a>
+      &middot; <a href="https://madsys.seas.harvard.edu/" target="_blank" rel="noopener">MadSys Research Group</a>
+      &middot; <a href="https://seas.harvard.edu/" target="_blank" rel="noopener">Harvard John A. Paulson School of Engineering and Applied Sciences</a></p>
+    <p class="footer-policies"><a href="https://trademark.harvard.edu/pages/trademark-notice" target="_blank" rel="noopener">Trademark Notice</a>
+      &middot; <a href="https://accessibility.harvard.edu/" target="_blank" rel="noopener">Accessibility</a>
+      &middot; <a href="https://accessibility.huit.harvard.edu/digital-accessibility-policy" target="_blank" rel="noopener">Digital Accessibility</a>
+      &middot; <a href="https://privsec.harvard.edu/harvard-university-privacy-statement" target="_blank" rel="noopener">Privacy Statement</a></p>
+    {{- with site.Copyright }}
+    <p class="footer-copyright">{{ . | markdownify }}</p>
+    {{- end }}
+  </div>
+</footer>

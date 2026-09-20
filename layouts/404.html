@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
+<div class="title2">Page not found</div>
+
+<div class="section">
+  <div class="empty-state">
+    <p><strong>404.</strong> There is nothing at this address.</p>
+    <p>
+      Try the <a href="{{ "" | relURL }}">blog home page</a>, or the
+      <a href="{{ site.Params.courseURL | default "https://cs2680.com/" }}">course site</a>.
+    </p>
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,25 @@
+{{/* Markdown tables get Bootstrap's table classes and the course site's
+     rounded .table-responsive frame, so a before/after table in a post looks
+     like a table on cs2680.com. */}}
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range . }}
+        <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

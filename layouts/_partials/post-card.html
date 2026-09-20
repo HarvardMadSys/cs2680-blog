@@ -1,0 +1,16 @@
+{{/* One post in a list. `data-filter` is the haystack the filter box searches:
+     title, authors and tags, lowercased. */}}
+{{- $authors := or .Params.authors slice -}}
+{{- $summary := or .Params.summary .Description (.Summary | plainify | chomp) -}}
+<a class="post-card{{ if .Draft }} is-draft{{ end }}" href="{{ .RelPermalink }}"
+  data-filter="{{ lower (printf "%s %s %s" .Title (delimit $authors " ") (delimit (or .Params.tags slice) " ")) }}">
+  <span class="post-card-byline">
+    {{- with $authors }}{{ delimit . ", " }}{{ else }}{{ or $.Params.author "Unattributed" }}{{ end -}}
+    {{ if not .Date.IsZero }}<span class="post-card-date">{{ .Date.Format "Jan 2, 2006" }}</span>{{ end }}
+    {{- if .Draft }}<span class="post-card-date">draft</span>{{ end }}
+  </span>
+  <span class="post-card-title">{{ .Title }}</span>
+  {{- with $summary }}
+  <span class="post-card-summary">{{ . | truncate 220 }}</span>
+  {{- end }}
+</a>

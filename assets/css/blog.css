@@ -1,0 +1,624 @@
+/* ============================================================
+   Blog components
+   Layered on course.css, which owns the palette, the type stack,
+   the header and the footer. Every colour here is a token from
+   that file; add a token there rather than a literal here.
+
+   What this file adds is the blog's own furniture: the assignment
+   tiles, the post cards and their filter, the post masthead and
+   its byline, tag pills, the author index, and post navigation.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Masthead
+   The home page borrows .title/.title2 from the course site, so
+   the two sites open the same way. The lede below them is the
+   blog's own.
+   ------------------------------------------------------------ */
+
+.blog-lede {
+    max-width: 760px;
+    margin: 0 auto var(--s6);
+    text-align: center;
+    color: var(--ink-2);
+}
+
+.blog-lede p:last-child {
+    margin-bottom: 0;
+}
+
+/* A section page (an assignment, a tag, an author) opens with the
+   crimson kicker, then the name, then one line of context. */
+.page-kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: var(--s2);
+}
+
+.page-lede {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 760px;
+    margin-bottom: var(--s5);
+}
+
+/* ------------------------------------------------------------
+   Assignment tiles (home page)
+   The course site lays its five assignments out as a path of
+   tiles. The blog carries the two that are published here, and
+   keeps the ghost numeral so a student recognises the tile from
+   the assignments page. The numeral is markup rather than a CSS
+   counter because these are 03 and 05, not 01 and 02.
+   ------------------------------------------------------------ */
+
+.assignment-tiles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 24px;
+    margin: var(--s5) 0 var(--s6);
+}
+
+.assignment-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 24px 20px;
+    background: var(--crimson-050);
+    border: 1px solid var(--crimson-100);
+    border-top: 3px solid var(--crimson);
+    border-radius: var(--r-lg);
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.3, 1),
+                box-shadow 0.25s ease,
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+}
+
+.assignment-tile:hover {
+    color: inherit;
+    text-decoration: none;
+    background: var(--crimson-100);
+    border-color: var(--crimson-200);
+    border-top-color: var(--crimson-bright);
+    box-shadow: var(--shadow-3);
+    transform: translateY(-2px);
+}
+
+.assignment-tile .tile-index {
+    position: absolute;
+    top: 6px;
+    right: 14px;
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: rgba(140, 21, 21, 0.09);
+    pointer-events: none;
+}
+
+.assignment-tile > *:not(.tile-index) {
+    position: relative;
+    z-index: 1;
+}
+
+.assignment-tile .tile-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--crimson);
+}
+
+.assignment-tile .tile-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: var(--s2) 0;
+    max-width: 82%;
+}
+
+.assignment-tile .tile-summary {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* Post count and due date, on the tile's bottom edge. */
+.assignment-tile .tile-foot {
+    margin-top: var(--s4);
+    padding-top: var(--s3);
+    border-top: 1px solid var(--crimson-200);
+    font-size: 13px;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s3);
+}
+
+.assignment-tile .tile-count {
+    font-weight: 700;
+    color: var(--crimson);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 620px) {
+    .assignment-tiles {
+        grid-template-columns: 1fr;
+    }
+
+    .assignment-tile {
+        padding: 18px 20px 16px;
+    }
+
+    .assignment-tile .tile-index {
+        font-size: 42px;
+    }
+}
+
+/* ------------------------------------------------------------
+   Post list
+   Eighty posts to an assignment, so a card is compact: one line
+   of byline, the title, and a two-line summary. The crimson left
+   rule is the course site's .note-card device.
+   ------------------------------------------------------------ */
+
+.post-list {
+    margin-top: var(--s4);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s3);
+}
+
+@media (max-width: 860px) {
+    .post-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--crimson);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.post-card:hover {
+    color: inherit;
+    text-decoration: none;
+    box-shadow: var(--shadow-2);
+    transform: translateY(-1px);
+    border-left-color: var(--crimson-bright);
+}
+
+.post-card .post-card-byline {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s1) var(--s2);
+    align-items: baseline;
+}
+
+.post-card .post-card-date {
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink-4);
+    text-transform: none;
+    font-variant-numeric: tabular-nums;
+}
+
+.post-card .post-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: var(--s1) 0 var(--s1);
+}
+
+.post-card .post-card-summary {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 0;
+    /* Two lines, so every card in a row of eighty is the same height. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* A draft is visible only in `hugo server -D`; the stripe says so. */
+.post-card.is-draft {
+    border-left-color: var(--amber);
+    background-color: var(--amber-050);
+}
+
+/* ------------------------------------------------------------
+   Filter
+   Eighty posts is too many to scan, so the assignment pages carry
+   a box that filters the list on title, author and tag. It is
+   written by JS and stays hidden without it, because without JS
+   it would be a box that does nothing.
+   ------------------------------------------------------------ */
+
+.post-filter {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s3);
+    margin: var(--s5) 0 0;
+}
+
+.post-filter.is-ready {
+    display: flex;
+}
+
+.post-filter input {
+    flex: 1 1 260px;
+    min-width: 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 7px 12px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.post-filter input:focus {
+    outline: none;
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 3px var(--crimson-100);
+}
+
+.post-filter input::placeholder {
+    color: var(--ink-4);
+}
+
+.post-filter .filter-count {
+    font-size: 14px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Shown when the filter matches nothing, and on an assignment that
+   has no posts yet. */
+.empty-state {
+    margin-top: var(--s4);
+    padding: var(--s6) var(--s5);
+    text-align: center;
+    color: var(--ink-3);
+    background-color: var(--surface);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--r);
+}
+
+.empty-state p:last-child {
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------
+   Post page
+   ------------------------------------------------------------ */
+
+.post-header {
+    margin-bottom: var(--s5);
+    padding-bottom: var(--s4);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.post-header h1 {
+    font-size: 32px;
+    margin-bottom: var(--s3);
+}
+
+@media (max-width: 575px) {
+    .post-header h1 {
+        font-size: 26px;
+    }
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s2) var(--s3);
+    font-size: 15px;
+    color: var(--ink-3);
+}
+
+.post-meta .post-author {
+    font-weight: 600;
+    color: var(--ink-2);
+}
+
+.post-meta time {
+    font-variant-numeric: tabular-nums;
+}
+
+/* The assignment this post answers, as a crimson chip. */
+.post-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: var(--crimson);
+    color: var(--on-crimson);
+    text-decoration: none;
+}
+
+a.post-badge:hover {
+    background-color: var(--crimson-bright);
+    color: var(--on-crimson);
+    text-decoration: none;
+}
+
+.post-badge-draft {
+    background-color: var(--amber);
+}
+
+/* ------------------------------------------------------------
+   Tags
+   ------------------------------------------------------------ */
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.tag-pill {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 3px 10px;
+    border-radius: var(--r-sm);
+    color: var(--ink-2);
+    background-color: var(--surface);
+    border: 1px solid var(--border-soft);
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.tag-pill:hover {
+    color: var(--crimson);
+    background-color: var(--crimson-050);
+    border-color: var(--crimson-200);
+    text-decoration: none;
+}
+
+.tag-count {
+    color: var(--ink-4);
+    font-variant-numeric: tabular-nums;
+}
+
+.tag-pill:hover .tag-count {
+    color: var(--crimson-bright);
+}
+
+.post-footer {
+    margin-top: var(--s6);
+    padding-top: var(--s4);
+    border-top: 1px solid var(--border-soft);
+}
+
+.post-footer .tag-list {
+    margin-bottom: var(--s4);
+}
+
+/* ------------------------------------------------------------
+   Previous / next, within one assignment
+   ------------------------------------------------------------ */
+
+.post-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s3);
+    margin-top: var(--s4);
+}
+
+@media (max-width: 620px) {
+    .post-nav {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-nav a {
+    display: block;
+    padding: 10px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.post-nav a:hover {
+    background-color: var(--crimson-050);
+    border-color: var(--crimson-200);
+    text-decoration: none;
+}
+
+.post-nav .nav-dir {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 2px;
+}
+
+.post-nav .nav-title {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.4;
+}
+
+.post-nav .nav-next {
+    text-align: right;
+    grid-column: 2;
+}
+
+@media (max-width: 620px) {
+    .post-nav .nav-next {
+        grid-column: 1;
+        text-align: left;
+    }
+}
+
+/* ------------------------------------------------------------
+   Author index
+   ------------------------------------------------------------ */
+
+.author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--s2);
+    padding: 0;
+    margin: var(--s4) 0 0;
+    list-style: none;
+}
+
+.author-grid li {
+    margin: 0;
+}
+
+.author-grid a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s2);
+    padding: 8px 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-sm);
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.author-grid a:hover {
+    color: var(--crimson);
+    background-color: var(--crimson-050);
+    border-color: var(--crimson-200);
+    text-decoration: none;
+}
+
+.author-grid .author-count {
+    font-size: 13px;
+    color: var(--ink-4);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------
+   Back link, above a post title and under a list
+   ------------------------------------------------------------ */
+
+.back-link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--ink-3);
+    text-decoration: none;
+    margin-bottom: var(--s3);
+}
+
+.back-link:hover {
+    color: var(--crimson);
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------------
+   Reduced motion, matching the course site's policy: every lift
+   and transition here is decoration.
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+    .assignment-tile,
+    .post-card,
+    .post-nav a,
+    .tag-pill,
+    .author-grid a {
+        transition: none;
+    }
+
+    .assignment-tile:hover,
+    .post-card:hover {
+        transform: none;
+    }
+}
+
+/* ------------------------------------------------------------
+   Code blocks
+   Chroma paints its own background on .chroma; course.css already
+   frames every <pre> with the surface colour and a border, so the
+   highlighter only contributes the token colours.
+   ------------------------------------------------------------ */
+
+.highlight .chroma,
+.highlight pre.chroma {
+    background-color: transparent;
+}
+
+.highlight {
+    margin-bottom: var(--s4);
+}
+
+/* A fenced block Hugo did not highlight still needs the bottom margin. */
+.note-body pre {
+    margin-bottom: var(--s4);
+}
+
+/* ------------------------------------------------------------
+   Figures
+   A Markdown image with a title renders as a captioned figure;
+   course.css has no rule for one, so the frame is defined here.
+   ------------------------------------------------------------ */
+
+.post-figure {
+    margin: var(--s5) 0;
+}
+
+.post-figure img {
+    display: block;
+    max-width: 100%;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+}
+
+.post-figure figcaption {
+    margin-top: var(--s2);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-3);
+}
+
+/* A table in a post keeps the prose rhythm around it. */
+.note-body .table-responsive {
+    margin: var(--s4) 0 var(--s5);
+}

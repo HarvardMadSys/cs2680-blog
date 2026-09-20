@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{- $plural := .Data.Plural }}
+{{- $terms := .Data.Terms.Alphabetical }}
+
+<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
+<div class="title2">{{ .Title }}</div>
+
+<div class="section">
+  <h1>{{ or .Params.heading .Title }}</h1>
+  {{- with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
+
+  {{- if $terms }}
+  {{- if eq $plural "authors" }}
+  <p class="page-lede">{{ len $terms }} {{ if eq (len $terms) 1 }}author has{{ else }}authors have{{ end }} posted so far.</p>
+  <ul class="author-grid">
+    {{- range $terms }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="author-count">{{ .Count }}</span></a></li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <ul class="tag-list">
+    {{- range .Data.Terms.ByCount }}
+    <li><a class="tag-pill" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="tag-count">{{ .Count }}</span></a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- else }}
+  <div class="empty-state"><p>Nothing here yet.</p></div>
+  {{- end }}
+</div>
+{{ end }}

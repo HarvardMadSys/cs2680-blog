@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $posts := .RegularPages.ByDate.Reverse }}
+{{- $isAssignment := ne .Params.assignment nil }}
+
+<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
+<div class="title2">{{ .Title }}</div>
+
+<div class="section">
+  {{- if $isAssignment }}
+  <div class="page-kicker">
+    {{- with .Params.out }}Out {{ . }} &middot; {{ end -}}
+    {{- with .Params.due }}due {{ . }}{{ end -}}
+    {{- with .Params.weightPct }} &middot; {{ . }}% of the grade{{ end -}}
+    {{- with $posts }} &middot; {{ len . }} post{{ if ne (len .) 1 }}s{{ end }}{{ end }}
+  </div>
+  {{- end }}
+  <h1>{{ or .Params.heading .Title }}</h1>
+
+  {{- with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
+
+  {{- if $posts }}
+  {{ partial "post-filter.html" "posts" }}
+  <div class="post-list" id="post-list">
+    {{- range $posts }}
+    {{ partial "post-card.html" . }}
+    {{- end }}
+  </div>
+  <div class="empty-state" id="post-filter-empty" hidden>
+    <p>No post matches that filter.</p>
+  </div>
+  {{- else }}
+  <div class="empty-state">
+    <p><strong>No posts yet.</strong></p>
+    {{- with site.GetPage "/publish" }}
+    <p>Yours can be the first one &mdash; see the <a href="{{ .RelPermalink }}">publishing guide</a>.</p>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{ end }}
