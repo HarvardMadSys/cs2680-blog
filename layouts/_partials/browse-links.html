@@ -1,0 +1,12 @@
+{{/* The author and tag indexes are not in the navigation bar, so every page
+     that shows a list of posts offers the two other ways through them. */}}
+{{- $authors := site.GetPage "/authors" }}
+{{- $tags := site.GetPage "/tags" }}
+{{- if or $authors $tags }}
+<p class="browse-links">
+  Or browse
+  {{- with $authors }} <a href="{{ .RelPermalink }}">by author</a>{{ end }}
+  {{- if and $authors $tags }} or{{ end }}
+  {{- with $tags }} <a href="{{ .RelPermalink }}">by tag</a>{{ end }}.
+</p>
+{{- end }}

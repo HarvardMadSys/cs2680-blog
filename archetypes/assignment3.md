@@ -3,14 +3,13 @@ title: "TODO: a real title, not \"Assignment 3\""
 date: {{ now.Format "2006-01-02" }}
 authors: ["TODO: Your Name"]
 github: {{ .File.ContentBaseName }}
-summary: "TODO: one or two sentences. What you found, not what you attempted."
+summary: "TODO: one or two sentences. What you found."
 tags: ["TODO"]
 draft: true
 ---
 
 TODO: open with the result. What did cost and latency do, and what stayed fixed while they
-moved? A reader should know within two sentences whether your post is worth their next ten
-minutes.
+moved? Two sentences should be enough for a reader to decide whether to read the rest.
 
 <!--more-->
 
@@ -37,8 +36,8 @@ Same workload, same success criterion, before and after. A table beats a paragra
 
 ## What did not work
 
-The changes that made things worse, or made no difference. These are worth as much as the
-wins, and they are the part of the post nobody else can write.
+The changes that made things worse, or made no difference. Worth as much as the wins, and
+nobody else can write them.
 
 ## What I could not reach
 

@@ -1,0 +1,5 @@
+{{/* Every offering on the site, newest first: the year sections, i.e. the
+     pages that carry a `year` param. One call, so no template has to know
+     that the years are the top level of content/. */}}
+{{- $years := where (where site.Sections "Params.year" "!=" nil) "Params.hidden" "!=" true }}
+{{- return (sort $years "Params.year" "desc") }}

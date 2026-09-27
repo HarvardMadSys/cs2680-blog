@@ -10,6 +10,260 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
+   Header brand
+   The course site's header is the SEAS lockup and nothing else,
+   which is exactly why this one cannot be. The blog leads with its
+   own mark -- the favicon's hexagon, filled crimson, carrying three
+   lines of writing -- and its own name, with the course code and
+   term as the small line underneath. Same white bar, same crimson
+   rule, different thing standing on it.
+
+   It is also the one element that has to hold together from a
+   1200px desktop bar down to a 320px phone, beside a hamburger.
+   Nothing here is hidden on the way down; the mark and the two
+   lines of type step down together.
+   ------------------------------------------------------------ */
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    margin-right: auto;
+    padding: 11px 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-brand:hover,
+.site-brand:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(140, 21, 21, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-brand:hover .brand-mark {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(140, 21, 21, 0.34);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.brand-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    color: var(--crimson);
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.site-brand:hover .brand-name {
+    color: var(--crimson-bright);
+}
+
+.brand-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.site-brand:focus-visible {
+    outline: 2px solid var(--crimson);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}
+
+/* The brand and the toggler share one row on a phone; neither may push the
+   other off it, so the brand shrinks and the toggler does not. */
+.site-header .navbar-toggler {
+    flex-shrink: 0;
+}
+
+@media (max-width: 575px) {
+    .site-brand {
+        gap: 9px;
+        padding: 9px 0;
+    }
+
+    .brand-mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .brand-name {
+        font-size: 1.12rem;
+    }
+
+    .brand-sub {
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+    }
+}
+
+@media (max-width: 380px) {
+    .brand-mark {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brand-name {
+        font-size: 1.02rem;
+    }
+
+    .navbar-toggler {
+        padding: 6px 8px;
+    }
+
+    .navbar-toggler-icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+}
+
+.navbar-nav .nav-link {
+    white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   Collapsed menu
+   Below 992px the links become a drop-down panel. Bootstrap leaves
+   them as bare inline text; these rules give the panel one row per
+   link and the same crimson current-page fill the bar uses.
+   ------------------------------------------------------------ */
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        margin: 0 calc(-1 * var(--s3)) var(--s2);
+        padding: var(--s2) var(--s3) var(--s3);
+        border-top: 1px solid var(--border-soft);
+    }
+
+    .navbar-nav {
+        margin-left: 0;
+        gap: 2px;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 11px 12px !important;
+        border-radius: var(--r-sm);
+    }
+}
+
+/* The course name under the blog name on the home page. */
+.title2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title2 a:hover {
+    color: var(--crimson-bright);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.16em;
+}
+
+/* ------------------------------------------------------------
+   Footer additions
+   The SEAS lockup moved here when the header took the blog's own
+   brand, and the pages the four-item menu leaves out are listed
+   beside the menu's own, so the navigation bar is a shortcut and
+   never the only way in.
+   ------------------------------------------------------------ */
+
+.footer-seas {
+    display: inline-block;
+    border-bottom: none !important;
+    margin-bottom: var(--s4);
+}
+
+.footer-seas img {
+    height: 54px;
+    width: auto;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+}
+
+.footer-seas:hover img {
+    opacity: 1;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s2) var(--s4);
+    margin-bottom: var(--s4);
+    padding-bottom: var(--s4);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.footer-nav a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-2);
+    border-bottom: none;
+}
+
+.footer-nav a:hover {
+    color: var(--crimson-bright);
+    border-bottom: none;
+}
+
+@media (max-width: 575px) {
+    .footer-seas img {
+        height: 44px;
+    }
+}
+
+/* ------------------------------------------------------------
+   Page measure
+   course.css sets the page shell to 1200px and prose to 860px, and
+   leaves the prose against the left edge -- which on a standalone
+   page (the publishing guide, a post) reads as a column that has
+   slipped out from under the header. The wrapper carries the
+   measure and centres it, so the back link, the title, the prose
+   and the footer all sit on the same two edges.
+   ------------------------------------------------------------ */
+
+.page-body {
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-body > .note-body {
+    max-width: none;
+}
+
+/* ------------------------------------------------------------
    Masthead
    The home page borrows .title/.title2 from the course site, so
    the two sites open the same way. The lede below them is the
@@ -45,6 +299,63 @@
     margin-bottom: var(--s5);
 }
 
+/* A heading inside a list page, under the tiles. */
+.list-heading {
+    font-size: 22px;
+    margin-top: var(--s7);
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------
+   Offerings
+   One row per year the course has run. The home page shows the
+   current one as tiles and the rest as this list, so a 2026 URL
+   never has to move to make room for 2027.
+   ------------------------------------------------------------ */
+
+.year-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--s2);
+    padding: 0;
+    margin: var(--s4) 0 0;
+    list-style: none;
+}
+
+.year-list li {
+    margin: 0;
+}
+
+.year-list a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s2);
+    padding: 10px 14px;
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--crimson);
+    border-radius: var(--r-sm);
+    color: var(--ink-2);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.year-list a:hover {
+    color: var(--crimson);
+    background-color: var(--crimson-050);
+    border-color: var(--crimson-200);
+    border-left-color: var(--crimson-bright);
+    text-decoration: none;
+}
+
+.year-list .year-count {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-4);
+    font-variant-numeric: tabular-nums;
+}
+
 /* ------------------------------------------------------------
    Assignment tiles (home page)
    The course site lays its five assignments out as a path of
@@ -54,10 +365,13 @@
    counter because these are 03 and 05, not 01 and 02.
    ------------------------------------------------------------ */
 
+/* Two assignments in 2026, three once Assignment 1 opts in, and no reason to
+   rewrite this when a fourth does: the row fits as many tiles as hold their
+   measure and wraps the rest. */
 .assignment-tiles {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    column-gap: 28px;
     row-gap: 24px;
     margin: var(--s5) 0 var(--s6);
 }
@@ -162,6 +476,12 @@
     .assignment-tile .tile-index {
         font-size: 42px;
     }
+}
+
+.browse-links {
+    font-size: 15px;
+    color: var(--ink-3);
+    margin: var(--s2) 0 0;
 }
 
 /* ------------------------------------------------------------
@@ -329,7 +649,12 @@
 
 .post-header h1 {
     font-size: 32px;
+    margin-top: 0;
     margin-bottom: var(--s3);
+}
+
+.post-header .page-lede {
+    margin-bottom: 0;
 }
 
 @media (max-width: 575px) {
@@ -378,6 +703,55 @@ a.post-badge:hover {
 
 .post-badge-draft {
     background-color: var(--amber);
+}
+
+/* A long standalone page (the publishing guide) opens with its own
+   contents list. Posts do not get one: the archetype's outline is
+   the same in every post, so a list of it says nothing. */
+.page-toc {
+    margin: 0 0 var(--s6);
+    padding: var(--s4) var(--s5);
+    background-color: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--crimson);
+    border-radius: var(--r);
+}
+
+.page-toc-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: var(--s2);
+}
+
+.page-toc ol {
+    column-width: 260px;
+    column-gap: var(--s6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+}
+
+.page-toc li {
+    margin-bottom: 3px;
+    break-inside: avoid;
+}
+
+.page-toc a {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    text-decoration: none;
+}
+
+.page-toc a:hover {
+    color: var(--crimson);
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
 }
 
 /* ------------------------------------------------------------

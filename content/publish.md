@@ -1,11 +1,14 @@
 ---
 title: "Publishing your post"
-description: "How to write, preview, and publish an Assignment 3 or Assignment 5 writeup on this blog."
+description: "How to write, preview, and publish a post on this blog."
+kicker: "Guide"
+toc: true
 ---
 
-Assignments 3 and 5 are submitted as a post on this site. A post is a Markdown file in this
-site's repository, and you publish it by opening a pull request. Nothing is published until
-that pull request is merged, so you can push work in progress without it appearing here.
+A post is a Markdown file in this repository — or a folder holding the Markdown and its
+figures, which is what most posts end up being. You publish one by opening a pull request.
+Nothing appears here until that pull request is merged, so pushing work in progress is
+safe.
 
 ## 1. Get the site
 
@@ -28,20 +31,26 @@ Work on a branch named after you and the assignment, and let Hugo create the fil
 
 ```bash
 git checkout -b assignment3/<your-github-handle>
-hugo new content assignment3/<your-github-handle>.md
+hugo new content --kind assignment3 2026/assignment3/<your-github-handle>/index.md
 ```
 
-Use `assignment5/` in both commands for Assignment 5. The file name becomes the URL, so
-`assignment3/jdoe.md` publishes at `/assignment3/jdoe/`. Use your GitHub handle: it is
-unique, and it keeps the two posts you write this semester next to each other.
+Put `assignment1` or `assignment5` in place of `assignment3` everywhere for those.
 
-If your post has figures, make it a folder instead and put the images beside the Markdown:
+That gives you a folder, which is what you want as soon as you have a figure — the images
+sit beside the Markdown and are referenced by file name:
 
 ```
-content/assignment3/jdoe/
+content/2026/assignment3/jdoe/
 ├── index.md
 └── throughput.png        →  ![Throughput](throughput.png)
 ```
+
+Posts are filed under the year, so this year's go in `2026/`. The path becomes the URL, so
+that folder publishes at `/2026/assignment3/jdoe/`. Use your GitHub handle for the folder
+name; it keeps your posts next to each other.
+
+If you are certain your post will have no figures, a bare `<your-github-handle>.md` in the
+assignment folder works the same way.
 
 ## 3. Fill in the front matter
 
@@ -66,7 +75,7 @@ draft: true
 | `date` | yes | Publication date, `YYYY-MM-DD`. Sorts the assignment page. |
 | `authors` | yes | Your name, as a list. It becomes your [author page](/authors/). Spell it the same way in both posts. |
 | `github` | no | Your GitHub handle, linked from the byline. |
-| `summary` | yes | One or two sentences, shown on the assignment page. Say what you found, not what you attempted. |
+| `summary` | yes | One or two sentences, shown on the assignment page. Say what you found. |
 | `tags` | yes | Two to five topics. Check the [tag list](/tags/) and reuse existing ones where they fit. |
 | `draft` | yes | `true` while you work. Set it to `false` in the pull request that submits the post. |
 | `math` | no | `false` turns KaTeX off for the page. It is on by default. |
@@ -87,8 +96,8 @@ def budget(messages: list[Message]) -> int:
 
 **Math** renders with KaTeX, inline as `$p_{99}$` and display as `$$ ... $$`.
 
-**Tables** are for your numbers. A before/after table with the workload held fixed is the
-most useful thing most of these posts contain.
+**Tables** are for your numbers. A before/after table with the workload held fixed does
+more work than a paragraph about it.
 
 **Long output** — a full trace, a profile dump — goes in a collapsed block so it does not
 bury the argument:
@@ -99,7 +108,9 @@ bury the argument:
 {{</* /collapse */>}}
 ```
 
-**Figures** go beside `index.md` in your post folder and are referenced by file name.
+**Figures** go beside `index.md` in your post folder and are referenced by file name. Give
+every one of them alt text and a caption; a Markdown image with a title renders as a
+captioned figure.
 
 ## 5. Preview
 
@@ -107,14 +118,13 @@ bury the argument:
 hugo server -D
 ```
 
-Open <http://localhost:1313>. `-D` includes drafts, which is how you see your own post
-before it is published; it shows with an amber stripe so you can tell. The page reloads as
-you save.
+Open <http://localhost:1313>. `-D` includes drafts, so you can see your own post before it
+is published; it shows with an amber stripe. The page reloads as you save.
 
 ## 6. Open the pull request
 
 ```bash
-git add content/assignment3/<your-github-handle>*
+git add content/2026/assignment3/<your-github-handle>
 git commit -m "Assignment 3: <your title>"
 git push -u origin assignment3/<your-github-handle>
 ```
@@ -136,12 +146,12 @@ minutes.
 private endpoints, or anything from a private course repository that is not yours to
 publish.
 
-**Edit only your own post.** A pull request should touch your file and nothing else. If
+**Edit only your own post.** A pull request should touch your own post and nothing else. If
 something about the site itself is broken, open an issue instead.
 
 **Fixes after the deadline are fine.** Typos, a broken figure, a clarification — open
-another pull request. What is graded is the post as it stood at the deadline, so a late
-rewrite of the substance will not help; a correction that makes your work clearer will.
+another pull request. What is graded is the post as it stood at the deadline, so rewriting
+the substance late will not change the grade.
 
-The assignment specs themselves, the grading, and the late-day policy live on the
+The assignment specs, the grading, and the late-day policy live on the
 [course site](https://cs2680.com/assignments/index.html).

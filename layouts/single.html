@@ -3,62 +3,97 @@
 {{- $authors := or .Params.authors slice }}
 {{/* A post lives in an assignment section; a standalone page (the publishing
      guide) does not, and carries no byline. */}}
-{{- $isPost := and $section $section.IsSection }}
+{{- $isPost := and $section $section.IsSection (ne $section.Params.assignment nil) }}
 
-{{- with $section }}
-{{- if .IsSection }}
-<a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
-{{- end }}
-{{- end }}
+{{/* Prose is 860px wide inside a 1200px page, so it is centred rather than
+     ragged against the left edge of a much wider header. The wrapper, not
+     .note-body, carries the measure, so the back link and the footer line up
+     with the text they belong to. */}}
+<div class="page-body">
+  {{- if $isPost }}
+  <a class="back-link" href="{{ $section.RelPermalink }}">&larr; {{ $section.Title }}</a>
+  {{- end }}
 
-<article class="note-body">
-  <header class="post-header">
-    <h1>{{ .Title }}</h1>
-    {{- if $isPost }}
-    <div class="post-meta">
-      {{- with $section }}{{ if .IsSection }}
-      <a class="post-badge" href="{{ .RelPermalink }}">
-        {{- or .Params.label (printf "Assignment %v" .Params.assignment) | default .Title -}}
-      </a>
+  <article class="note-body">
+    <header class="post-header">
+      {{- if $isPost }}
+      {{/* The assignment is on the badge below and on the back link above;
+           the offering is on neither, so it is what the kicker says. */}}
+      {{- with $section.Parent }}{{ if not .IsHome }}
+      <div class="page-kicker">{{ or .Params.term .Title }}</div>
       {{- end }}{{ end }}
-      {{- if .Draft }}<span class="post-badge post-badge-draft">Draft</span>{{ end }}
-      {{- with $authors }}
-      <span class="post-author">
-        {{- range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/authors/%s" (urlize $a)) | relURL }}">{{ $a }}</a>{{ end -}}
-      </span>
-      {{- else }}{{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}{{ end }}
-      {{- with .Params.github }}
-      <a href="https://github.com/{{ . }}" target="_blank" rel="noopener"><code>{{ . }}</code></a>
+      {{- else }}
+      <div class="page-kicker">{{ or .Params.kicker "Guide" }}</div>
       {{- end }}
-      {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
-      {{- with .ReadingTime }}<span>{{ . }} min read</span>{{ end }}
-    </div>
-    {{- end }}
-  </header>
 
-  {{ .Content }}
+      <h1>{{ .Title }}</h1>
 
-  <footer class="post-footer">
-    {{- with .Params.tags }}
-    <ul class="tag-list">
-      {{- range . }}
-      <li><a class="tag-pill" href="{{ (printf "/tags/%s" (urlize .)) | relURL }}">{{ . }}</a></li>
+      {{- if $isPost }}
+      <div class="post-meta">
+        <a class="post-badge" href="{{ $section.RelPermalink }}">
+          {{- or $section.Params.label (printf "Assignment %v" $section.Params.assignment) -}}
+        </a>
+        {{- if .Draft }}<span class="post-badge post-badge-draft">Draft</span>{{ end }}
+        {{- with $authors }}
+        <span class="post-author">
+          {{- range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/authors/%s" (urlize $a)) | relURL }}">{{ $a }}</a>{{ end -}}
+        </span>
+        {{- else }}{{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}{{ end }}
+        {{- with .Params.github }}
+        <a href="https://github.com/{{ . }}" target="_blank" rel="noopener"><code>{{ . }}</code></a>
+        {{- end }}
+        {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
+        {{- with .ReadingTime }}<span>{{ . }} min read</span>{{ end }}
+      </div>
+      {{- else }}
+      {{- with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}
       {{- end }}
-    </ul>
-    {{- end }}
+    </header>
 
-    {{- $prev := .PrevInSection }}
-    {{- $next := .NextInSection }}
-    {{- if or $prev $next }}
-    <nav class="post-nav">
-      {{- with $prev }}
-      <a href="{{ .RelPermalink }}"><span class="nav-dir">&larr; Previous</span><span class="nav-title">{{ .Title }}</span></a>
-      {{- end }}
-      {{- with $next }}
-      <a class="nav-next" href="{{ .RelPermalink }}"><span class="nav-dir">Next &rarr;</span><span class="nav-title">{{ .Title }}</span></a>
-      {{- end }}
+    {{/* A long standalone page asks for `toc: true` and gets its own contents
+         list; a post does not, because the outline is the archetype's.
+         A page whose highest heading is an h2 -- which is every page here --
+         comes back wrapped in one level-0 node, so unwrap it and list the
+         headings under it. */}}
+    {{- if .Params.toc }}
+    {{- $tops := .Fragments.Headings }}
+    {{- if and $tops (eq (index $tops 0).Level 0) }}{{ $tops = (index $tops 0).Headings }}{{ end }}
+    {{- if gt (len $tops) 2 }}
+    <nav class="page-toc" aria-label="On this page">
+      <span class="page-toc-title">On this page</span>
+      <ol>
+        {{- range $tops }}
+        <li><a href="#{{ .ID }}">{{ .Title | plainify }}</a></li>
+        {{- end }}
+      </ol>
     </nav>
     {{- end }}
-  </footer>
-</article>
+    {{- end }}
+
+    {{ .Content }}
+
+    <footer class="post-footer">
+      {{- with .Params.tags }}
+      <ul class="tag-list">
+        {{- range . }}
+        <li><a class="tag-pill" href="{{ (printf "/tags/%s" (urlize .)) | relURL }}">{{ . }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+
+      {{- $prev := .PrevInSection }}
+      {{- $next := .NextInSection }}
+      {{- if and $isPost (or $prev $next) }}
+      <nav class="post-nav">
+        {{- with $prev }}
+        <a href="{{ .RelPermalink }}"><span class="nav-dir">&larr; Previous</span><span class="nav-title">{{ .Title }}</span></a>
+        {{- end }}
+        {{- with $next }}
+        <a class="nav-next" href="{{ .RelPermalink }}"><span class="nav-dir">Next &rarr;</span><span class="nav-title">{{ .Title }}</span></a>
+        {{- end }}
+      </nav>
+      {{- end }}
+    </footer>
+  </article>
+</div>
 {{ end }}

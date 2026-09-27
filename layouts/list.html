@@ -1,24 +1,37 @@
 {{ define "main" }}
-{{- $posts := .RegularPages.ByDate.Reverse }}
+{{- $isYear := ne .Params.year nil }}
 {{- $isAssignment := ne .Params.assignment nil }}
+{{/* A year page's posts live one level down, in its assignment sections. */}}
+{{- $posts := (cond $isYear .RegularPagesRecursive .RegularPages).ByDate.Reverse }}
 
-<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
-<div class="title2">{{ .Title }}</div>
+{{ partial "masthead.html" (dict "title" .Title) }}
 
 <div class="section">
-  {{- if $isAssignment }}
+  {{- if $isYear }}
+  {{- with .Parent }}{{ if not .IsHome }}
+  <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
+  {{- end }}{{ end }}
+  <div class="page-kicker">Offering</div>
+  {{- else if $isAssignment }}
+  {{- with .Parent }}{{ if not .IsHome }}
+  <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
+  {{- end }}{{ end }}
   <div class="page-kicker">
-    {{- with .Params.out }}Out {{ . }} &middot; {{ end -}}
-    {{- with .Params.due }}due {{ . }}{{ end -}}
-    {{- with .Params.weightPct }} &middot; {{ . }}% of the grade{{ end -}}
-    {{- with $posts }} &middot; {{ len . }} post{{ if ne (len .) 1 }}s{{ end }}{{ end }}
+    {{- if .Params.optional }}optional &middot; {{ end -}}
+    {{- with $posts }}{{ len . }} post{{ if ne (len .) 1 }}s{{ end }}{{ else }}no posts yet{{ end }}
   </div>
   {{- end }}
   <h1>{{ or .Params.heading .Title }}</h1>
 
   {{- with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
 
+  {{- if $isYear }}
+  {{ partial "assignment-tiles.html" . }}
+  {{- end }}
+
   {{- if $posts }}
+  {{- if $isYear }}<h2 class="list-heading">All posts</h2>{{ end }}
+  {{ partial "browse-links.html" . }}
   {{ partial "post-filter.html" "posts" }}
   <div class="post-list" id="post-list">
     {{- range $posts }}
@@ -32,7 +45,7 @@
   <div class="empty-state">
     <p><strong>No posts yet.</strong></p>
     {{- with site.GetPage "/publish" }}
-    <p>Yours can be the first one &mdash; see the <a href="{{ .RelPermalink }}">publishing guide</a>.</p>
+    <p>The <a href="{{ .RelPermalink }}">publishing guide</a> has the steps.</p>
     {{- end }}
   </div>
   {{- end }}

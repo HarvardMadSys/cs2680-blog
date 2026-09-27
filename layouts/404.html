@@ -1,6 +1,5 @@
 {{ define "main" }}
-<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
-<div class="title2">Page not found</div>
+{{ partial "masthead.html" (dict "title" "Page not found") }}
 
 <div class="section">
   <div class="empty-state">

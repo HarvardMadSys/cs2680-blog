@@ -2,8 +2,7 @@
 {{- $plural := .Data.Plural }}
 {{- $terms := .Data.Terms.Alphabetical }}
 
-<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
-<div class="title2">{{ .Title }}</div>
+{{ partial "masthead.html" (dict "title" .Title) }}
 
 <div class="section">
   <h1>{{ or .Params.heading .Title }}</h1>

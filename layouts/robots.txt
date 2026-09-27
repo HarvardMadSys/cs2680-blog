@@ -1,0 +1,14 @@
+{{/* Only the production deployment invites crawlers. A Cloudflare Pages
+     preview is a full copy of the site on a pages.dev hostname, and these
+     posts carry students' names, so a preview that is indexable puts a
+     second copy of somebody's work in the index under a URL nobody chose.
+     build.sh passes `-e preview` for every non-production deployment. */}}
+{{- if hugo.IsProduction -}}
+User-agent: *
+Disallow:
+
+Sitemap: {{ "sitemap.xml" | absURL }}
+{{ else -}}
+User-agent: *
+Disallow: /
+{{ end -}}

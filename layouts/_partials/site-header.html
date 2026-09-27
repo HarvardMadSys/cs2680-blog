@@ -1,33 +1,58 @@
-{{/* The course site's header, with the blog's menu in it. Markup follows
-     https://cs2680.com/header.html so the two bars are the same object:
-     white bar, 3px crimson rule, SEAS logo on the text column's left edge.
-     The menu comes from [[menu.main]] in hugo.toml. */}}
+{{/* The blog's own header. It keeps the course site's bar -- white, with the
+     3px crimson rule under it -- because the two sites belong to each other,
+     but it leads with the blog's name instead of the SEAS wordmark. The
+     course site says whose school this is; this site says what it is. The
+     SEAS lockup is in the footer, where the rest of the institutional
+     apparatus already lives.
+
+     The menu is short on purpose: the assignments are two clicks from the
+     front page and from the offering page, and the author and tag indexes
+     are reached from a byline or from the footer. A bar that lists every
+     page on the site is a table of contents, not a way around it. */}}
 {{- $cur := .RelPermalink -}}
 <div class="container site-header">
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{ "" | relURL }}"><img class="seas-logo-header"
-          src="{{ "seas-logo.png" | relURL }}" alt="Harvard SEAS logo"></a>
+      <a class="site-brand" href="{{ "" | relURL }}">
+        {{/* The favicon's mark, filled: the course site's hexagon carrying
+             three lines of writing instead of the MadSys step line. */}}
+        <svg class="brand-mark" viewBox="0 0 64 64" role="img"
+          aria-label="{{ or site.Params.tagline "Student Blog" }}">
+          <rect width="64" height="64" rx="10" fill="var(--crimson)" />
+          <path d="M32 6.4 L54.2 18.8 L54.2 43.9 L32 56.4 L9.8 43.9 L9.8 18.8 Z" fill="none"
+            stroke="#ffffff" stroke-opacity="0.45" stroke-width="2.6" stroke-linejoin="miter" />
+          <path d="M20 26 H44 M20 32 H44 M20 38 H35" fill="none" stroke="#ffffff" stroke-width="3.4"
+            stroke-linecap="round" />
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">{{ or site.Params.tagline "Student Blog" }}</span>
+          <span class="brand-sub">{{ or site.Params.courseCode "CS2680" }}{{ with site.Params.term }} &middot; {{ . }}{{ end }}</span>
+        </span>
+      </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarScroll">
+        {{/* Only the most specific match is current. /2026/assignment3/ is
+             under /2026/, so without this both would light up and the bar
+             would claim the reader is in two places. */}}
+        {{- $best := "" }}
+        {{- range site.Menus.main }}
+        {{- if not (hasPrefix .URL "http") }}
+        {{- $u := .URL | relLangURL }}
+        {{- if and (hasPrefix $cur $u) (gt (len $u) (len $best)) }}{{ $best = $u }}{{ end }}
+        {{- end }}
+        {{- end }}
+        {{- if $.IsHome }}{{ $best = $.Site.Home.RelPermalink }}{{ end }}
         <ul class="navbar-nav">
           {{- range site.Menus.main }}
           {{- $url := .URL }}
           {{- $external := hasPrefix $url "http" }}
-          {{- $active := false }}
-          {{- if not $external }}
-            {{- $u := $url | relLangURL }}
-            {{- if eq $u ($.Site.Home.RelPermalink) }}
-              {{- $active = $.IsHome }}
-            {{- else }}
-              {{- $active = hasPrefix $cur $u }}
-            {{- end }}
-          {{- end }}
-          <li class="nav-item nav-justified"><a class="nav-link mx-0 mx-xl-2{{ if $active }} active{{ end }}"
+          {{- $active := and (not $external) (eq ($url | relLangURL) $best) }}
+          <li class="nav-item"><a class="nav-link mx-0 mx-lg-1{{ if $active }} active{{ end }}"
               href="{{ if $external }}{{ $url }}{{ else }}{{ $url | relURL }}{{ end }}"
               {{- if $external }} target="_blank" rel="noopener"{{ end }}
               {{- if $active }} aria-current="page"{{ end }}>{{ .Name }}{{ if $external }} &#8599;{{ end }}</a></li>

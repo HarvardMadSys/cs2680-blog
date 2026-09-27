@@ -1,0 +1,10 @@
+# Cloudflare Pages reads this file from the root of the build output and does
+# not serve it. Hugo copies static/ verbatim, so this is where it lives.
+#
+# Posts moved under the year they were written for on 2026-09-26, so that a
+# 2026 URL does not have to move when the 2027 class publishes. These keep the
+# pre-move paths working for anything that already links to them.
+/assignment3     /2026/assignment3/         301
+/assignment5     /2026/assignment5/         301
+/assignment3/*   /2026/assignment3/:splat   301
+/assignment5/*   /2026/assignment5/:splat   301

@@ -3,7 +3,7 @@ title: "TODO: a real title, not \"Assignment 5\""
 date: {{ now.Format "2006-01-02" }}
 authors: ["TODO: Your Name"]
 github: {{ .File.ContentBaseName }}
-summary: "TODO: one or two sentences. What you found, not what you attempted."
+summary: "TODO: one or two sentences. What you found."
 tags: ["TODO"]
 draft: true
 ---
@@ -21,7 +21,7 @@ someone could rebuild your setup.
 ## The profile
 
 Where the time, tokens, and compute actually go across the whole path. Show how you
-measured, not only what you measured.
+measured it as well as what you measured.
 
 ## Hypothesis
 

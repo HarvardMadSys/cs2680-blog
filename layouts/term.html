@@ -1,8 +1,7 @@
 {{ define "main" }}
 {{- $posts := .Pages.ByDate.Reverse }}
 
-<div class="title">{{ or site.Params.courseTitle site.Title }}</div>
-<div class="title2">{{ .Title }}</div>
+{{ partial "masthead.html" (dict "title" .Title) }}
 
 <div class="section">
   {{- with .Parent }}

@@ -1,0 +1,22 @@
+{{/* The assignments of one offering, as a row of tiles. Takes the year
+     section page; its child sections that carry an `assignment` param are the
+     tiles, ordered by `weight`. The ghost numeral is markup rather than a CSS
+     counter because these are 03 and 05, not 01 and 02. */}}
+{{- $sections := where (where .Sections "Params.assignment" "!=" nil) "Params.hidden" "!=" true }}
+{{- with sort $sections "Weight" }}
+<div class="assignment-tiles">
+  {{- range . }}
+  {{- $posts := .RegularPages }}
+  <a class="assignment-tile" href="{{ .RelPermalink }}">
+    <span class="tile-index">{{ printf "%02d" (int .Params.assignment) }}</span>
+    <span class="tile-label">{{ or .Params.label (printf "Assignment %v" .Params.assignment) }}</span>
+    <span class="tile-title">{{ or .Params.heading .Title }}</span>
+    <span class="tile-summary">{{ or .Description (.Summary | plainify | chomp) }}</span>
+    <span class="tile-foot">
+      <span class="tile-count">{{ len $posts }} post{{ if ne (len $posts) 1 }}s{{ end }}</span>
+      {{- if .Params.optional }}<span>optional</span>{{ end }}
+    </span>
+  </a>
+  {{- end }}
+</div>
+{{- end }}

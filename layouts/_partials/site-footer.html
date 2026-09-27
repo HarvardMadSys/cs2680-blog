@@ -1,7 +1,26 @@
-{{/* The course site's footer, verbatim but for the first line, which names
-     the blog and points back at the course. */}}
+{{/* The course site's footer, with two things added above it: the SEAS
+     lockup, which the header no longer carries, and the pages the short menu
+     leaves out. Nothing on this site is reachable only from the navigation
+     bar. */}}
 <footer class="site-footer">
   <div class="container">
+    <a class="footer-seas" href="https://seas.harvard.edu/" target="_blank" rel="noopener">
+      <img src="{{ "seas-logo.png" | relURL }}" alt="Harvard John A. Paulson School of Engineering and Applied Sciences">
+    </a>
+
+    {{/* Every page on the site, including the three the navigation bar does
+         not carry. This list, not the bar, is what guarantees nothing here is
+         unreachable. */}}
+    <nav class="footer-nav" aria-label="Site">
+      <a href="{{ "" | relURL }}">Home</a>
+      {{- with site.GetPage (printf "/%s" site.Params.currentYear) }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- end }}
+      {{- range slice "/publish" "/authors" "/tags" }}
+      {{- with site.GetPage . }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      {{- end }}
+    </nav>
+
     <p><a href="{{ site.Params.courseURL | default "https://cs2680.com/" }}" target="_blank" rel="noopener">CS2680 course site</a>
       &middot; <a href="https://madsys.seas.harvard.edu/" target="_blank" rel="noopener">MadSys Research Group</a>
       &middot; <a href="https://seas.harvard.edu/" target="_blank" rel="noopener">Harvard John A. Paulson School of Engineering and Applied Sciences</a></p>

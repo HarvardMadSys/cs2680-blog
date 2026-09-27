@@ -1,0 +1,9 @@
+{{/* The page's opening lines. The course site always leads with the course
+     name; the blog leads with the page, and names the course underneath only
+     on the home page. Takes a dict: title, and optionally sub and subURL. */}}
+<div class="title">{{ .title }}</div>
+{{- with .sub }}
+<div class="title2">
+  {{- with $.subURL }}<a href="{{ . }}">{{ $.sub }}</a>{{ else }}{{ $.sub }}{{ end -}}
+</div>
+{{- end }}

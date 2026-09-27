@@ -21,14 +21,22 @@ ignoreErrors = ["error-remote-getjson"]
 # ------------------------------
 
 [params]
-  # The big line at the top of every page, as the course site sets it.
-  courseTitle = "CS2680 Modern AI Systems: Agents and System Optimizations"
+  # The course, in two pieces, because the two places it appears want
+  # different amounts of it. The code goes under the brand in the header,
+  # where the full name would not fit on a phone; the name goes under the
+  # site title on the home page, where the code is already in the line above.
+  courseCode = "CS2680"
+  courseName = "Modern AI Systems"
+  term = "Fall 2026"
   tagline = "Student Blog"
   courseURL = "https://cs2680.com/"
-  description = "Student writing from CS2680 Modern AI Systems at Harvard SEAS: the Assignment 3 and Assignment 5 optimization writeups."
+  description = "Student writing on profiling and optimizing LLM agent systems, from CS2680 Modern AI Systems at Harvard SEAS."
   keywords = ["AI Systems", "MLSys", "LLM", "agents", "inference optimization", "CS2680"]
-  # Sections whose posts count as blog posts on the home page.
-  mainSections = ["assignment3", "assignment5"]
+  # The offering the site currently leads with. Posts live under the year they
+  # were written for -- /2026/assignment3/jdoe/ -- so nothing published in one
+  # year moves when the next year's posts arrive. To roll the site over, add
+  # content/2027/ and change this, `term`, and the "Fall 2026" menu URL below.
+  currentYear = "2026"
   # KaTeX everywhere; the cost and latency arithmetic shows up in most posts.
   math = true
 
@@ -51,36 +59,25 @@ ignoreErrors = ["error-remote-getjson"]
 
 [menu]
 
+  # Deliberately three items. The assignments are one click from the home page
+  # and from /2026/; the publishing guide, the author index and the tag index
+  # are reached from the front page, from a byline, and from the footer, which
+  # lists every page the bar leaves out.
   [[menu.main]]
     identifier = "home"
     name = "Home"
     url = "/"
     weight = 10
   [[menu.main]]
-    identifier = "assignment3"
-    name = "Assignment 3"
-    url = "/assignment3/"
+    identifier = "year"
+    name = "Fall 2026"
+    url = "/2026/"
     weight = 20
-  [[menu.main]]
-    identifier = "assignment5"
-    name = "Assignment 5"
-    url = "/assignment5/"
-    weight = 30
-  [[menu.main]]
-    identifier = "authors"
-    name = "Authors"
-    url = "/authors/"
-    weight = 40
-  [[menu.main]]
-    identifier = "publish"
-    name = "Publish"
-    url = "/publish/"
-    weight = 50
   [[menu.main]]
     identifier = "course"
     name = "Course site"
     url = "https://cs2680.com/"
-    weight = 60
+    weight = 30
 
 [privacy]
 
