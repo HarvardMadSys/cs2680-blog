@@ -2,22 +2,21 @@
 title: "Publishing your post"
 description: "How to write, preview, and publish a post on this blog."
 kicker: "Guide"
-toc: true
 ---
 
-A post is a Markdown file in this repository — or a folder holding the Markdown and its
-figures, which is what most posts end up being. You publish one by opening a pull request.
-Nothing appears here until that pull request is merged, so pushing work in progress is
-safe.
+Each post lives in its own folder with a Markdown file (`index.md`) and any images.
+Posts are published by opening a pull request.
 
-## 1. Get the site
+## 1. Preparation
+
+First, clone the repo:
 
 ```bash
 git clone git@github.com:HarvardMadSys/cs2680-blog.git
 cd cs2680-blog
 ```
 
-You need [Hugo](https://gohugo.io/) **extended**, v0.164.0 or newer, to preview your post:
+You need [Hugo](https://gohugo.io/), v0.164.0 or newer, to preview your post: (for other operating systems, please see [Hugo installation guide](https://gohugo.io/installation/).)
 
 ```bash
 brew install hugo          # macOS
@@ -25,135 +24,123 @@ sudo snap install hugo     # Linux
 hugo version               # should print "extended"
 ```
 
-## 2. Start your post
+## 2. Start writing your post
 
-Work on a branch named after you and the assignment, and let Hugo create the file:
+Work on a branch named after you and the assignment, and let Hugo create the file: (Put `assignment1` or `assignment5` in place of `assignment3` everywhere for those.)
 
 ```bash
-git checkout -b assignment3/<your-github-handle>
-hugo new content --kind assignment3 2026/assignment3/<your-github-handle>/index.md
+git checkout -b assignment3/<your-name>
+hugo new content --kind assignment3 2026/assignment3/<your-name>/index.md
 ```
 
-Put `assignment1` or `assignment5` in place of `assignment3` everywhere for those. An
-Assignment 1 post is a showcase of your web UI rather than a measurement writeup, so its
-outline is different and it carries a link to a public repository; the archetype has the
-shape.
-
-That gives you a folder, which is what you want as soon as you have a figure — the images
-sit beside the Markdown and are referenced by file name:
+That gives you a new folder, where you can put the post file and the supplementary files:
 
 ```
-content/2026/assignment3/jdoe/
+content/2026/assignment3/junchengyang/
 ├── index.md
 └── throughput.png        →  ![Throughput](throughput.png)
 ```
 
-Posts are filed under the year, so this year's go in `2026/`. The path becomes the URL, so
-that folder publishes at `/2026/assignment3/jdoe/`. Use your GitHub handle for the folder
-name; it keeps your posts next to each other.
-
-If you are certain your post will have no figures, a bare `<your-github-handle>.md` in the
+If your post doesn't have figures, a single `<your-name>.md` in the
 assignment folder works the same way.
 
-## 3. Fill in the front matter
+## 3. Edit the metadata block
 
-Hugo creates the file with this block at the top. Everything between the `---` lines is
-metadata, not prose:
+Hugo creates the file with a metadata block at the top. Everything between the `---` lines is
+metadata:
 
 ```yaml
 ---
-title: "Cutting agent cost by 60% without losing task success"
-date: 2026-10-18
-authors: ["Jane Doe"]
-summary: "Where the tokens went, the four changes that mattered, and the one that made things worse."
-tags: ["prompt-compression", "model-routing", "caching"]
+title: "Cutting agent cost by 60% without losing task success rate"
+date: 2026-09-28
+authors: ["Juncheng Yang"]
+summary: "With a good management in context, the agent is able to avoid a lot of costs, while also preserving the task success rate."
+tags: ["prompt-compression", "caching"]
 draft: true
 ---
 ```
 
 | Field | Required | What it does |
 | --- | --- | --- |
-| `title` | yes | The post title. Write a real one; it is what people scan on the assignment page. |
+| `title` | yes | The post title. |
 | `date` | yes | Publication date, `YYYY-MM-DD`. Sorts the assignment page. |
-| `authors` | yes | Your name, as a list. It becomes your [author page](/authors/). Spell it the same way in both posts. |
-| `summary` | yes | One or two sentences, shown on the assignment page. Say what you found. |
+| `authors` | yes | Your name (as a list). It will be used for the [author page](/authors/). Keep it consistent across your posts. |
+| `summary` | yes | One or two sentences about what you found. I will be shown on the assignment page. |
 | `tags` | yes | Two to five topics. Check the [tag list](/tags/) and reuse existing ones where they fit. |
-| `draft` | yes | `true` while you work. Set it to `false` in the pull request that submits the post. |
-| `toc` | no | `true` adds a contents list at the top. Worth it past five or six sections. |
-| `math` | no | `false` turns KaTeX off for the page. It is on by default. |
-| `mermaid` | no | `true` enables Mermaid diagrams in ` ```mermaid ` fences. |
+| `draft` | yes | `true` while you are still working on it. Set it to `false` before you create the pull request. |
+| `toc` | no | `true` adds a contents list at the top. Worth it if it has more than five sections. |
+| `mermaid` | no | `true` enables Mermaid diagrams in ` ```mermaid ` blocks. |
 
-## 4. Write it
+## 4. Write the post
 
-Standard Markdown. A few things this site sets up for you:
+Just use the standard Markdown format. On top of that, we also have some enhanced features:
 
-**Code** is highlighted; name the language on the fence.
+- **Code highlighting.** 
 
-````markdown
-```python
-def budget(messages: list[Message]) -> int:
-    return sum(len(m.content) for m in messages) // 4
-```
-````
+  ````markdown
+  ```python
+  def budget(messages: list[Message]) -> int:
+      return sum(len(m.content) for m in messages) // 4
+  ```
+  ````
 
-**Math** renders with KaTeX, inline as `$p_{99}$` and display as `$$ ... $$`.
+- **Math.** Inline as `$p_{99}$` and display as `$$ ... $$` (Rendered with KaTeX).
 
-**Tables** are for your numbers. A before/after table with the workload held fixed does
-more work than a paragraph about it.
+- **Long output:** A full trace or a profile dump goes in a collapsed block so it does not
+  bury the argument:
 
-**Long output** — a full trace, a profile dump — goes in a collapsed block so it does not
-bury the argument:
 
-```markdown
-{{</* collapse summary="Full profiler output" */>}}
+{{<collapse summary="Full profiler output">}}
 ...paste it here...
-{{</* /collapse */>}}
-```
+{{</collapse>}}
 
-**Figures** go beside `index.md` in your post folder and are referenced by file name. Give
-every one of them alt text and a caption; a Markdown image with a title renders as a
-captioned figure.
+  ```markdown
+  {{</*collapse summary="Full profiler output"*/>}}
+  ...paste it here...
+  {{</*/collapse*/>}}
+  ```
+
+- **Figures:** Place these beside `index.md` in your post folder and reference them by file name. Give
+  every one of them alt text and a caption.
 
 ## 5. Preview
+
+To preview, please execute the following command in the terminal at the root directory of this repo.
 
 ```bash
 hugo server -D
 ```
-
-Open <http://localhost:1313>. `-D` includes drafts, so you can see your own post before it
-is published; it shows with an amber stripe. The page reloads as you save.
+`-D` includes drafts, so you can see your own post before it is published.
+If there is no errors displayed, open <http://localhost:1313> to preview.
+Pages will be reloaded as you save.
 
 ## 6. Open the pull request
 
 ```bash
-git add content/2026/assignment3/<your-github-handle>
+git add content/2026/assignment3/<your-name>
 git commit -m "Assignment 3: <your title>"
-git push -u origin assignment3/<your-github-handle>
+git push -u origin assignment3/<your-name>
 ```
 
 Then open a pull request against `main`. Before you do, check that:
 
-- `draft` is `false`
-- `summary`, `authors`, `date` and `tags` are filled in
-- `hugo server` shows no error, and your post looks right
+- `draft` is `false`;
+- `summary`, `authors`, `date` and `tags` are filled in;
+- `hugo server` shows no error, and your post looks right;
 - your post contains only your own work, and discloses AI use as the
-  [course policy](https://cs2680.com/policy.html#ai-policy) requires
+  [course policy](https://cs2680.com/policy.html#ai-policy) requires.
 
-A TF reviews the pull request. Once it is merged, your post is live here within a few
-minutes.
+A TF will review the pull request. Once it is merged, your post will be live here.
 
-## Rules of the road
+## Notes
 
-**Your post is public.** It is on the open internet under your name. Do not paste API keys,
-private endpoints, or anything from a private course repository that is not yours to
-publish.
+**Your post is public.** Do not leak API keys, private endpoints, or anything private.
 
-**Edit only your own post.** A pull request should touch your own post and nothing else. If
-something about the site itself is broken, open an issue instead.
+**Only edit your own post.** A pull request should only touch your own post and nothing else.
 
-**Fixes after the deadline are fine.** Typos, a broken figure, a clarification — open
-another pull request. What is graded is the post as it stood at the deadline, so rewriting
-the substance late will not change the grade.
+**Fixes after the deadline are fine.**  Feel free to open another pull request if you have typos, a broken figure, or want to add further clarification.
+However, grading is based on the state of your post at the deadline, so any
+subsequent rewrites will not affect your score.
 
-The assignment specs, the grading, and the late-day policy live on the
+The assignment specs, the grading, and the late-day policy are on the
 [course site](https://cs2680.com/assignments/index.html).

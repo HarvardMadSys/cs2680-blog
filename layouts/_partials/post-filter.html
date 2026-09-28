@@ -46,6 +46,12 @@
     try { index = JSON.parse(raw.textContent); } catch (e) { return; }
     if (index.length < 2) return;
 
+    // Reveal the box only now: it is markup-hidden so that it never shows to
+    // a reader who cannot use it -- no JS, an unparseable index, or a list too
+    // short to be worth filtering. `is-ready` is what gives it `display: flex`.
+    box.hidden = false;
+    box.classList.add('is-ready');
+
     var noun = {{ $noun }};
     // The server-rendered page of results, to put back when the box is cleared.
     var pageHTML = list.innerHTML;

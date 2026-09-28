@@ -1131,3 +1131,19 @@ a.post-badge:hover {
 .note-body .table-responsive {
     margin: var(--s4) 0 var(--s5);
 }
+
+/* ------------------------------------------------------------
+   Collapsed block
+   The {{< collapse >}} shortcode reuses course.css's .instructor-note,
+   whose summary is upper-cased with extra letter-spacing. That reads
+   as a label on the course site, where the wording is fixed. Here the
+   summary is the author's own sentence -- "vLLM metrics at steady
+   state, before" -- so it is shown as written. The letter-spacing goes
+   with it; it exists to open up all-caps.
+   ------------------------------------------------------------ */
+
+.note-body .instructor-note > summary {
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 14px;
+}
