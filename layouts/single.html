@@ -47,6 +47,17 @@
       {{- end }}
     </header>
 
+    {{/* The cover, if the post has one. Shown whole rather than cropped to the
+         card's 16:9 -- this is the author's screenshot at the size they took
+         it, not a thumbnail. `coverAlt` describes it; without one it is left
+         decorative, since the title above has just said what it shows. */}}
+    {{- with partial "cover.html" (dict "page" . "width" "1600x") }}
+    <figure class="post-cover">
+      <img src="{{ . }}" alt="{{ or $.Params.coverAlt "" }}">
+      {{- with $.Params.coverCaption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+    </figure>
+    {{- end }}
+
     {{/* A long standalone page asks for `toc: true` and gets its own contents
          list; a post does not, because the outline is the archetype's.
          A page whose highest heading is an h2 -- which is every page here --

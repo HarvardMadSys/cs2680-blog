@@ -2,8 +2,14 @@
      title, authors and tags, lowercased. */}}
 {{- $authors := or .Params.authors slice -}}
 {{- $summary := or .Params.summary .Description (.Summary | plainify | chomp) -}}
-<a class="post-card{{ if .Draft }} is-draft{{ end }}" href="{{ .RelPermalink }}"
+{{- $cover := partial "cover.html" (dict "page" . "width" "640x") -}}
+<a class="post-card{{ if .Draft }} is-draft{{ end }}{{ if $cover }} has-cover{{ end }}" href="{{ .RelPermalink }}"
   data-filter="{{ lower (printf "%s %s %s" .Title (delimit $authors " ") (delimit (or .Params.tags slice) " ")) }}">
+  {{- with $cover }}
+  {{/* Decorative: the title and summary below already say what this is, so a
+       screen reader gains nothing from a second description of it. */}}
+  <span class="post-card-cover"><img src="{{ . }}" alt="" loading="lazy" decoding="async"></span>
+  {{- end }}
   <span class="post-card-byline">
     {{- with $authors }}{{ delimit . ", " }}{{ else }}{{ or $.Params.author "Unattributed" }}{{ end -}}
     {{ if not .Date.IsZero }}<span class="post-card-date">{{ .Date.Format "Jan 2, 2006" }}</span>{{ end }}

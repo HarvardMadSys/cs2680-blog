@@ -5,6 +5,7 @@ authors: ["TODO: Your Name"]
 summary: "TODO: one or two sentences. What it does, and who would want it."
 tags: ["TODO"]
 draft: true
+# cover: "cover.webp"   # optional: a screenshot of the app, shown on the listing
 ---
 
 TODO: open with what it is and who it is for. Someone should know from two sentences

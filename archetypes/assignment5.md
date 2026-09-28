@@ -5,6 +5,7 @@ authors: ["TODO: Your Name"]
 summary: "TODO: one or two sentences. What you found."
 tags: ["TODO"]
 draft: true
+# cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
 TODO: open with the result. Which layer turned out to hold the time, and what did the

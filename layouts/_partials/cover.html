@@ -1,0 +1,33 @@
+{{/* Resolves a post's optional `cover` front-matter field to a URL, or ""
+     when the post has none. One place, so the card thumbnail and the
+     og:image cannot drift apart.
+
+     dict:
+       page   the post
+       width  Hugo resize spec, e.g. "640x". Raster covers are re-encoded to
+              WebP at this width, which is what keeps a listing of eighty
+              posts from carrying eighty full-size screenshots.
+       abs    true for an absolute URL, which og:image requires
+
+     An SVG is passed through untouched: it is already small, and Hugo's
+     image processing cannot resize vectors. A cover given as an http(s) URL
+     is passed through too, for a screenshot hosted elsewhere. */}}
+{{- $page := .page }}
+{{- $width := or .width "640x" }}
+{{- $abs := .abs }}
+{{- $url := "" }}
+{{- with $page.Params.cover }}
+  {{- if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+    {{- $url = . }}
+  {{- else }}
+    {{- with $page.Resources.GetMatch . }}
+      {{- if eq .MediaType.SubType "svg" }}
+        {{- $url = cond $abs .Permalink .RelPermalink }}
+      {{- else }}
+        {{- $r := .Resize (printf "%s webp q80" $width) }}
+        {{- $url = cond $abs $r.Permalink $r.RelPermalink }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- return $url }}

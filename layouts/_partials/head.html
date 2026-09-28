@@ -47,7 +47,15 @@
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:site_name" content="{{ site.Title }}">
   <meta property="og:url" content="{{ .Permalink }}">
+  {{/* A post with a cover gets the wide card when its link is shared; without
+       one the small card is honest about there being no image to show. */}}
+  {{- $ogimage := partial "cover.html" (dict "page" . "width" "1200x" "abs" true) }}
+  {{- with $ogimage }}
+  <meta property="og:image" content="{{ . }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {{- else }}
   <meta name="twitter:card" content="summary">
+  {{- end }}
 
   {{- with .OutputFormats.Get "rss" }}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">

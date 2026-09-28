@@ -521,6 +521,11 @@ body {
     border: 1px solid var(--border-soft);
     border-left: 3px solid var(--crimson);
     border-radius: var(--r);
+    /* The cover bleeds to the card's edges, so the card clips it. Doing it
+       here rather than rounding the cover itself is what keeps the corners
+       matching: the left border is 3px and the others are 1px, so the inner
+       radius is not the same on both top corners and no single value fits. */
+    overflow: hidden;
     padding: 14px 18px;
     color: inherit;
     text-decoration: none;
@@ -539,6 +544,26 @@ body {
    spacing are how this site marks a label -- the assignment kicker, the tile
    label -- and applying them here made the author read as a category the card
    had been filed under rather than as who wrote it. */
+/* An optional `cover` in the front matter -- a screenshot for an Assignment 1
+   showcase, usually. It bleeds to the card's inner edges and is clipped to a
+   fixed 16:9 box, so a row of cards stays a row whatever shape the screenshots
+   are. Cards without one simply start at the byline. */
+.post-card-cover {
+    display: block;
+    margin: -14px -18px var(--s2);
+    background-color: var(--surface);
+}
+
+.post-card-cover img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    /* A screenshot is mostly flat colour, so its top edge can vanish into the
+       card. The hairline keeps the two apart without drawing a box. */
+    border-bottom: 1px solid var(--border-soft);
+}
+
 .post-card .post-card-byline {
     font-size: 13.5px;
     font-weight: 600;
@@ -1101,6 +1126,32 @@ a.post-badge:hover {
 /* A fenced block Hugo did not highlight still needs the bottom margin. */
 .note-body pre {
     margin-bottom: var(--s4);
+}
+
+/* ------------------------------------------------------------
+   Post cover
+   The same image the card uses, shown whole at the top of the post.
+   Not cropped here: on the card it is a thumbnail in a grid, on the
+   post it is the screenshot the author took.
+   ------------------------------------------------------------ */
+
+.post-cover {
+    margin: var(--s4) 0 var(--s5);
+}
+
+.post-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+}
+
+.post-cover figcaption {
+    margin-top: var(--s2);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-3);
 }
 
 /* ------------------------------------------------------------
