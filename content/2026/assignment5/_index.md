@@ -1,7 +1,7 @@
 ---
 title: "Assignment 5: Mads-Stack"
-heading: "Optimize the full stack"
-description: "The agent loop, the model and the serving system are all in play. Profile the whole path, commit to a hypothesis, then change things across layers and re-run the same workload."
+heading: "Optimizing the full agent stack"
+description: "Profiling and optimizing the complete agent stack, from control flow and serving infrastructure down to open-weight inference,to maximize end-to-end compute and token efficiency."
 label: "Assignment 5 · Mads-Stack"
 assignment: 5
 weight: 5
@@ -10,5 +10,5 @@ cascade:
   type: assignment5
 ---
 
-Nothing is off-limits here. These posts profile the whole path, write the hypothesis down
-first, and report what the numbers did.
+Each post writes its hypothesis down before touching anything, then reports what the
+numbers did to it.

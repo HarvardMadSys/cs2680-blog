@@ -1,4 +1,4 @@
 ---
 title: "Authors"
-heading: "Everyone who has posted"
+heading: "Browse by authors"
 ---

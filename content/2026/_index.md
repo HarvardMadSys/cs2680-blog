@@ -1,6 +1,6 @@
 ---
 title: "Fall 2026"
-heading: "The assignments"
+heading: "Topics"
 description: "Everything the Fall 2026 class published."
 # `year` is what marks this as an offering page rather than an assignment
 # page: it makes the list template show the assignment tiles instead of a
@@ -11,4 +11,3 @@ term: "Fall 2026"
 weight: 2026
 ---
 
-Everything the Fall 2026 class published.

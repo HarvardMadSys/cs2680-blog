@@ -1,7 +1,7 @@
 ---
 title: "Assignment 3: Mads-Opt"
-heading: "Make every token count"
-description: "The model is a black-box API here, so everything around it is what moves - how many calls go out, how big they are, which model gets each one, and what the loop does in between."
+heading: "High-efficiency agent orchestration"
+description: "Engineering context compression, tool concurrency, and dynamic model routing around a black-box LLM API to slash latency and cost while preserving benchmark task accuracy."
 label: "Assignment 3 · Mads-Opt"
 assignment: 3
 weight: 3

@@ -12,15 +12,17 @@
   {{- with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
 
   {{- if $posts }}
-  {{ partial "post-filter.html" "posts" }}
+  {{ partial "post-filter.html" (dict "noun" "posts" "pages" $posts) }}
+  {{- $paginator := .Paginate $posts }}
   <div class="post-list" id="post-list">
-    {{- range $posts }}
+    {{- range $paginator.Pages }}
     {{ partial "post-card.html" . }}
     {{- end }}
   </div>
   <div class="empty-state" id="post-filter-empty" hidden>
     <p>No post matches that filter.</p>
   </div>
+  {{ partial "pager.html" . }}
   {{- else }}
   <div class="empty-state"><p>No posts here yet.</p></div>
   {{- end }}

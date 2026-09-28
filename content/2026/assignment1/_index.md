@@ -1,19 +1,14 @@
 ---
-# TODO: replace `heading`, `description` and the paragraph below with the real
-# copy for Assignment 1, in the same voice as assignment3 and assignment5.
-# Everything else on this page works without them.
-title: "Assignment 1"
-heading: "Assignment 1"
-description: "Optional writeups from the first assignment."
-label: "Assignment 1"
+title: "Assignment 1: Mads-Lens"
+heading: "Web interfaces for your agents"
+description: "Building a live web UI driven by Claude Code to visualize real-time tool trajectories, subagent branching, and session costs from the user’s perspective."
+label: "Assignment 1 · Mads-Lens"
 assignment: 1
-# Posts here are optional, which is worth saying on the tile: a thin section is
-# a choice, not a section nobody got round to.
-optional: true
 weight: 1
 type: assignment1
 cascade:
   type: assignment1
 ---
 
-Optional writeups from the first assignment.
+Each post here is one student's interface. What it does, how it is put together, and the
+repository you can clone to run it yourself.

@@ -1,11 +1,35 @@
-{{/* Filter for a long list of posts. Hidden until the script runs, because
-     without JS it would be a box that does nothing. `.` is the noun for the
-     count, e.g. "posts". */}}
+{{/* Filter for a long list of posts. Takes a dict: `pages`, the whole
+     collection the list is paginated from, and `noun` for the count.
+
+     The list below this box shows one page of twenty. The filter searches all
+     of them, which is the point of it -- a filter that only searched the
+     twenty in front of you would tell a student their classmate's post does
+     not exist. So every post's card is rendered once here into a JSON island
+     and the matches are swapped into the list when a query is typed. The
+     cards come from post-card.html, the same partial the page itself uses, so
+     a filtered card cannot drift from an unfiltered one.
+
+     At eighty posts the island is about 7 KB gzipped, which is cheaper than
+     the figures in any one post. The box stays hidden without JS, because
+     without JS it would be a box that does nothing. */}}
+{{- $noun := or .noun "posts" }}
+{{- $pages := .pages }}
 <div class="post-filter" id="post-filter" hidden>
   <input type="search" id="post-filter-input" placeholder="Filter by title, author, or tag&hellip;"
     aria-label="Filter posts by title, author, or tag" autocomplete="off">
   <span class="filter-count" id="post-filter-count" aria-live="polite"></span>
 </div>
+{{- $index := slice }}
+{{- range $pages }}
+{{- $index = $index | append (dict
+    "f" (lower (printf "%s %s %s" .Title (delimit (or .Params.authors slice) " ") (delimit (or .Params.tags slice) " ")))
+    "h" (partial "post-card.html" . | string)) }}
+{{- end }}
+{{/* safeJS, because html/template otherwise escapes the JSON a second time
+     as a JavaScript string literal and JSON.parse then hands back a string
+     rather than an array. jsonify already escapes < > and & to \u003c and
+     friends, so no card's markup can close this script element early. */}}
+<script type="application/json" id="post-filter-index">{{ $index | jsonify | safeJS }}</script>
 <script>
   // The list is below this script in the document, so wait for the parse.
   document.addEventListener('DOMContentLoaded', function () {
@@ -14,36 +38,41 @@
     var count = document.getElementById('post-filter-count');
     var list = document.getElementById('post-list');
     var empty = document.getElementById('post-filter-empty');
-    if (!box || !input || !list) return;
+    var pager = document.getElementById('post-pager');
+    var raw = document.getElementById('post-filter-index');
+    if (!box || !input || !list || !raw) return;
 
-    var cards = Array.prototype.slice.call(list.querySelectorAll('[data-filter]'));
-    if (cards.length < 2) return;
+    var index;
+    try { index = JSON.parse(raw.textContent); } catch (e) { return; }
+    if (index.length < 2) return;
 
-    var noun = {{ or . "posts" }};
-    box.hidden = false;
-    box.classList.add('is-ready');
+    var noun = {{ $noun }};
+    // The server-rendered page of results, to put back when the box is cleared.
+    var pageHTML = list.innerHTML;
 
-    var render = function (shown) {
-      count.textContent = shown === cards.length
-        ? cards.length + ' ' + noun
-        : shown + ' of ' + cards.length + ' ' + noun;
+    var show = function (html, shown, filtering) {
+      list.innerHTML = html;
+      if (pager) pager.hidden = filtering;
+      count.textContent = filtering
+        ? shown + ' of ' + index.length + ' ' + noun
+        : index.length + ' ' + noun;
       if (empty) empty.hidden = shown !== 0;
     };
 
     var apply = function () {
       // Every word must match, so "jane cache" narrows rather than widens.
       var terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
-      var shown = 0;
-      cards.forEach(function (card) {
-        var hay = card.getAttribute('data-filter') || '';
+      if (!terms.length) { show(pageHTML, index.length, false); return; }
+      var html = '', shown = 0;
+      for (var i = 0; i < index.length; i++) {
+        var hay = index[i].f;
         var hit = terms.every(function (t) { return hay.indexOf(t) !== -1; });
-        card.hidden = !hit;
-        if (hit) shown++;
-      });
-      render(shown);
+        if (hit) { html += index[i].h; shown++; }
+      }
+      show(html, shown, true);
     };
 
-    render(cards.length);
+    show(pageHTML, index.length, false);
     input.addEventListener('input', apply);
     input.addEventListener('search', apply);
   });

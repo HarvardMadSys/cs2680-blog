@@ -28,7 +28,8 @@ Then open <http://localhost:1313>.
 | `archetypes/` | Front matter and outline `hugo new content` starts a post from |
 | `layouts/` | All templates. There is no theme directory |
 | `assets/css/` | The stylesheets |
-| `static/` | Copied verbatim to the site root (`_redirects`, `seas-logo.png` for the footer, favicon) |
+| `static/` | Copied verbatim to the site root (`_redirects`, `seas-logo.png` for the footer, the icons) |
+| `assets/madsys-logo.svg` | The lab logo the site mark is taken from |
 | `build.sh` | The Cloudflare Pages build command |
 
 ### Templates
@@ -48,6 +49,8 @@ Then open <http://localhost:1313>.
 - `taxonomy.html` / `term.html` are the author and tag indexes
 - `_markup/render-table.html` gives Markdown tables the course site's table styling
 - `_markup/render-image.html` turns an image with a title into a captioned figure
+- `_markup/render-heading.html` gives every heading a link to itself
+- `_partials/pager.html` is the page row under a list; `pagerSize` is in `hugo.toml`
 - `robots.txt` is a template, not a static file: it disallows everything outside production
 
 ## The look
@@ -72,8 +75,19 @@ reachable only from the navigation.
 Nothing on the public pages says that a post is required, what it is worth, or when it is
 due. That is the course site's business. This one is a blog.
 
-`static/favicon.svg` and the header mark are the same drawing: the course site's hexagon
-carrying three lines of writing in place of the MadSys step line.
+`static/favicon.svg` is a byte-for-byte copy of <https://cs2680.com/favicon.svg>: the
+MadSys hexagon with the square wave inside it, on a white rounded plate. The two sites
+show the same icon on purpose. If the course site's favicon ever changes, copy it across
+rather than redrawing it — this file has no edits of its own, and it should stay that way.
+
+The header mark is the same two paths, without the white plate, which the white header bar
+already provides. Between them these are the only copies of the mark in the repo;
+`assets/madsys-logo.svg` is the full lab logo and carries the mark as an embedded 2048px
+bitmap, so it is kept for provenance rather than used directly.
+
+`static/favicon.png` (32px) is the fallback for browsers without SVG favicon support and
+`static/apple-touch-icon.png` (180px, white square) is what iOS puts on a home screen. Both
+are rendered from `favicon.svg` at 512px and downsampled; regenerate them if it changes.
 
 - **`assets/css/course.css`** is a verbatim copy of <https://cs2680.com/css/main.css>,
   fetched 2026-09-19. It owns the palette, the type stack, the header, the footer, tables
@@ -112,8 +126,12 @@ template.
 - **Adding an assignment** means adding a section under the year with an `assignment`
   param in its `_index.md`, plus an archetype named after it. The home page and the
   offering page pick it up from there; nothing lists the sections by name, and the tile row
-  reflows for however many there are. `optional: true` marks a section whose posts are not
-  expected from everyone.
+  reflows for however many there are.
+- **Lists paginate at 20, the filter does not.** A list page shows twenty posts and a page
+  row; the filter box searches the whole collection, because `_partials/post-filter.html`
+  also emits every card into a JSON island and swaps the matches in. At eighty posts that
+  island is ~7 KB gzipped. A filter that searched only the page in front of you would tell
+  a student their classmate's post does not exist.
 - **`hugo new content` needs `--kind`.** The archetype is chosen from the first path
   segment, which is now the year, so the command in the publishing guide passes
   `--kind assignment3` explicitly.

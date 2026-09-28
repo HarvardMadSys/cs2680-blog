@@ -34,7 +34,10 @@ git checkout -b assignment3/<your-github-handle>
 hugo new content --kind assignment3 2026/assignment3/<your-github-handle>/index.md
 ```
 
-Put `assignment1` or `assignment5` in place of `assignment3` everywhere for those.
+Put `assignment1` or `assignment5` in place of `assignment3` everywhere for those. An
+Assignment 1 post is a showcase of your web UI rather than a measurement writeup, so its
+outline is different and it carries a link to a public repository; the archetype has the
+shape.
 
 That gives you a folder, which is what you want as soon as you have a figure — the images
 sit beside the Markdown and are referenced by file name:
@@ -62,7 +65,6 @@ metadata, not prose:
 title: "Cutting agent cost by 60% without losing task success"
 date: 2026-10-18
 authors: ["Jane Doe"]
-github: jdoe
 summary: "Where the tokens went, the four changes that mattered, and the one that made things worse."
 tags: ["prompt-compression", "model-routing", "caching"]
 draft: true
@@ -74,10 +76,10 @@ draft: true
 | `title` | yes | The post title. Write a real one; it is what people scan on the assignment page. |
 | `date` | yes | Publication date, `YYYY-MM-DD`. Sorts the assignment page. |
 | `authors` | yes | Your name, as a list. It becomes your [author page](/authors/). Spell it the same way in both posts. |
-| `github` | no | Your GitHub handle, linked from the byline. |
 | `summary` | yes | One or two sentences, shown on the assignment page. Say what you found. |
 | `tags` | yes | Two to five topics. Check the [tag list](/tags/) and reuse existing ones where they fit. |
 | `draft` | yes | `true` while you work. Set it to `false` in the pull request that submits the post. |
+| `toc` | no | `true` adds a contents list at the top. Worth it past five or six sections. |
 | `math` | no | `false` turns KaTeX off for the page. It is on by default. |
 | `mermaid` | no | `true` enables Mermaid diagrams in ` ```mermaid ` fences. |
 

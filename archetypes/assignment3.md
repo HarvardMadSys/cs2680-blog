@@ -2,7 +2,6 @@
 title: "TODO: a real title, not \"Assignment 3\""
 date: {{ now.Format "2006-01-02" }}
 authors: ["TODO: Your Name"]
-github: {{ .File.ContentBaseName }}
 summary: "TODO: one or two sentences. What you found."
 tags: ["TODO"]
 draft: true

@@ -11,13 +11,11 @@
   {{- with .Parent }}{{ if not .IsHome }}
   <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
   {{- end }}{{ end }}
-  <div class="page-kicker">Offering</div>
   {{- else if $isAssignment }}
   {{- with .Parent }}{{ if not .IsHome }}
   <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
   {{- end }}{{ end }}
   <div class="page-kicker">
-    {{- if .Params.optional }}optional &middot; {{ end -}}
     {{- with $posts }}{{ len . }} post{{ if ne (len .) 1 }}s{{ end }}{{ else }}no posts yet{{ end }}
   </div>
   {{- end }}
@@ -32,15 +30,17 @@
   {{- if $posts }}
   {{- if $isYear }}<h2 class="list-heading">All posts</h2>{{ end }}
   {{ partial "browse-links.html" . }}
-  {{ partial "post-filter.html" "posts" }}
+  {{ partial "post-filter.html" (dict "noun" "posts" "pages" $posts) }}
+  {{- $paginator := .Paginate $posts }}
   <div class="post-list" id="post-list">
-    {{- range $posts }}
+    {{- range $paginator.Pages }}
     {{ partial "post-card.html" . }}
     {{- end }}
   </div>
   <div class="empty-state" id="post-filter-empty" hidden>
     <p>No post matches that filter.</p>
   </div>
+  {{ partial "pager.html" . }}
   {{- else }}
   <div class="empty-state">
     <p><strong>No posts yet.</strong></p>

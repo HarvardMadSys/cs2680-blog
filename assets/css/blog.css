@@ -10,13 +10,41 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
+   Page shell
+   course.css lays the page out as ordinary blocks, which leaves
+   the footer floating in the middle of the window on a short page
+   -- the author index and the tag index are both one screen with
+   a dozen pills on it. The body becomes a column tall enough to
+   fill the viewport and the content between header and footer
+   takes up the slack, so the footer is always on the bottom edge
+   and never above it.
+   ------------------------------------------------------------ */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* dvh follows the mobile browser's collapsing address bar; vh above is
+       the fallback for anything that does not know the unit. */
+    min-height: 100dvh;
+}
+
+.container.page {
+    flex: 1 0 auto;
+}
+
+.site-footer {
+    flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------
    Header brand
    The course site's header is the SEAS lockup and nothing else,
-   which is exactly why this one cannot be. The blog leads with its
-   own mark -- the favicon's hexagon, filled crimson, carrying three
-   lines of writing -- and its own name, with the course code and
-   term as the small line underneath. Same white bar, same crimson
-   rule, different thing standing on it.
+   which is exactly why this one cannot be. The blog leads with the
+   MadSys mark -- the same drawing both sites use as their favicon --
+   and its own name, with the course code and term as the small line
+   underneath. Same white bar, same crimson rule, different thing
+   standing on it.
 
    It is also the one element that has to hold together from a
    1200px desktop bar down to a 320px phone, beside a hamburger.
@@ -41,18 +69,21 @@
     text-decoration: none;
 }
 
+/* The mark is a hexagon, not a tile, so the corner radius and the box-shadow
+   that framed the old square are gone; a drop-shadow filter follows the real
+   silhouette instead. */
+/* The lab mark is an outline, not a solid shape, so it carries no shadow --
+   a drop-shadow on a 19/585 stroke reads as a printing error. It lifts on
+   hover and nothing more. */
 .brand-mark {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(140, 21, 21, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .site-brand:hover .brand-mark {
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(140, 21, 21, 0.34);
 }
 
 .brand-text {
@@ -108,9 +139,8 @@
     }
 
     .brand-mark {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
+        width: 38px;
+        height: 38px;
     }
 
     .brand-name {
@@ -125,8 +155,8 @@
 
 @media (max-width: 380px) {
     .brand-mark {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
     }
 
     .brand-name {
@@ -377,7 +407,6 @@
 }
 
 .assignment-tile {
-    position: relative;
     display: flex;
     flex-direction: column;
     padding: 22px 24px 20px;
@@ -404,23 +433,6 @@
     transform: translateY(-2px);
 }
 
-.assignment-tile .tile-index {
-    position: absolute;
-    top: 6px;
-    right: 14px;
-    font-size: 54px;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: rgba(140, 21, 21, 0.09);
-    pointer-events: none;
-}
-
-.assignment-tile > *:not(.tile-index) {
-    position: relative;
-    z-index: 1;
-}
-
 .assignment-tile .tile-label {
     font-size: 11px;
     font-weight: 700;
@@ -435,7 +447,6 @@
     line-height: 1.25;
     color: var(--ink);
     margin: var(--s2) 0;
-    max-width: 82%;
 }
 
 .assignment-tile .tile-summary {
@@ -472,10 +483,6 @@
     .assignment-tile {
         padding: 18px 20px 16px;
     }
-
-    .assignment-tile .tile-index {
-        font-size: 42px;
-    }
 }
 
 .browse-links {
@@ -495,7 +502,10 @@
     margin-top: var(--s4);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--s3);
+    /* One step up the scale from the 14px of padding inside a card. At 12px
+       the gutter was tighter than the padding, which read as two cards stuck
+       together rather than two cards side by side. */
+    gap: var(--s4);
 }
 
 @media (max-width: 860px) {
@@ -525,11 +535,13 @@
     border-left-color: var(--crimson-bright);
 }
 
+/* The byline is a person's name, so it is set as one. Small caps and letter
+   spacing are how this site marks a label -- the assignment kicker, the tile
+   label -- and applying them here made the author read as a category the card
+   had been filed under rather than as who wrote it. */
 .post-card .post-card-byline {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 13.5px;
+    font-weight: 600;
     color: var(--crimson);
     display: flex;
     flex-wrap: wrap;
@@ -538,10 +550,9 @@
 }
 
 .post-card .post-card-date {
+    font-size: 13px;
     font-weight: 400;
-    letter-spacing: 0.02em;
     color: var(--ink-4);
-    text-transform: none;
     font-variant-numeric: tabular-nums;
 }
 
@@ -638,6 +649,89 @@
 }
 
 /* ------------------------------------------------------------
+   Pager
+   Twenty posts to a page. The row is centred under the list and
+   reads as one object: arrows at the ends, the window of page
+   numbers between them, and the position spelled out underneath
+   for anyone who would rather read it than count.
+   ------------------------------------------------------------ */
+
+.pager {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s2);
+    margin-top: var(--s6);
+    padding-top: var(--s5);
+    border-top: 1px solid var(--border-soft);
+}
+
+.pager-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--s1);
+}
+
+.pager-num,
+.pager-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-sm);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+a.pager-num:hover,
+a.pager-step:hover {
+    color: var(--crimson);
+    background-color: var(--crimson-050);
+    border-color: var(--crimson-200);
+    text-decoration: none;
+}
+
+.pager-num.is-current {
+    font-weight: 700;
+    color: var(--on-crimson);
+    background-color: var(--crimson);
+    border-color: var(--crimson);
+}
+
+/* The arrow at the end of the run stays in place rather than disappearing,
+   so the row does not shift sideways as you page through it. */
+.pager-step.is-off {
+    color: var(--ink-4);
+    opacity: 0.45;
+}
+
+.pager-gap {
+    padding: 0 2px;
+    color: var(--ink-4);
+}
+
+.pager-status {
+    font-size: 13px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pager-num,
+    .pager-step {
+        transition: none;
+    }
+}
+
+/* ------------------------------------------------------------
    Post page
    ------------------------------------------------------------ */
 
@@ -670,6 +764,14 @@
     gap: var(--s2) var(--s3);
     font-size: 15px;
     color: var(--ink-3);
+}
+
+/* Three short facts in a row read as one run-on phrase without something
+   between them. A badge is its own object and takes no separator. */
+.post-meta > :not(:first-child):not(.post-badge)::before {
+    content: "·";
+    margin-right: var(--s3);
+    color: var(--border-strong);
 }
 
 .post-meta .post-author {
@@ -752,6 +854,39 @@ a.post-badge:hover {
     color: var(--crimson);
     text-decoration: underline;
     text-underline-offset: 0.16em;
+}
+
+/* A heading's own link, for sending someone one section of a long post.
+   Hidden until the heading is hovered or the link is focused, so it costs
+   nothing to read past and is still reachable from the keyboard. */
+.heading-anchor {
+    margin-left: 0.35em;
+    font-size: 0.72em;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ink-4);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.note-body h2:hover .heading-anchor,
+.note-body h3:hover .heading-anchor,
+.note-body h4:hover .heading-anchor,
+.heading-anchor:focus {
+    opacity: 1;
+}
+
+.heading-anchor:hover {
+    color: var(--crimson);
+    text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .heading-anchor,
+    .brand-mark {
+        transition: none;
+    }
 }
 
 /* ------------------------------------------------------------

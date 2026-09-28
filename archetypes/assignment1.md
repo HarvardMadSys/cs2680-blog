@@ -1,36 +1,40 @@
 ---
-title: "TODO: a real title, not \"Assignment 1\""
+title: "TODO: what your app does, not \"Assignment 1\""
 date: {{ now.Format "2006-01-02" }}
 authors: ["TODO: Your Name"]
-github: {{ .File.ContentBaseName }}
-summary: "TODO: one or two sentences. What you found."
+summary: "TODO: one or two sentences. What it does, and who would want it."
 tags: ["TODO"]
 draft: true
 ---
 
-{{/* TODO: this outline is generic. Replace the headings below with the shape
-     an Assignment 1 post should actually take, the way assignment3.md and
-     assignment5.md do for theirs. */}}
-
-TODO: open with the result. What did you find, and why is it worth reading?
+TODO: open with what it is and who it is for. Someone should know from two sentences
+whether they want to clone it.
 
 <!--more-->
 
-## What I set out to do
+## What it does
 
-The question you were answering, and what would count as an answer.
+The interface itself. A screenshot earns its place here more than a paragraph does; put the
+image beside this file and reference it by name.
 
-## What I did
+## Get it
 
-The work itself. Enough that someone could follow it.
+The repository link, and the shortest path from clone to running. If it needs keys, an API
+endpoint, or a particular Python version, say so here rather than leaving it in the README.
 
-## What I found
+```bash
+git clone https://github.com/<you>/<repo>
+cd <repo>
+...
+```
 
-Your numbers, or your conclusion, or both. A table beats a paragraph.
+## How it is built
 
-## What surprised me
+The parts and how they fit. Where you departed from the obvious approach, and why.
 
-The part you did not expect going in.
+## What was hard
+
+The problem that took the longest, and how it ended.
 
 ## AI use
 

@@ -36,7 +36,11 @@
   <meta name="author" content="{{ delimit . ", " }}">
   {{- end }}
 
+  {{/* The MadSys mark. The SVG is what every current browser uses; the PNG is
+       the fallback, and the 180px one is what iOS puts on a home screen. */}}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 
   <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
   <meta property="og:description" content="{{ $desc }}">

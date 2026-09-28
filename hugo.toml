@@ -40,6 +40,13 @@ ignoreErrors = ["error-remote-getjson"]
   # KaTeX everywhere; the cost and latency arithmetic shows up in most posts.
   math = true
 
+# Twenty posts to a page. An assignment section runs to eighty, and the
+# offering page to the sum of them, which is more than anyone scrolls. The
+# filter box still searches the whole list, not the page -- see
+# layouts/_partials/post-filter.html.
+[pagination]
+  pagerSize = 20
+
 [taxonomies]
   author = "authors"
   tag = "tags"

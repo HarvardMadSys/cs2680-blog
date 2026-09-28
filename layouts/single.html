@@ -10,38 +10,35 @@
      .note-body, carries the measure, so the back link and the footer line up
      with the text they belong to. */}}
 <div class="page-body">
+  {{/* One line of "where am I": the assignment, with the offering in brackets
+       after it, because an assignment number only means something alongside
+       the year it was set. It is also the link back, so the assignment is
+       named once on this page instead of three times. */}}
   {{- if $isPost }}
-  <a class="back-link" href="{{ $section.RelPermalink }}">&larr; {{ $section.Title }}</a>
+  <a class="back-link" href="{{ $section.RelPermalink }}">&larr; {{ $section.Title -}}
+    {{- with $section.Parent }}{{ if not .IsHome }} ({{ or .Params.term .Title }}){{ end }}{{ end -}}
+  </a>
   {{- end }}
 
   <article class="note-body">
     <header class="post-header">
-      {{- if $isPost }}
-      {{/* The assignment is on the badge below and on the back link above;
-           the offering is on neither, so it is what the kicker says. */}}
-      {{- with $section.Parent }}{{ if not .IsHome }}
-      <div class="page-kicker">{{ or .Params.term .Title }}</div>
-      {{- end }}{{ end }}
-      {{- else }}
+      {{- if not $isPost }}
       <div class="page-kicker">{{ or .Params.kicker "Guide" }}</div>
       {{- end }}
 
       <h1>{{ .Title }}</h1>
 
       {{- if $isPost }}
+      {{/* Who wrote it, when, and how long it runs. Nothing else: the line
+           above says which assignment, and a reader who wants the author's
+           other post follows the name. */}}
       <div class="post-meta">
-        <a class="post-badge" href="{{ $section.RelPermalink }}">
-          {{- or $section.Params.label (printf "Assignment %v" $section.Params.assignment) -}}
-        </a>
         {{- if .Draft }}<span class="post-badge post-badge-draft">Draft</span>{{ end }}
         {{- with $authors }}
         <span class="post-author">
           {{- range $i, $a := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/authors/%s" (urlize $a)) | relURL }}">{{ $a }}</a>{{ end -}}
         </span>
         {{- else }}{{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}{{ end }}
-        {{- with .Params.github }}
-        <a href="https://github.com/{{ . }}" target="_blank" rel="noopener"><code>{{ . }}</code></a>
-        {{- end }}
         {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
         {{- with .ReadingTime }}<span>{{ . }} min read</span>{{ end }}
       </div>

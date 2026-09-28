@@ -1,0 +1,48 @@
+{{/* Pagination for a list of posts. Takes the page, whose .Paginator the
+     template has already created with .Paginate.
+
+     The number row is windowed -- first, last, and the current page with one
+     either side -- so a tag with thirty pages does not print thirty links.
+     The whole nav is hidden while the filter box has a query in it, because a
+     filter searches every page and a pager through the unfiltered list would
+     then be pointing somewhere else entirely. */}}
+{{- $p := .Paginator }}
+{{- if gt $p.TotalPages 1 }}
+{{- $cur := $p.PageNumber }}
+{{- $last := $p.TotalPages }}
+<nav class="pager" id="post-pager" aria-label="Pagination">
+  <div class="pager-links">
+    {{- with $p.Prev }}
+    <a class="pager-step" href="{{ .URL }}" rel="prev" aria-label="Newer posts">&larr;</a>
+    {{- else }}
+    <span class="pager-step is-off" aria-hidden="true">&larr;</span>
+    {{- end }}
+
+    {{- $win := slice }}
+    {{- range $p.Pagers }}
+    {{- $n := .PageNumber }}
+    {{- if or (eq $n 1) (eq $n $last) (and (ge $n (sub $cur 1)) (le $n (add $cur 1))) }}
+    {{- $win = $win | append $n }}
+    {{- end }}
+    {{- end }}
+
+    {{- $prev := 0 }}
+    {{- range $win }}
+    {{- if and (gt $prev 0) (gt (sub . $prev) 1) }}<span class="pager-gap" aria-hidden="true">&hellip;</span>{{ end }}
+    {{- if eq . $cur }}
+    <span class="pager-num is-current" aria-current="page">{{ . }}</span>
+    {{- else }}
+    <a class="pager-num" href="{{ (index $p.Pagers (sub . 1)).URL }}">{{ . }}</a>
+    {{- end }}
+    {{- $prev = . }}
+    {{- end }}
+
+    {{- with $p.Next }}
+    <a class="pager-step" href="{{ .URL }}" rel="next" aria-label="Older posts">&rarr;</a>
+    {{- else }}
+    <span class="pager-step is-off" aria-hidden="true">&rarr;</span>
+    {{- end }}
+  </div>
+  <span class="pager-status">Page {{ $cur }} of {{ $last }}</span>
+</nav>
+{{- end }}

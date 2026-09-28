@@ -1,6 +1,4 @@
 ---
 title: "Tags"
-heading: "Browse by topic"
+heading: "Browse by tags"
 ---
-
-Tags are freeform. Reuse one that fits before inventing a new one.
