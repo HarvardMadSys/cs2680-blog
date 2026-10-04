@@ -1,13 +1,13 @@
 ---
-title: "Eight ways to watch a coding agent"
+title: "Seven ways to watch a coding agent"
 date: 2026-10-04
 authors: ["cs2680-staff"]
-summary: "The standout Assignment 1 interfaces: where a run's time went, what the agent meant to do, how subagents split the work, and controls you can see."
+summary: "The standout Assignment 1 interfaces: where a run's time went, how subagents split the work, and controls you can see."
 tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
 cover: "cover.webp"
 coverAlt: "A grid of six screenshots of student-built apps for watching Claude Code runs."
-coverCaption: "Six of the eight apps below. Top: Intent Timeline, Mission Control, Patchwork. Bottom: Controller, Sankey Flow, AIPatrol."
+coverCaption: "Six of the seven apps below. Top: Intent Timeline, Mission Control, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
 toc: true
 ---
 
@@ -18,11 +18,11 @@ it; and get an outline of the whole trajectory.
 
 We went through all 68 demos. Most built the same sensible thing: a chat-like log of
 collapsible tool-call cards, an outline beside it and a cost line underneath, much like the
-assignment's mockup. That is a perfectly good answer. The eight designs below went further. Each
+assignment's mockup. That is a perfectly good answer. The seven designs below went further. Each
 one asks what the person supervising an agent actually needs to see, and answers with something
 a log of tool calls can't show on its own.
 
-All eight are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
+All seven are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
 one folder per app. Each app bundles recorded runs, so you can try it without installing Claude
 Code or spending any usage.
 
@@ -30,10 +30,9 @@ Code or spending any usage.
 
 ## What a log of tool calls hides
 
-A log shows what happened, in order. Four things are hard to see in it:
+A log shows what happened, in order. Three things are hard to see in it:
 
 - **Time.** A call that took 4 ms looks the same as one that took 40 s.
-- **Intent.** You see what the agent did, not what it was trying to do.
 - **Delegation.** A subagent becomes an indented block, not a worker with an assignment and a
   result.
 - **Control.** The model, the effort level and how much to delegate are set in a prompt, where
@@ -94,21 +93,6 @@ subagents' models, and each subagent reports what it asked for and what it ran o
 ![A timeline with three swimlanes: the main agent with two long Agent bars, and one lane for each subagent with short tool blocks in the same window of time](gong-timeline.webp "Swimlanes on a recorded two-subagent run (a recording from another app). The main lane's two Agent bars span the same seconds as the subagents' own lanes.")
 
 Try it: [`swimlanes/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/swimlanes)
-
-## What the agent meant to do
-
-### Alexander Aghili: AIPatrol
-
-Yide Bian's step headings use whatever the agent happens to say before it acts. Alexander
-Aghili's AIPatrol asks for it: a custom prompt has the agent announce each logical unit of
-work, and the page groups calls under those announcements, in the transcript and in the
-outline. A finished task folds to one line with a count of its events, so a long session reads
-as a short list of named steps. The outline's header counts calls and failures. Long outputs
-keep their first and last lines, so the summary at the end of a test log survives the cut.
-
-![A dark transcript with three collapsed task rows and their event counts, beside an outline of the same tasks](aghili-tasks.webp "AIPatrol after a replayed run: three tasks the agent announced, each folded to one line, and the same tasks in the outline under “9 calls · 1 failed”.")
-
-Try it: [`aipatrol/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/aipatrol)
 
 ## Subagents as a team
 
