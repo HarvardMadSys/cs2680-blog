@@ -48,4 +48,4 @@ Several students observed subagents repeating the same repository exploration. A
 
 **A delegation plan should define who may change each resource and which version is being validated.** Give concurrent implementation tasks disjoint ownership or isolated worktrees, and make integration testing depend on the relevant changes being complete. Ask each agent to return the files changed, the evidence collected, and any unresolved dependencies. This makes it possible to judge whether parallel work shortened the task or merely shifted effort into repeated investigation and reconciliation.
 
-*Based on the collected student reflections from CS2680 Assignment 1. Examples are anonymized and reflect the students’ reported experiences.*
+*Based on the collected student reflections from CS2680 Assignment 1. Examples are anonymized and reflect the students’ reported experiences. This post was mostly written by ChatGPT, with revisions by Juncheng.*
