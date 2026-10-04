@@ -102,4 +102,4 @@ For a student, a useful result includes understanding enough to maintain and ext
 
 Together, these reflections offer a practical design test for coding agents: can the user notice a mistaken assumption, redirect delegated work, understand the cost, and judge the evidence for completion while those decisions still matter? The students’ proposals give us specific mechanisms to build and evaluate against that test.
 
-*Based on the collected “One thing I would change about Claude Code” sections from CS2680 Assignment 1. Examples are anonymized; this is a qualitative synthesis of students’ reported experiences.*
+*Based on the collected “One thing I would change about Claude Code” sections from CS2680 Assignment 1. Examples are anonymized; this is a qualitative synthesis of students’ reported experiences. This post was mostly written by ChatGPT, with revisions by Juncheng.*
