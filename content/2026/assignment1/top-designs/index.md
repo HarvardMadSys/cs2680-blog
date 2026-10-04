@@ -5,9 +5,9 @@ authors: ["cs2680-staff"]
 summary: "Six Assignment 1 projects explore how to make delegation, time, and control visible when working with a coding agent."
 tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
-cover: "gong-timeline.webp"
-coverAlt: "Swimlanes shows a main agent and two subagents on a shared time axis, with overlapping Agent bars and shorter tool calls."
-coverCaption: "Eric Gong's Swimlanes shows overlapping activity on a shared time axis. This screenshot replays a two-subagent recording from another app; the clock reflects replay timing."
+cover: "cover.webp"
+coverAlt: "A grid of six screenshots of student-built interfaces for watching Claude Code runs."
+coverCaption: "Top: Subagents as a team, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
 toc: true
 ---
 
@@ -130,7 +130,7 @@ Eric Gong places each agent on a shared time axis. In the Timeline tab, each cal
 positioned and sized using the interface's observed event times. Work happening at the same
 time lines up across lanes; a long call occupies more horizontal space.
 
-The opening image shows this relationship: the main agent's delegation calls span the same
+The timeline shows this relationship: the main agent's delegation calls span the same
 seconds as the tool activity in its subagents' lanes. The timeline makes overlap directly
 visible. In a replay, those seconds reflect playback timing; accelerated playback changes
 the displayed durations. A zoom slider, live following, and links to each call's input and
@@ -140,6 +140,8 @@ Swimlanes also exposes model selection for the main agent and a policy for subag
 passed to the agent as a prompt instruction. When the events include an explicit request, a subagent can
 show both its requested model and the model reported by the run, helping the user compare
 the request with what happened.
+
+![Swimlanes shows a main agent and two subagents on a shared time axis, with overlapping Agent bars and shorter tool calls](gong-timeline.webp "Swimlanes replaying a two-subagent recording from another app. The clock reflects replay timing.")
 
 Try it: [`swimlanes/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/swimlanes)
 
