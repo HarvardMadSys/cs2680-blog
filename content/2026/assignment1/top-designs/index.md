@@ -52,7 +52,7 @@ assigned task, its activity, its numbers and its report. The composer spells out
 
 ![A dark interface with a row of agent cards above the conversation; one delegate card is selected and the view below shows its task, activity and report](richardson-delegate.webp "Subagents as a team after a run from its own test fixtures, scoped to one of three delegates: 54 s, 5 tool calls, 32k tokens.")
 
-Try it: [`mission-control/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/mission-control)
+Try it: [`subagents-as-a-team/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/subagents-as-a-team)
 
 ### Djordje Ivanovic: Patchwork
 
