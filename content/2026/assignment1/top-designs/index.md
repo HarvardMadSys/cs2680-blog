@@ -1,5 +1,5 @@
 ---
-title: "Nine ways to watch a coding agent"
+title: "Eight ways to watch a coding agent"
 date: 2026-10-04
 authors: ["cs2680-staff"]
 summary: "The standout Assignment 1 interfaces: where a run's time went, what the agent meant to do, how subagents split the work, and controls you can see."
@@ -7,7 +7,7 @@ tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
 cover: "cover.webp"
 coverAlt: "A grid of six screenshots of student-built apps for watching Claude Code runs."
-coverCaption: "Six of the nine apps below. Top: Intent Timeline, Mission Control, Patchwork. Bottom: Controller, Sankey Flow, Trajectory."
+coverCaption: "Six of the eight apps below. Top: Intent Timeline, Mission Control, Patchwork. Bottom: Controller, Sankey Flow, AIPatrol."
 toc: true
 ---
 
@@ -18,11 +18,11 @@ it; and get an outline of the whole trajectory.
 
 We went through all 68 demos. Most built the same sensible thing: a chat-like log of
 collapsible tool-call cards, an outline beside it and a cost line underneath, much like the
-assignment's mockup. That is a perfectly good answer. The nine designs below went further. Each
+assignment's mockup. That is a perfectly good answer. The eight designs below went further. Each
 one asks what the person supervising an agent actually needs to see, and answers with something
 a log of tool calls can't show on its own.
 
-All nine are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
+All eight are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
 one folder per app. Each app bundles recorded runs, so you can try it without installing Claude
 Code or spending any usage.
 
@@ -138,19 +138,6 @@ what it kept: "Run stopped. Everything recorded before this point is kept."
 ![Two subagent cards side by side, the left one containing two more nested subagents](liu-columns.webp "Fork View replaying its bundled parallel-deep example: two surveys run side by side, and each one delegates further inside its own column.")
 
 Try it: [`fork-view/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/fork-view)
-
-### Jack Fan: Trajectory
-
-Jack Fan's Trajectory is the most restrained design here: a black page, a serif masthead, one
-accent color. Prompts are diamonds on a thin rail, and every tool call is a single line with
-the agent's own description and a duration. When the agent starts subagents in parallel, each
-Agent row curves off into a lane of its own, so their work reads side by side with the
-parent's. A running subagent shows its elapsed time against an estimate drawn from earlier
-runs.
-
-![A black interface where two Agent rows connect through curved purple lines to two lanes of tool calls on the right](fan-lanes.webp "Trajectory replaying a recorded run: each Agent row curves off into its own lane.")
-
-Try it: [`trajectory/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/trajectory)
 
 ### Saul Richardson: Mission Control
 
