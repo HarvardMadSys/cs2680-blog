@@ -7,7 +7,7 @@ tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
 cover: "cover.webp"
 coverAlt: "A grid of six screenshots of student-built apps for watching Claude Code runs."
-coverCaption: "Six of the seven apps below. Top: Mission Control, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
+coverCaption: "Six of the seven apps below. Top: Subagents as a team, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
 toc: true
 ---
 
@@ -42,15 +42,15 @@ The sections below take these one at a time.
 
 ## Subagents as a team
 
-### Saul Richardson: Mission Control
+### Saul Richardson: Subagents as a team
 
-Saul Richardson's Mission Control treats delegation as something to manage. Above the
+Saul Richardson's Subagents as a team treats delegation as something to manage. Above the
 conversation sits a strip of cards: the main session, then one card per delegate with its
 status and current activity. Click a delegate and the whole view scopes to it, with its
 assigned task, its activity, its numbers and its report. The composer spells out the rule:
 "This replies to the session. A delegate is part of it and has no conversation of its own."
 
-![A dark interface with a row of agent cards above the conversation; one delegate card is selected and the view below shows its task, activity and report](richardson-delegate.webp "Mission Control after a run from its own test fixtures, scoped to one of three delegates: 54 s, 5 tool calls, 32k tokens.")
+![A dark interface with a row of agent cards above the conversation; one delegate card is selected and the view below shows its task, activity and report](richardson-delegate.webp "Subagents as a team after a run from its own test fixtures, scoped to one of three delegates: 54 s, 5 tool calls, 32k tokens.")
 
 Try it: [`mission-control/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/mission-control)
 
