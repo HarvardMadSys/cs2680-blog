@@ -160,19 +160,3 @@ compare the requested delegation with the agents that appear in the run.
 ![Controller combines an effort knob, model keys, a delegation fader, run statistics, tool calls, and a radial agent display](romero-controller.webp "Controller replaying a recording from another app. The radial display at the upper right shows the main agent and its subagents.")
 
 Try it: [`controller/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/controller)
-
-## Lessons across the class
-
-Across the demos, students repeatedly added ways to stop a run, replay it, manage permissions,
-and inspect file changes. Many also gave each active subagent a compact status summary: its
-current activity, tool count, tokens, and elapsed time. A shared time axis was less common.
-
-The six projects suggest a useful starting point for interface design: choose the question
-the user needs to answer, then organize the run around it. Agent cards make a delegate easy
-to inspect. Handoff cards explain how tasks move through a team. Forked columns preserve
-delegation structure. A flow diagram compares activity, and a shared clock reveals overlap.
-Visible controls make the requested settings easier to follow.
-
-If one of these projects is yours, consider writing an Assignment 1 post about the question
-you chose and the design decisions behind your answer. The [publishing guide](/publish/)
-explains how to contribute.
