@@ -1,5 +1,5 @@
 ---
-title: "Seven ways to watch a coding agent"
+title: "Six ways to watch a coding agent"
 date: 2026-10-04
 authors: ["cs2680-staff"]
 summary: "The standout Assignment 1 interfaces: how subagents split the work, where a run's time went, and controls you can see."
@@ -7,7 +7,7 @@ tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
 cover: "cover.webp"
 coverAlt: "A grid of six screenshots of student-built apps for watching Claude Code runs."
-coverCaption: "Six of the seven apps below. Top: Subagents as a team, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
+coverCaption: "Top: Subagents as a team, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
 toc: true
 ---
 
@@ -18,11 +18,11 @@ it; and get an outline of the whole trajectory.
 
 We went through all 68 demos. Most built the same sensible thing: a chat-like log of
 collapsible tool-call cards, an outline beside it and a cost line underneath, much like the
-assignment's mockup. That is a perfectly good answer. The seven designs below went further. Each
+assignment's mockup. That is a perfectly good answer. The six designs below went further. Each
 one asks what the person supervising an agent actually needs to see, and answers with something
 a log of tool calls can't show on its own.
 
-All seven are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
+All six are in [CS2680-Assignment1-Mads-Lens](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens),
 one folder per app. Each app bundles recorded runs, so you can try it without installing Claude
 Code or spending any usage.
 
@@ -82,28 +82,6 @@ what it kept: "Run stopped. Everything recorded before this point is kept."
 Try it: [`fork-view/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/fork-view)
 
 ## Where the time went
-
-### Yide Bian: Intent Timeline
-
-Yide Bian's Intent Timeline reads a run as a series of steps. Each step is headed by the
-sentence the agent wrote before acting ("No CLI tests exist yet, so I'll create
-tests/test_cli.py. First the failing test (RED)."), and each call under it gets a single row
-with a one-line outcome: `wrote 14 lines`, `+19 −11`, `1 failed, 4 passed`. You rarely need to
-open the output. Calls that the permission gate turned away are marked *refused* rather than
-lumped in with errors, and the outline on the right draws them dashed.
-
-![Intent Timeline showing steps 3 to 5 of a run, each headed by the agent's own sentence, with one-line outcomes for each call, two refused Bash calls, and an outline with dashed chips for the refused calls](bian-steps.webp "Steps 3 to 5 of a recorded run in Intent Timeline. Each step is headed by what the agent said it would do. Refused calls are kept apart from errors and drawn dashed in the outline.")
-
-Each run ends with a timeline of where the time went, one lane per agent, and a sentence that
-adds it up. In a three-minute run that added a `--json` flag to a small CLI, test first, the
-tools on the critical path took 4.0 of the 178.5 seconds. Model thinking between calls took
-143.6, and startup and the final answer the remaining 30.9. Faster tools would barely have
-changed this run; fewer turns would have. With parallel subagents the sentence also says how
-much time the overlap saved, and the run summary splits the cost by model.
-
-![A timeline of a 178-second run with short tool marks spread along one lane, followed by a run summary](bian-time.webp "The timeline and run summary for that run, with the wall-clock sentence under the chart.")
-
-Try it: [`intent-timeline/`](https://github.com/HarvardMadSys/CS2680-Assignment1-Mads-Lens/tree/main/intent-timeline)
 
 ### Ibrahim Khaliliya: Sankey Flow
 
