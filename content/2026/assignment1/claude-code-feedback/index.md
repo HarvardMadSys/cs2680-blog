@@ -22,7 +22,7 @@ Several students could see which files an agent opened and which commands it ran
 
 These requests point toward a useful progress update: what the agent is trying to establish, what it has learned, and what it will check next. That gives the user an opportunity to catch a misunderstanding while the investigation is still underway.
 
-Students also asked for less output. Long command traces and repetitive commentary made previous prompts and meaningful results difficult to find. A concise overview with expandable details could serve both needs: immediate orientation and deeper inspection when something looks wrong.
+Students also asked for less output. Long command traces and repetitive commentary made previous prompts and meaningful results difficult to find. A concise overview with expandable details could serve both needs: immediate orientation and deeper inspection when something looks wrong. The request is for more visibility with less clutter: show progress and remaining work, briefly explain the current hypothesis, and connect the next action to the task.
 
 Visibility should help the user make a decision. A short explanation of the next action, supported by observable evidence, can do that without exposing private reasoning.
 
@@ -34,7 +34,7 @@ Students wanted targeted questions about architecture, layout, and interaction d
 
 The feedback suggests making the intervention points explicit: a short plan before substantial work, questions when a choice materially affects the product, and a clear account of which files will change. For headless frontends, students also wanted an easy way to approve or deny an individual action during a run and then continue.
 
-Autonomy needs a scope the user can inspect and revise. The right amount of interaction can vary by task: rapid iteration on a prototype calls for a different workflow from a change to a project the user already understands and cares about.
+Autonomy needs a scope the user can inspect and revise. Students wanted questions and options early enough to avoid changing course after substantial implementation. Screenshots, explicit layout geometry, narrow edit boundaries, and measurable acceptance checks helped make those choices concrete. The right amount of interaction can vary by task: rapid iteration on a prototype calls for a different workflow from a change to a project the user already understands and cares about.
 
 ## Let users revise what the agent remembers
 
@@ -44,7 +44,7 @@ Students wanted to carry useful decisions into a new branch while discarding irr
 
 A correction should change the context the agent relies on. Appending another instruction can leave the user uncertain about which version will guide the next action. Students asked for ways to update, discard, or explicitly supersede a piece of session memory.
 
-There was an efficiency concern too. One student’s analysis reported cached tokens re-read growing from roughly 13,000 on the first request to 109,000 on the 99th, even though the questions had not grown. Other suggestions included loading detailed context only when needed and warning when continuing a long session may be inefficient. These observations motivate evaluating more selective context management.
+There was an efficiency concern too. One student’s analysis reported cached tokens re-read growing from roughly 13,000 on the first request to 109,000 on the 99th, even though the questions had not grown. Other suggestions included loading detailed context only when needed and warning when continuing a long session may be inefficient. Students also reported repeated repository exploration across sessions. Reusing verified project knowledge could reduce that work, provided users can remove stale facts and revise earlier decisions.
 
 ## Show the cost while it can still affect the run
 
@@ -52,13 +52,15 @@ One student discovered that runs were billed to a startup’s API account rather
 
 Others wanted running cost and remaining usage to be visible. Token counters helped, but students building frontends wanted dollar amounts supplied by the system so they would not have to reconstruct pricing themselves. They wanted to see expensive delegation developing early enough to change course.
 
-Cost information is most useful before the work is finished. Students proposed limits on delegation depth and spending, warnings about expensive runs, and cheaper or local models for simple tasks. Those routing ideas remain proposals; the reflections do not demonstrate their performance. One student also noted that an existing budget cap had gone unused, illustrating the importance of making controls discoverable.
+Cost information is most useful before the work is finished. Students wanted live dollar costs alongside explicit budget controls, so the current spending and the limit would be visible together. They proposed limits on delegation depth and spending, warnings about expensive runs, and cheaper or local models for simple tasks. Those routing ideas remain proposals; the reflections do not demonstrate their performance. One student also noted that an existing budget cap had gone unused, illustrating the importance of making controls discoverable.
 
 Students also connected latency to their workflow. For interface development, one preferred getting an initial version quickly, inspecting it, and deciding what to change next. Faster iterations let the user discover requirements through interaction with the product. That is a useful design target alongside the quality of a single completed run.
 
 ## Make delegated work easy to follow and reconcile
 
-Students wanted an overview of each subagent’s assignment, status, findings, and dependencies. They wanted to inspect details without reading every subagent conversation to learn what had happened.
+Students wanted an overview of each subagent’s assignment, status, findings, and dependencies. They also wanted to understand what context each worker had received. They wanted to inspect details without reading every subagent conversation to learn what had happened.
+
+Users wanted to adjust the number of agents, delegation depth, and scope while a run was underway. A useful interface would let them revise responsibilities or limit further delegation as they learned more about the task.
 
 One student reported that the main agent re-read files assigned to background subagents while those agents were still working. Another lost track of how the parallel work fit together. Their requests extended to the parent agent: explain which findings it accepted, identify disagreements or duplicated work, and check the combined result against the original request.
 
@@ -70,7 +72,7 @@ Delegation should preserve accountability for the final result. A user needs to 
 
 One student found that a Stop button worked on an empty page but disappeared when an earlier conversation was present. A general statement that testing had passed did not reveal that missing case. The student wanted the completion message to name the test and describe its setup.
 
-Another reported that a later audit found regression tests weaker than the initial summary suggested. A third described visual defects that became obvious on opening a page the agent had been unable to inspect in a browser.
+Another reported that a later audit found regression tests weaker than the initial summary suggested. A third described visual defects that became obvious on opening a page the agent had been unable to inspect in a browser. Students also reported verification where zero tests had run or permissions had blocked the checks. A completion message should make those conditions clear.
 
 Students wanted completion reports to separate verified behavior, untested behavior, and assumptions. They also wanted agents to question misleading observations: one reported nearly an hour of debugging prompted by browser screenshots that appeared blank, even though directly checking the scroll position showed the page had scrolled correctly.
 
@@ -78,7 +80,7 @@ Verification claims need the evidence and conditions that support them. “Stop 
 
 ## Give frontend builders a reliable event contract
 
-Building a frontend exposed another set of requests. Students reported having to infer event relationships, parse display text, and record sessions to discover the format. They wanted a documented, versioned schema that made execution state explicit.
+Building a frontend exposed another set of requests. Students reported having to infer event relationships, parse display text, and record sessions to discover the format. Tasks could finish in a different order from the one in which they started, and background Bash tasks could resemble subagents. Students wanted a documented, versioned schema that made execution state explicit and helped the interface distinguish these cases.
 
 Their proposals included:
 
@@ -102,4 +104,4 @@ For a student, a useful result includes understanding enough to maintain and ext
 
 Together, these reflections offer a practical design test for coding agents: can the user notice a mistaken assumption, redirect delegated work, understand the cost, and judge the evidence for completion while those decisions still matter? The students’ proposals give us specific mechanisms to build and evaluate against that test.
 
-*Based on the collected “One thing I would change about Claude Code” sections from CS2680 Assignment 1. Examples are anonymized; this is a qualitative synthesis of students’ reported experiences. This post was mostly written by ChatGPT, with revisions by Juncheng.*
+*Based on the collected “One thing I would change about Claude Code” sections from CS2680 Assignment 1 and the lecture slides summarizing the feedback. Examples are anonymized; this is a qualitative synthesis of students’ reported experiences. This post was mostly written by ChatGPT, with revisions by Juncheng.*
