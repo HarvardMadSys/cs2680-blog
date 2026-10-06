@@ -5,9 +5,6 @@ authors: ["cs2680-staff"]
 summary: "Six Assignment 1 projects explore how to make delegation, time, and control visible when working with a coding agent."
 tags: ["agent-ui", "observability", "subagents", "showcase"]
 draft: false
-cover: "cover.webp"
-coverAlt: "A grid of six screenshots of student-built interfaces for watching Claude Code runs."
-coverCaption: "Top: Subagents as a team, Intent Timeline, Patchwork. Bottom: Controller, Sankey Flow, Fork View."
 toc: true
 ---
 
