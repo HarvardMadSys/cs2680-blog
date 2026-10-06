@@ -110,16 +110,22 @@ instructions and followed the later, more specific one.
 ## Missing search tools
 
 The missing search tools predate the reminder. The native macOS and Linux builds most students
-used don't include Grep or Glob. Claude Code tells its Explore subagent to "Use `find` via Bash for
-broad file pattern matching" and to "Use `grep` via Bash for searching file contents with regex."
-Agents that tried Grep received this error:
+used don't include Grep or Glob, so Claude Code leaves them out of the tool list it sends to the
+model. Claude Code tells its Explore subagent to "Use `find` via Bash for broad file pattern
+matching" and to "Use `grep` via Bash for searching file contents with regex."
+
+A few times, an agent called Grep or Glob anyway. The model only requests a tool call; Claude Code
+runs it on the student's computer. Claude Code checks the name against its tool list. When the tool
+is missing, it runs nothing and returns an error as the tool result:
 
 ```text
 Error: No such tool available: Grep. Grep is not available in this session —
 search file contents with `grep` via the Bash tool instead.
 ```
 
-Across the assignment, agents called Grep and Glob 43 times. The tools worked for only three
+The hint is fixed text in the Claude Code program, not something the model or a person wrote.
+
+In the build sessions, agents called Grep and Glob 43 times. The tools worked for only three
 students: one using an older command-line version, one on Windows, and one in a handful of
 desktop-app sessions. Everyone else searched through Bash whether or not they had the reminder.
 
