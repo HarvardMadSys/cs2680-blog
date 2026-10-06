@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" width="680" height="300" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>Where the file work went</title>
+<desc>Share of each file job done through Bash in Assignment 1 build sessions: reading files 29% (1,354 of 4,745 calls); searching and listing 97% (1,404 of 1,447 calls); writing and editing files 52% (5,151 of 9,874 calls).</desc>
+<rect width="680" height="300" fill="#FFFFFF"/>
+<rect x="24" y="23" width="12" height="12" rx="2" fill="#8C1515"/>
+<text x="42.0" y="34.0" font-size="16.5" fill="#3B4147" text-anchor="start" font-weight="400">Bash</text>
+<rect x="101.0048" y="23" width="12" height="12" rx="2" fill="#B9BEC6"/>
+<text x="119.0" y="34.0" font-size="16.5" fill="#3B4147" text-anchor="start" font-weight="400">Read, Edit, Write, Grep or Glob</text>
+<text x="24.0" y="64.0" font-size="18.9" fill="#1E2126" text-anchor="start" font-weight="600">Reading files</text>
+<text x="656.0" y="64.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">1,354 of 4,745 through Bash</text>
+<path d="M28.0,76.0 H203.3 Q203.3,76.0 203.3,76.0 V102.0 Q203.3,102.0 203.3,102.0 H28.0 Q24.0,102.0 24.0,98.0 V80.0 Q24.0,76.0 28.0,76.0 Z" fill="#8C1515"/>
+<path d="M205.3,76.0 H652.0 Q656.0,76.0 656.0,80.0 V98.0 Q656.0,102.0 652.0,102.0 H205.3 Q205.3,102.0 205.3,102.0 V76.0 Q205.3,76.0 205.3,76.0 Z" fill="#B9BEC6"/>
+<text x="34.0" y="94.0" font-size="16.5" fill="#FFFFFF" text-anchor="start" font-weight="600">29% Bash</text>
+<text x="646.0" y="94.0" font-size="16.5" fill="#1E2126" text-anchor="end" font-weight="600">71%</text>
+<text x="24.0" y="146.0" font-size="18.9" fill="#1E2126" text-anchor="start" font-weight="600">Searching and listing</text>
+<text x="656.0" y="146.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">1,404 of 1,447 through Bash</text>
+<path d="M28.0,158.0 H636.2 Q636.2,158.0 636.2,158.0 V184.0 Q636.2,184.0 636.2,184.0 H28.0 Q24.0,184.0 24.0,180.0 V162.0 Q24.0,158.0 28.0,158.0 Z" fill="#8C1515"/>
+<path d="M638.2,158.0 H652.0 Q656.0,158.0 656.0,162.0 V180.0 Q656.0,184.0 652.0,184.0 H638.2 Q638.2,184.0 638.2,184.0 V158.0 Q638.2,158.0 638.2,158.0 Z" fill="#B9BEC6"/>
+<text x="34.0" y="176.0" font-size="16.5" fill="#FFFFFF" text-anchor="start" font-weight="600">97% Bash</text>
+<text x="24.0" y="228.0" font-size="18.9" fill="#1E2126" text-anchor="start" font-weight="600">Writing and editing files</text>
+<text x="656.0" y="228.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">5,151 of 9,874 through Bash</text>
+<path d="M28.0,240.0 H352.7 Q352.7,240.0 352.7,240.0 V266.0 Q352.7,266.0 352.7,266.0 H28.0 Q24.0,266.0 24.0,262.0 V244.0 Q24.0,240.0 28.0,240.0 Z" fill="#8C1515"/>
+<path d="M354.7,240.0 H652.0 Q656.0,240.0 656.0,244.0 V262.0 Q656.0,266.0 652.0,266.0 H354.7 Q354.7,266.0 354.7,266.0 V240.0 Q354.7,240.0 354.7,240.0 Z" fill="#B9BEC6"/>
+<text x="34.0" y="258.0" font-size="16.5" fill="#FFFFFF" text-anchor="start" font-weight="600">52% Bash</text>
+<text x="646.0" y="258.0" font-size="16.5" fill="#1E2126" text-anchor="end" font-weight="600">48%</text>
+</svg>
