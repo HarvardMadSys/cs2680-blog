@@ -9,36 +9,37 @@ toc: true
 ---
 
 If you built a trajectory viewer for Assignment 1, you probably watched a lot of Bash go by.
-Students expected their interfaces to fill up with Read, Edit and Write cards, and many built
-careful renderers for them. What mostly arrived was `cat`, `sed -n`, heredocs and little Python
-patch scripts, each one wrapped in a Bash card. In one case from our [lessons from the
-assignment](/2026/assignment1/agentic-coding-lessons/), an agent did an entire bug fix through the
-shell, and the student's edit view never lit up once.
+Many students built careful renderers for Read, Edit and Write, expecting those tools to fill their
+interfaces. Most of the file work arrived as `cat`, `sed -n`, heredocs and small Python patch
+scripts, all wrapped in Bash cards. In one case described in our [lessons from the
+assignment](/2026/assignment1/agentic-coding-lessons/), an agent completed an entire bug fix through
+the shell without ever lighting up the student's edit view.
 
-Our first guess was the model, or the way people prompted it. That guess was mostly wrong. When we
-went through the session logs that students submitted, we found that Claude Code itself had told the
-agent to work in the shell. It had also deleted the shell tool's usual warning against doing that,
-and most installations didn't offer a dedicated search tool at all.
+We initially suspected the model or the way students prompted it. The submitted session logs
+pointed mostly to Claude Code itself: it told the agent to use the shell and removed the Bash
+tool's usual warning against file operations. Most installations also lacked dedicated search
+tools.
 
 <!--more-->
 
 ## Where the file work went
 
-Claude Code has dedicated tools for files: Read, Edit and Write, plus Grep and Glob for searching on
-some installations. Every one of those jobs can also be done in a shell. You can read with `cat` or
-`sed -n`, search with `grep` and `find`, and write with a heredoc, `sed -i` or a short script. Across
-the build sessions of 61 students, Bash did one of these jobs 7,909 times.
+Claude Code has Read, Edit and Write tools, and some installations also have Grep and Glob for
+searching. The shell can do the same jobs: read with `cat` or `sed -n`, search with `grep` and
+`find`, and write with a heredoc, `sed -i` or a short script. Across the build sessions of 61
+students, Bash did one of these jobs 7,909 times.
 
 ![Share of each file job done through Bash in Assignment 1 build sessions: reading files 29% (1,354 of 4,745 calls); searching and listing 97% (1,404 of 1,447 calls); writing and editing files 52% (5,151 of 9,874 calls).](why-bash-jobs.svg "Figure 1. How much of each file job went through Bash, across the build sessions of 61 students.")
 
-Searching was almost all Bash, writing about half, and reading a bit under a third. Three things in
-Claude Code account for most of that picture.
+Nearly all searches went through Bash, along with about half of writes and edits and a little
+under a third of reads. The logs point to a system reminder, a change to the Bash tool description,
+and missing search tools as the main causes.
 
-## Claude Code asked for it
+## The bash-first reminder
 
-In auto mode and bypass-permissions mode, Claude Code can slip a system reminder into the
-conversation. During the assignment, that reminder always read like this (we've added the line
-breaks here and in the other quoted texts):
+In auto mode and bypass-permissions mode, Claude Code can add a system reminder to the
+conversation. During the assignment, it used the following wording. We've added line breaks here
+and in the other quoted passages:
 
 ```text
 Do your work through the Bash tool wherever it can accomplish the job: read files
@@ -48,47 +49,47 @@ Write tools. Fall back to a dedicated tool only when Bash genuinely cannot do th
 job.
 ```
 
-None of this is hidden. Claude Code writes the reminder into the session transcript under
-`~/.claude/projects/`, as an `auto_mode` record with `"bashFirst":true` and the exact text the model
-received. Of those 7,909 shell calls, 88% happened with the reminder sitting in the conversation.
+Claude Code saves the reminder in the session transcript under `~/.claude/projects/`, as an
+`auto_mode` record with `"bashFirst":true` and the exact text sent to the model. Of the 7,909 shell
+calls, 88% happened with this reminder in the conversation.
 
-And it made a big difference. Figure 2 compares calls made with the reminder in context against
-calls in sessions that never got it.
+Shell use was much higher in calls with the reminder in context than in sessions that never
+received it (Figure 2).
 
 ![Share of each job done through Bash without the bash-first reminder versus with it in context: reading files: 8% versus 41%; writing and editing files: 8% versus 67%; reads and edits by Opus 5 main agents: 10% versus 78%; the same 22 sessions, before and after: 6% versus 82%; searching (no Grep or Glob either way): 89% versus 100%.](why-bash-reminder.svg "Figure 2. How much of each job went through Bash, in calls with no reminder (grey) and with the reminder in the conversation (crimson).")
 
-The row we find most convincing is the fourth. In 22 sessions the reminder showed up partway
-through, usually because the student flipped into auto mode, so we can compare a session with
-itself. Reads and edits through the shell went from 6% to 82%, and they rose in 21 of the 22
-sessions (the other one was already at 100%). You can see the switch in a single log. In one
-session, the agent makes five changes with Edit and creates a file with Write. Then the reminder
-arrives, and its very next file operations are `sed -n` reads and Python patch scripts.
+The fourth row is the most convincing to us because it compares sessions with themselves. In 22
+sessions, the reminder appeared partway through, usually when the student switched to auto mode.
+Shell reads and edits rose from 6% to 82% overall. The share increased in 21 of the 22 sessions;
+the remaining session was already at 100%. One log makes the change easy to follow: the agent
+made five changes with Edit and created a file with Write, then received the reminder. Its next
+file operations were `sed -n` reads and Python patch scripts.
 
 ![Share of reads and edits done through Bash in 22 sessions where the reminder appeared partway through. Overall 6% before and 82% after; 21 of 22 sessions went up.](why-bash-sessions.svg "Figure 3. Reads and edits through Bash in the 22 sessions where the reminder arrived partway through. Each line is one session, before and after.")
 
-The reminder also sticks around after the mode that triggered it. Once it is in the conversation, it
-stays there. Claude Code does have an "Exited Auto Mode" notice that tells the agent to go back to
-the dedicated tools, but it turned up only three times in our logs. When students typed prompts in
-default mode with an old reminder still in the conversation, 81% of the agent's reads and edits went
-through Bash. In default-mode sessions that never got the reminder, it was 9%.
+The reminder remains in the conversation after the student leaves the mode that triggered it.
+Claude Code has an "Exited Auto Mode" notice directing the agent back to dedicated tools, but it
+appeared only three times in our logs. When students prompted in default mode with an earlier
+reminder still in context, 81% of reads and edits went through Bash. In default-mode sessions that
+never received the reminder, the share was 9%.
 
-Sometimes the agents simply told the students. One student asked why the agent had used `cat`
-instead of the Read tool, and the agent said the instructions for bypass mode told it to prefer
-Bash. A few others mentioned a "Bash-first" default while explaining that they would set it aside,
-since the student had asked for Read and Edit by name.
+Some agents explained this when students asked. One student asked why the agent had used `cat`
+instead of Read; the agent cited the bypass-mode instruction to prefer Bash. A few others
+mentioned a "Bash-first" default and said they would set it aside because the student had asked
+for Read and Edit by name.
 
-Our favorite example comes from a student whose app showed nothing but Bash cards in live runs.
-They asked their agent why. The agent dug through the run's transcript, found the reminder, and
-then ran the same prompt under two settings. With `--dangerously-skip-permissions`, which puts the
-run in bypass mode, the agent used Bash and nothing else. With `--permission-mode acceptEdits`, the
-reminder never appeared and the run used Read, Edit and Write. The agent also worked out why the app
-couldn't have shown any of this: the stream-json output these apps read doesn't include the
-reminder at all.
+Our favorite example came from a student whose app showed only Bash cards in live runs. They asked
+the agent to investigate. It found the reminder in the transcript and tried the same prompt under
+two settings. With
+`--dangerously-skip-permissions`, which puts the run in bypass mode, it used only Bash. With
+`--permission-mode acceptEdits`, the reminder never appeared and it used Read, Edit and Write.
+The agent also found why the app hadn't shown the instruction: the stream-json output these apps
+consume omits the reminder.
 
 ## The warning that disappeared
 
-Each request to the model carries a description of every tool. The Bash tool's description
-normally includes this line:
+Each model request includes a description of every tool. The Bash description normally contains
+this warning:
 
 ```text
 IMPORTANT: Avoid using this tool to run `cat`, `head`, `tail`, `sed`, `awk`, or
@@ -97,35 +98,35 @@ dedicated tool cannot accomplish your task. Instead, use the appropriate dedicat
 tool as this will provide a much better experience for the user.
 ```
 
-Transcripts also keep snapshots of the system prompt and of every tool definition that was sent.
-The line above was there in 91 of the 96 snapshots taken without the reminder, and gone from 63 of
-the 67 taken with it. So when Claude Code adds the reminder, it also quietly takes the warning out of
-the shell tool's own description.
+The transcripts include snapshots of the system prompt and tool definitions sent to the model.
+The warning appeared in 91 of the 96 snapshots without the reminder and was absent from 63 of the
+67 snapshots with it. Claude Code was also removing the warning from the Bash description when
+it added the reminder.
 
-The general system prompt wasn't touched. Every snapshot taken under the reminder still says "Prefer
-the dedicated file/search tools over shell commands when one fits." The agent was getting both
-messages at once, and the later, more specific one won.
+The general system prompt stayed the same. Every snapshot with the reminder still said "Prefer
+the dedicated file/search tools over shell commands when one fits." The agent received both
+instructions and followed the later, more specific one.
 
-## No Grep, no Glob
+## Missing search tools
 
-The third cause has nothing to do with the reminder, and it is older. The native macOS and Linux
-builds that most students used simply don't include Grep or Glob. Claude Code's Explore subagent is
-told to "Use `find` via Bash for broad file pattern matching" and to "Use `grep` via Bash for
-searching file contents with regex." Agents that tried to call Grep anyway got this back:
+The missing search tools predate the reminder. The native macOS and Linux builds most students
+used don't include Grep or Glob. Claude Code tells its Explore subagent to "Use `find` via Bash for
+broad file pattern matching" and to "Use `grep` via Bash for searching file contents with regex."
+Agents that tried Grep received this error:
 
 ```text
 Error: No such tool available: Grep. Grep is not available in this session —
 search file contents with `grep` via the Bash tool instead.
 ```
 
-Grep and Glob were called 43 times across the whole assignment, and they worked for just three
-students: one running an old command-line version, one on Windows, and one in a handful of
-desktop-app sessions. Everyone else searched with the shell, reminder or not.
+Across the assignment, agents called Grep and Glob 43 times. The tools worked for only three
+students: one using an older command-line version, one on Windows, and one in a handful of
+desktop-app sessions. Everyone else searched through Bash whether or not they had the reminder.
 
 ## Who gets the reminder
 
-Not every session got the reminder, and the ones that did didn't all get the same text. This is what
-the assignment logs show:
+The reminder's presence and wording varied by model and Claude Code version in the assignment
+logs:
 
 - Almost every student whose main agent ran Opus 5 in auto or bypass mode got the text quoted above.
 - Fable 5.1 sessions in those modes got it too.
@@ -136,29 +137,27 @@ the assignment logs show:
 - Neither did sessions on older versions of Claude Code (2.1.215 and earlier, mostly running
   Sonnet 4 models).
 
-Two quirks are worth knowing if you read logs yourself. Subagents follow the main session, so a
-Sonnet or Haiku subagent launched from an Opus 5 session got the reminder too. And the decision is
-made when a session starts: one session switched from Fable 5.1 to a different model and kept the
-reminder anyway.
+Subagents follow the main session's setting, so Sonnet or Haiku subagents launched from an Opus 5
+session received the reminder too. Claude Code also decides whether to include it when a session
+starts. One session switched from Fable 5.1 to another model and kept the reminder.
 
 Whether a session gets the reminder also depends on settings that Claude Code fetches from
-Anthropic's servers. The same version can behave differently on two accounts, and the behavior can
-change without an update. It hasn't gone away, either. On October 5, an Opus 5 session in auto mode
-on the current release, 2.1.289, still received the strict text.
+Anthropic's servers. Two accounts running the same version can behave differently, and the
+behavior can change without a software update. On October 5, an Opus 5 session in auto mode still
+received the strict wording on the then-current release, 2.1.289.
 
-## What the agents actually did with the shell
+## Why agents used the shell
 
-A number like 88% tells you the reminder was there. It doesn't tell you whether the shell was the
-right call. So we pulled a random sample of 320 of the 7,909 calls (100 reads, 80 searches and 140
-writes or edits) and read each one in context: the student's prompt, the agent's recent messages
-and calls, the result, and what happened next. Each call got the first reason on our list that
-applied. The readings were done by Claude reviewer agents working from a written codebook. A second
-reading of 120 of the calls agreed with the first on 95% of them, and a separate blind check of 20
-more matched 19.
+Having the reminder in context doesn't establish whether Bash was useful for a particular call.
+To examine that, we drew a random sample of 320 of the 7,909 calls: 100 reads, 80 searches and 140
+writes or edits. Claude reviewer agents used a written codebook to read each call alongside the
+student's prompt, the agent's recent messages and calls, the result, and what happened next. They
+assigned the first reason in the list below that applied. A second review of 120 calls agreed
+with the first on 95% of them. A separate blind check of 20 more matched 19.
 
 ![Reasons for using the shell in 320 sampled calls. Reading files (100 sampled calls): batching 17%, no dedicated tool 15%, no functional reason 57%, needed the shell 11%. Searching and listing (80 sampled calls): batching 1%, no dedicated tool 95%, no functional reason 1%, needed the shell 1%, other 1%. Writing and editing files (140 sampled calls): batching 67%, no dedicated tool 1%, no functional reason 13%, needed the shell 9%, other 9%. All 7,909 calls (weighted by job): batching 47%, no dedicated tool 20%, no functional reason 18%, needed the shell 8%, other 6%.](why-bash-reasons.svg "Figure 4. Why the shell was used, by the job the call did. Other covers calls that weren't really file jobs, plus the two where the student asked for the shell.")
 
-Here are the reasons in the order we checked them, each with a typical example:
+We checked the reasons in this order:
 
 | Reason | Share of all calls | What it typically looked like |
 | --- | ---: | --- |
@@ -170,43 +169,40 @@ Here are the reasons in the order we checked them, each with a typical example:
 | Batching | 47% | A Python patch with several replacements, then `node --check app.js`, in one call |
 | No functional reason | 18% | `sed -n '120,160p' src/server.js`, or a new file written with a heredoc |
 
-The shares are weighted to all 7,909 calls, and the commands are representative examples rather
-than quotes.
+The shares are weighted to all 7,909 calls. The commands are representative examples, not quotes
+from student sessions.
 
-The first thing that struck us was how rarely anything in the conversation prompted the choice. In
-318 of the 320 calls, nobody had asked for the shell and nothing had gone wrong. Not one call came
-right after a dedicated tool had failed.
+In 318 of the 320 sampled calls, the student hadn't asked for the shell and nothing had gone
+wrong. None immediately followed a failed call to a dedicated tool.
 
-Almost half the calls were batching: a file change plus a check, a test run or a server restart,
-folded into a single shell command. That habit seems to come with the reminder. In sessions without
-it, more than 90% of edits went through Edit or Write instead.
+Almost half the calls batched a file change with a check, test run or server restart in one shell
+command. This habit seems to accompany the reminder: in sessions without it, more than 90% of
+edits used Edit or Write.
 
-The calls with no functional reason look the most like the instruction itself. Of the 57 reads in
-that group, 43 were a single `sed -n` line range. One Read call with an offset and a limit does
-exactly the same thing, and `sed -n` happens to be one of the commands the reminder names.
+The calls classified as having no functional reason for Bash closely resembled the reminder's
+examples. Of the 57 reads in that group, 43 used a single `sed -n` line range. Read with an offset
+and a limit does the same job; `sed -n` is also one of the commands named in the reminder.
 
-Finally, one shell habit tends to lead to the next. The Edit tool refuses to change a file that the
-agent hasn't opened with the Read tool. Of the 69 sampled shell edits to existing files, 44 were to
-files the agent had only ever looked at through the shell. To use Edit on those, it would have needed
-an extra Read first. Staying in the shell skipped that step.
+Reading through Bash can also make a later shell edit easier. Edit refuses to change a file the
+agent hasn't opened with Read. Of the 69 sampled shell edits to existing files, 44 changed files
+the agent had only read through the shell. Using Edit would have required an extra Read call;
+staying in Bash skipped that step.
 
 ## What to do about it
 
-**If you're building an interface for agent runs,** the wall of Bash came mostly from a product
-setting, so don't go rewriting your prompts over it. Our own assignment suggested
-`--dangerously-skip-permissions` for headless runs, and that flag means bypass mode, so the course's
-advice switched the reminder on in a lot of apps. If you want Read, Edit and Write to show up, start
-headless runs with `--permission-mode acceptEdits`, or approve tools with `--allowedTools` instead of
-skipping permissions. Asking for the tools by name works most of the time too: in turns where
-students named Read or Edit, only 26 of 173 reads and edits still went through Bash.
+If you're building an interface for agent runs, check the permission mode before rewriting your
+prompts. Our assignment recommended `--dangerously-skip-permissions` for headless runs. That flag
+selects bypass mode, so our advice turned on the reminder in many student apps. To encourage
+Read, Edit and Write, use `--permission-mode acceptEdits` for headless runs, or approve tools with
+`--allowedTools` instead of skipping permissions. Asking for tools by name also worked most of
+the time in these logs: when students named Read or Edit, only 26 of 173 reads and edits still
+went through Bash.
 
-**If you're reviewing what an agent did,** remember that a shell edit doesn't come with the
-structured patch that the Edit tool returns. Look at the changes in the working tree, not just at the
-tool calls.
+When reviewing an agent's work, inspect the changes in the working tree as well as the tool calls.
+A shell edit doesn't return the structured patch you get from Edit.
 
-**If you're measuring agent behavior from logs,** check which reminder each session received before
-you compare students, models or assignments, because tool-choice statistics depend on it. You can
-check your own sessions like this:
+Before comparing tool use across students, models or assignments, check which reminder each
+session received. You can search your own logs with:
 
 ```bash
 # sessions that received the reminder
@@ -215,12 +211,12 @@ grep -l '"bashFirst":true' ~/.claude/projects/*/*.jsonl
 grep -l 'when it is the simpler route' ~/.claude/projects/*/*.jsonl
 ```
 
-We don't know why Anthropic turned this on, and our logs can't tell us whether working through the
-shell makes the agent better or worse at its job. What they do show is that a lot of what looked
-like the model's own habit was the harness giving instructions. When you study an agent, the
-instructions it received are part of the data.
+We don't know why Anthropic enabled this behavior. These logs also can't establish whether using
+the shell improves or hurts the agent's work. They do explain much of the Bash use students saw:
+the harness instructed the agent to use it. Tool-choice comparisons need to account for the
+instructions each session received.
 
-*Based on the session logs that CS2680 students submitted with Assignment 1, from the build
-sessions of 61 students, including the system reminders, prompt snapshots and tool definitions those
-logs record. All numbers are aggregates, and examples are anonymized and paraphrased. This post was
-drafted by Claude (Opus 5.5, in Claude Code) from the course's session-log analysis.*
+*This analysis uses the Assignment 1 build-session logs submitted by 61 CS2680 students, including
+the recorded system reminders, prompt snapshots and tool definitions. All numbers are aggregates;
+examples are anonymized and paraphrased. Claude (Opus 5.5, in Claude Code) drafted the post from
+the course's session-log analysis, with prose revisions by ChatGPT.*
