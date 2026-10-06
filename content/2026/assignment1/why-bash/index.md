@@ -29,13 +29,9 @@ installations Grep and Glob for searching. The same jobs can be done in Bash: `c
 read, `grep` and `find` to search, and heredocs, `sed -i` or a short script to write. Across the
 build sessions of 61 students, Bash did these jobs 7,909 times:
 
-| Job | Through Bash | Through a dedicated tool | Share through Bash |
-| --- | ---: | ---: | ---: |
-| Reading files | 1,354 | 3,391 | 29% |
-| Searching and listing | 1,404 | 43 | 97% |
-| Writing and editing files | 5,151 | 4,723 | 52% |
+![Share of each file job done through Bash in Assignment 1 build sessions: reading files 29% (1,354 of 4,745 calls); searching and listing 97% (1,404 of 1,447 calls); writing and editing files 52% (5,151 of 9,874 calls).](why-bash-jobs.svg "Figure 1. Share of each file job that went through Bash, in the build sessions of 61 students.")
 
-Three things in Claude Code explain most of this table.
+Three things in Claude Code explain most of this figure.
 
 ## An instruction to prefer the shell
 
@@ -56,21 +52,18 @@ The reminder is not secret. Claude Code writes it into the session transcript un
 text the model received. Of the 7,909 shell calls above, 88% were made with this text in the
 conversation.
 
-The reminder accounts for most of the difference. This table compares calls made with the reminder
-in context to calls in sessions that never received it:
+The reminder accounts for most of the difference. Figure 2 compares calls made with the reminder in
+context to calls in sessions that never received it:
 
-| Share of the job done through Bash | No reminder | Reminder in context |
-| --- | ---: | ---: |
-| Reading files | 8% | 41% |
-| Writing and editing files | 8% | 67% |
-| Reads and edits by Opus 5 main agents | 10% | 78% |
-| The same 22 sessions, before and after the reminder appeared | 6% | 82% |
+![Share of each job done through Bash without the bash-first reminder versus with it in context: reading files: 8% versus 41%; writing and editing files: 8% versus 67%; reads and edits by Opus 5 main agents: 10% versus 78%; the same 22 sessions, before and after: 6% versus 82%; searching (no Grep or Glob either way): 89% versus 100%.](why-bash-reminder.svg "Figure 2. Share of each job done through Bash, in calls with no reminder (grey) and with the reminder in the conversation (crimson).")
 
-The last row is the strongest evidence. In 22 sessions, the reminder arrived partway through,
+The fourth row is the strongest evidence. In 22 sessions, the reminder arrived partway through,
 usually because the student switched to auto mode. In 21 of them, the agent's use of the shell for
-reading and editing went up. In one such session, the agent made five changes with the Edit tool
-and created one file with Write; its next file operations, once the reminder arrived, were
-`sed -n` reads and Python patch scripts.
+reading and editing went up, as Figure 3 shows. In one such session, the agent made five changes
+with the Edit tool and created one file with Write; its next file operations, once the reminder
+arrived, were `sed -n` reads and Python patch scripts.
+
+![Share of reads and edits done through Bash in 22 sessions where the reminder appeared partway through. Overall 6% before and 82% after; 21 of 22 sessions went up.](why-bash-sessions.svg "Figure 3. Reads and edits done through Bash in the 22 sessions where the reminder appeared partway through. Each line is one session, before and after the reminder arrived.")
 
 The reminder also outlasts the mode that triggered it. Once added, it stays in the conversation.
 Claude Code can add an "Exited Auto Mode" notice that tells the agent to go back to the dedicated
@@ -158,6 +151,10 @@ calls (100 reads, 80 searches and 140 writes or edits) and read each one in its 
 student's prompt, the agent's recent messages and calls, the result, and what came next. Each call
 got the first reason in this list that applied. A second, independent reading of 120 of the calls
 agreed with the first on 95% of them.
+
+![Reasons for using the shell in 320 sampled calls. Reading files (100 sampled calls): batching 17%, no dedicated tool 15%, no functional reason 57%, needed the shell 11%. Searching and listing (80 sampled calls): batching 1%, no dedicated tool 95%, no functional reason 1%, needed the shell 1%, other 1%. Writing and editing files (140 sampled calls): batching 67%, no dedicated tool 1%, no functional reason 13%, needed the shell 9%, other 9%. All 7,909 calls (weighted by job): batching 47%, no dedicated tool 20%, no functional reason 18%, needed the shell 8%, other 6%.](why-bash-reasons.svg "Figure 4. Why the shell was used, by the job the call did. Other covers calls that were not really file jobs and the two where the student asked for the shell.")
+
+The table gives the reasons in the order they were checked, with a typical example of each.
 
 | Reason | Share of all calls | What it typically looked like |
 | --- | ---: | --- |

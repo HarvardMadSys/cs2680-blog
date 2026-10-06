@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 474" width="680" height="474" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>Share done through Bash, without and with the reminder</title>
+<desc>Share of each job done through Bash without the bash-first reminder versus with it in context: reading files: 8% versus 41%; writing and editing files: 8% versus 67%; reads and edits by Opus 5 main agents: 10% versus 78%; the same 22 sessions, before and after: 6% versus 82%; searching (no Grep or Glob either way): 89% versus 100%.</desc>
+<rect width="680" height="474" fill="#FFFFFF"/>
+<circle cx="30" cy="29" r="6" fill="#B9BEC6"/>
+<text x="42.0" y="34.0" font-size="16.5" fill="#3B4147" text-anchor="start" font-weight="400">No reminder</text>
+<circle cx="171.7632" cy="29" r="6" fill="#8C1515"/>
+<text x="183.8" y="34.0" font-size="16.5" fill="#3B4147" text-anchor="start" font-weight="400">Reminder in context</text>
+<line x1="40.0" y1="62" x2="40.0" y2="438" stroke="#E9ECEF" stroke-width="1"/>
+<text x="40.0" y="458.0" font-size="15.3" fill="#8B9199" text-anchor="middle" font-weight="400">0%</text>
+<line x1="186.0" y1="62" x2="186.0" y2="438" stroke="#E9ECEF" stroke-width="1"/>
+<text x="186.0" y="458.0" font-size="15.3" fill="#8B9199" text-anchor="middle" font-weight="400">25%</text>
+<line x1="332.0" y1="62" x2="332.0" y2="438" stroke="#E9ECEF" stroke-width="1"/>
+<text x="332.0" y="458.0" font-size="15.3" fill="#8B9199" text-anchor="middle" font-weight="400">50%</text>
+<line x1="478.0" y1="62" x2="478.0" y2="438" stroke="#E9ECEF" stroke-width="1"/>
+<text x="478.0" y="458.0" font-size="15.3" fill="#8B9199" text-anchor="middle" font-weight="400">75%</text>
+<line x1="624.0" y1="62" x2="624.0" y2="438" stroke="#E9ECEF" stroke-width="1"/>
+<text x="624.0" y="458.0" font-size="15.3" fill="#8B9199" text-anchor="middle" font-weight="400">100%</text>
+<rect x="24" y="63" width="139" height="24" fill="#FFFFFF"/>
+<text x="28.0" y="81.0" font-size="17.7" fill="#1E2126" text-anchor="start" font-weight="600">Reading files</text>
+<line x1="84.4" y1="108" x2="280.6" y2="108" stroke="#C4CAD3" stroke-width="2"/>
+<circle cx="84.4" cy="108" r="7" fill="#B9BEC6" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.6" cy="108" r="7" fill="#8C1515" stroke="#FFFFFF" stroke-width="2"/>
+<text x="72.4" y="113.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">8%</text>
+<text x="292.6" y="113.0" font-size="16.5" fill="#1E2126" text-anchor="start" font-weight="700">41%</text>
+<rect x="24" y="141" width="258" height="24" fill="#FFFFFF"/>
+<text x="28.0" y="159.0" font-size="17.7" fill="#1E2126" text-anchor="start" font-weight="600">Writing and editing files</text>
+<line x1="84.4" y1="186" x2="428.9" y2="186" stroke="#C4CAD3" stroke-width="2"/>
+<circle cx="84.4" cy="186" r="7" fill="#B9BEC6" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="428.9" cy="186" r="7" fill="#8C1515" stroke="#FFFFFF" stroke-width="2"/>
+<text x="72.4" y="191.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">8%</text>
+<text x="440.9" y="191.0" font-size="16.5" fill="#1E2126" text-anchor="start" font-weight="700">67%</text>
+<rect x="24" y="219" width="377" height="24" fill="#FFFFFF"/>
+<text x="28.0" y="237.0" font-size="17.7" fill="#1E2126" text-anchor="start" font-weight="600">Reads and edits by Opus 5 main agents</text>
+<line x1="96.6" y1="264" x2="494.9" y2="264" stroke="#C4CAD3" stroke-width="2"/>
+<circle cx="96.6" cy="264" r="7" fill="#B9BEC6" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="494.9" cy="264" r="7" fill="#8C1515" stroke="#FFFFFF" stroke-width="2"/>
+<text x="84.6" y="269.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">10%</text>
+<text x="506.9" y="269.0" font-size="16.5" fill="#1E2126" text-anchor="start" font-weight="700">78%</text>
+<rect x="24" y="297" width="387" height="24" fill="#FFFFFF"/>
+<text x="28.0" y="315.0" font-size="17.7" fill="#1E2126" text-anchor="start" font-weight="600">The same 22 sessions, before and after</text>
+<line x1="75.0" y1="342" x2="519.5" y2="342" stroke="#C4CAD3" stroke-width="2"/>
+<circle cx="75.0" cy="342" r="7" fill="#B9BEC6" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="519.5" cy="342" r="7" fill="#8C1515" stroke="#FFFFFF" stroke-width="2"/>
+<text x="63.0" y="347.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">6%</text>
+<text x="531.5" y="347.0" font-size="16.5" fill="#1E2126" text-anchor="start" font-weight="700">82%</text>
+<rect x="24" y="375" width="387" height="24" fill="#FFFFFF"/>
+<text x="28.0" y="393.0" font-size="17.7" fill="#1E2126" text-anchor="start" font-weight="600">Searching (no Grep or Glob either way)</text>
+<line x1="558.6" y1="420" x2="623.4" y2="420" stroke="#C4CAD3" stroke-width="2"/>
+<circle cx="558.6" cy="420" r="7" fill="#B9BEC6" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="623.4" cy="420" r="7" fill="#8C1515" stroke="#FFFFFF" stroke-width="2"/>
+<text x="546.6" y="425.0" font-size="16.5" fill="#646A72" text-anchor="end" font-weight="400">89%</text>
+<text x="635.4" y="425.0" font-size="16.5" fill="#1E2126" text-anchor="start" font-weight="700">100%</text>
+</svg>
