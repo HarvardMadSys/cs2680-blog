@@ -7,17 +7,10 @@
 {{ partial "masthead.html" (dict "title" .Title) }}
 
 <div class="section">
-  {{- if $isYear }}
+  {{- if or $isYear $isAssignment }}
   {{- with .Parent }}{{ if not .IsHome }}
   <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
   {{- end }}{{ end }}
-  {{- else if $isAssignment }}
-  {{- with .Parent }}{{ if not .IsHome }}
-  <a class="back-link" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
-  {{- end }}{{ end }}
-  <div class="page-kicker">
-    {{- with $posts }}{{ len . }} post{{ if ne (len .) 1 }}s{{ end }}{{ else }}no posts yet{{ end }}
-  </div>
   {{- end }}
   <h1>{{ or .Params.heading .Title }}</h1>
 
