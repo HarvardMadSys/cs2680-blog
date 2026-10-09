@@ -6,6 +6,9 @@ summary: "If your Assignment 1 viewer filled up with Bash cards, your prompts we
 tags: ["agent-design", "observability", "tool-use", "session-logs"]
 draft: false
 toc: true
+cover: "cover.webp"
+coverAlt: "An instruction card directs streams of file operations into a Bash terminal beside dedicated read and edit tools and an empty search-tool drawer."
+coverCaption: "Instructions and tool availability steered file work toward Bash. Illustration generated with AI."
 ---
 
 If you built a trajectory viewer for Assignment 1, you probably watched a lot of Bash go by.
