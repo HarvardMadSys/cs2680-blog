@@ -46,6 +46,7 @@ Open <http://localhost:1313>.
 | `_partials/site-header.html` | Brand and three-item menu; the mark is inline SVG |
 | `_partials/post-card.html` | One post in a list |
 | `_partials/post-filter.html` | Filter box and its search index |
+| `_partials/post-cascade.html` | Lays a post list out as a cascade: each card at its own height, in the shortest column |
 | `_partials/pager.html` | Pagination row |
 | `_partials/cover.html` | Resolves a post's `cover:` field to a URL |
 | `_partials/assignment-tiles.html` | Tile row, shared by the home and offering pages |

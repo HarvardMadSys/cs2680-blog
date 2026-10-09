@@ -1,0 +1,85 @@
+{{/* Lays the post list out as a cascade: every card at its own height, each
+     placed under whichever column is shortest so far. In a plain grid a card
+     with a cover screenshot stretched the card beside it to match, which left
+     a short card padded out with empty space as tall as the screenshot.
+
+     Include it straight after the #post-list element. It runs there rather
+     than on DOMContentLoaded so the cards are placed before the first paint.
+
+     Placing in order, left column first on a tie, keeps the newest post top
+     left and reading order roughly across then down. The DOM order is left
+     alone, so tabbing and screen readers still go newest to oldest.
+
+     Columns and gutter come from the stylesheet: `--columns` and `gap` on
+     .post-list. At one column the grid already stacks cards at their own
+     heights, so the script steps aside. Without JS the grid is what readers
+     get, rows of equal height, which is the tidier fallback.
+
+     The list is re-laid whenever it changes width (a resize, the breakpoint),
+     a card changes height (a web font arriving), or its cards are swapped
+     (post-filter.html writes its matches into the list).
+
+     CSS has a native version of this, `display: grid-lanes`. When Chrome and
+     Firefox ship it, this script can go in favour of one line in blog.css. */}}
+<script>
+  (function () {
+    var list = document.getElementById('post-list');
+    if (!list || !window.ResizeObserver || !window.MutationObserver) return;
+
+    var layout = function () {
+      var style = getComputedStyle(list);
+      var columns = parseInt(style.getPropertyValue('--columns'), 10) || 1;
+      var cards = Array.prototype.slice.call(list.children);
+
+      if (columns < 2 || !cards.length) {
+        list.classList.remove('is-cascade');
+        list.style.removeProperty('height');
+        cards.forEach(function (card) {
+          card.style.removeProperty('width');
+          card.style.removeProperty('top');
+          card.style.removeProperty('left');
+        });
+        return;
+      }
+
+      list.classList.add('is-cascade');
+      var gap = parseFloat(style.columnGap) || 0;
+      var width = (list.clientWidth - gap * (columns - 1)) / columns;
+      // Every width is set before any height is read, so the browser lays the
+      // cards out once rather than once per card.
+      cards.forEach(function (card) { card.style.width = width + 'px'; });
+      var heights = cards.map(function (card) { return card.offsetHeight; });
+
+      var bottoms = [];
+      for (var c = 0; c < columns; c++) bottoms.push(0);
+      cards.forEach(function (card, i) {
+        var col = bottoms.indexOf(Math.min.apply(null, bottoms));
+        card.style.left = col * (width + gap) + 'px';
+        card.style.top = bottoms[col] + 'px';
+        bottoms[col] += heights[i] + gap;
+      });
+      list.style.height = Math.max.apply(null, bottoms) - gap + 'px';
+    };
+
+    // A resize is answered on the next frame rather than inside the observer's
+    // callback: layout() resizes the list it is observing, and doing that from
+    // the callback is what makes the browser log a ResizeObserver loop error.
+    var queued = false;
+    var resized = new ResizeObserver(function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; layout(); });
+    });
+    var watch = function () {
+      resized.disconnect();
+      resized.observe(list);
+      Array.prototype.forEach.call(list.children, function (card) { resized.observe(card); });
+    };
+
+    // Swapped cards are placed straight away, before the browser paints them.
+    new MutationObserver(function () { watch(); layout(); }).observe(list, { childList: true });
+
+    watch();
+    layout();
+  })();
+</script>
