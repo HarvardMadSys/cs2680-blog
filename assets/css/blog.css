@@ -494,8 +494,8 @@ body {
 /* ------------------------------------------------------------
    Post list
    Eighty posts to an assignment, so a card is compact: one line
-   of byline, the title, and a two-line summary. The crimson left
-   rule is the course site's .note-card device.
+   of byline, the title, and a summary of a few lines. The crimson
+   left rule is the course site's .note-card device.
    ------------------------------------------------------------ */
 
 .post-list {
@@ -611,12 +611,18 @@ body {
     line-height: 1.5;
     color: var(--ink-2);
     margin: 0;
-    /* Two lines, so a card stays a card rather than a second copy of the
-       post's introduction. */
+    /* Enough lines for the whole of a one- or two-sentence summary, which is
+       what most front matter carries, but a cap all the same, so a card stays
+       a card rather than a second copy of the post's introduction. A card
+       without a cover has nothing else to show, so it gets the most room. */
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.post-card.has-cover .post-card-summary {
+    -webkit-line-clamp: 4;
 }
 
 /* A draft is visible only in `hugo server -D`; the stripe says so. */
