@@ -10,5 +10,6 @@ cascade:
   type: assignment5
 ---
 
-Each post covers the techniques its author tried in the agent, the serving engine and the
+Each post covers all of Assignments 2-5: its author's lessons, findings and mistakes. For
+Assignment 5, it covers the techniques they tried in the agent, the serving engine and the
 model, with the measurements that show whether they worked, and the mistakes their agent made.

@@ -33,10 +33,10 @@ measurements that show it.
 A list of all the mistakes your agent made on the tasks: what it did, on which task, and
 why, as far as you can tell.
 
-## Lessons from Assignments 2-5
+## Assignments 2-5
 
-Optional. Anything you learned across Assignments 2-5: lessons, findings, mistakes, and
-anything else that shows your own thinking and understanding.
+The post covers all of Assignments 2-5: your lessons, findings and mistakes, and anything
+else that shows your own thinking and understanding.
 
 ## AI use
 
