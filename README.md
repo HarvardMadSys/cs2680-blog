@@ -146,8 +146,8 @@ rendered from `favicon.svg` at 512px and downsampled. Regenerate them if it chan
   future-dated content, which would drop a submission with a mistyped date.
 - **Drafts are not published.** `draft: true` appears only under `hugo server -D`, with an
   amber stripe.
-- **Posts are filed by year.** `content/2026/assignment3/jdoe/index.md` publishes at
-  `/2026/assignment3/jdoe/`. Adding a later year does not move existing URLs.
+- **Posts are filed by year.** `content/2026/assignment5/jdoe/index.md` publishes at
+  `/2026/assignment5/jdoe/`. Adding a later year does not move existing URLs.
 - **Lists paginate at 20; the filter does not.** `_partials/post-filter.html` emits every
   card into a JSON island and swaps in matches, so the filter searches the whole collection
   rather than the current page. At eighty posts the island is about 7 KB gzipped.
@@ -155,7 +155,7 @@ rendered from `favicon.svg` at 512px and downsampled. Regenerate them if it chan
   in its `_index.md`, plus an archetype of the same name. The home page and offering page
   pick it up automatically; the tile row reflows.
 - **`hugo new content` needs `--kind`.** The archetype is chosen from the first path
-  segment, which is the year, so the publishing guide passes `--kind assignment3`
+  segment, which is the year, so the publishing guide passes `--kind assignment5`
   explicitly.
 
 ## Rolling over to a new year

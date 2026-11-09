@@ -29,19 +29,19 @@ hugo version               # should print "extended"
 
 ## 2. Start writing your post
 
-Start from an up-to-date `main`, then branch. (Put `assignment1` or `assignment5` in place of
-`assignment3` everywhere for those.)
+Start from an up-to-date `main`, then branch. (For an Assignment 1 or Assignment 3 post, put
+`assignment1` or `assignment3` in place of `assignment5` everywhere.)
 
 ```bash
 git fetch upstream
-git checkout -b assignment3/<your-name> upstream/main
-hugo new content --kind assignment3 2026/assignment3/<your-name>/index.md
+git checkout -b assignment5/<your-name> upstream/main
+hugo new content --kind assignment5 2026/assignment5/<your-name>/index.md
 ```
 
 That gives you a new folder, where you can put the post file and the supplementary files:
 
 ```
-content/2026/assignment3/junchengyang/
+content/2026/assignment5/junchengyang/
 ├── index.md
 └── throughput.svg        →  ![Throughput](throughput.svg)
 ```
@@ -152,9 +152,9 @@ Pages will be reloaded as you save.
 Push the branch to your own fork:
 
 ```bash
-git add content/2026/assignment3/<your-name>
-git commit -m "Assignment3(<your name>): <your title>"
-git push -u origin assignment3/<your-name>
+git add content/2026/assignment5/<your-name>
+git commit -m "Assignment5(<your name>): <your title>"
+git push -u origin assignment5/<your-name>
 ```
 
 GitHub will display a link to open your pull request.

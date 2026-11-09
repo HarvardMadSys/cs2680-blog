@@ -8,41 +8,35 @@ draft: true
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
-TODO: open with the result. Which layer turned out to hold the time, and what did the
-end-to-end numbers do once you fixed it?
+TODO: open with the result. What your agent and server reached, and which technique
+mattered most.
 
 <!--more-->
 
-## The stack and the workload
+## The setup
 
-The loop, the model, the serving configuration, the hardware, and the task set. Enough that
-someone could rebuild your setup.
+Your agent, your serving engine and its flags, the model, and the hardware. Enough that
+someone could rebuild it.
 
-## The profile
+## The techniques
 
-Where the time, tokens, and compute actually go across the whole path. Show how you
-measured it as well as what you measured.
+One section per technique you implemented, in the agent, the serving engine or the model.
+For each: what you changed, why you expected it to help, whether it worked, and the
+measurements that show it.
 
-## Hypothesis
+| Technique | Layer | Tasks solved | End-to-end time | Notes |
+| --- | --- | --- | --- | --- |
+| Baseline | | | | |
 
-Written before you changed anything: what you expected to be the bottleneck, and what you
-expected fixing it to buy. Keep it even if it turned out wrong — especially then.
+## The mistakes my agent made
 
-## What I changed, layer by layer
+A list of all the mistakes your agent made on the tasks: what it did, on which task, and
+why, as far as you can tell.
 
-Agent loop, model, serving system. For each: the change, and why the profile pointed at it.
+## Lessons from Assignments 2-5
 
-## Results
-
-Same workload, re-run. Which changes actually mattered, and by how much.
-
-| Change | Layer | Throughput | p50 latency | p99 latency | Cost / task | Success rate |
-| --- | --- | --- | --- | --- | --- | --- |
-| Baseline | | | | | | |
-
-## Where the hypothesis was wrong
-
-What the numbers said that you did not expect, and what you think explains it.
+Optional. Anything you learned across Assignments 2-5: lessons, findings, mistakes, and
+anything else that shows your own thinking and understanding.
 
 ## AI use
 
