@@ -2,41 +2,23 @@
 title: "TODO: a real title, not \"Assignment 5\""
 date: {{ now.Format "2006-01-02" }}
 authors: ["TODO: Your Name"]
-summary: "TODO: one or two sentences. What you found."
+summary: "TODO: one or two sentences. What you learned."
 tags: ["TODO"]
 draft: true
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
-TODO: open with the result. What your agent and server reached, and which technique
-mattered most.
+TODO: one or two sentences on the main lessons in this post.
 
 <!--more-->
 
-## The setup
+## TODO: a lesson
 
-Your agent, your serving engine and its flags, the model, and the hardware. Enough that
-someone could rebuild it.
+What you did, what happened and what you learned. Use your own measurements and examples.
 
-## The techniques
+## TODO: another lesson
 
-One section per technique you implemented, in the agent, the serving engine or the model.
-For each: what you changed, why you expected it to help, whether it worked, and the
-measurements that show it.
-
-| Technique | Layer | Tasks solved | End-to-end time | Notes |
-| --- | --- | --- | --- | --- |
-| Baseline | | | | |
-
-## The mistakes my agent made
-
-A list of all the mistakes your agent made on the tasks: what it did, on which task, and
-why, as far as you can tell.
-
-## Assignments 2-5
-
-The post covers all of Assignments 2-5: your lessons, findings and mistakes, and anything
-else that shows your own thinking and understanding.
+Add one section per lesson. Include your mistakes as well as what worked.
 
 ## AI use
 
