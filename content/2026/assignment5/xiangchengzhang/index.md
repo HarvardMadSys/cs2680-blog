@@ -4,7 +4,7 @@ date: 2026-11-24
 authors: ["Xiangcheng Zhang"]
 summary: "Optimal agent serving and design strategies depends on the specific patterns of the model being served"
 tags: ["inference-scaling", "context-cache", "server-scheduling"]
-draft: true
+draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
