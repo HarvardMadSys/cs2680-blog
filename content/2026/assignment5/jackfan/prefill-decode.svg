@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" role="img" aria-labelledby="t d" font-family="system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<title id="t">Prompt versus completion tokens</title>
+<desc id="d">Terminal-Bench 2.0 baseline run, 10 tasks: 26.66 million prompt tokens (98.5 percent, prefill) against 0.41 million completion tokens (1.5 percent, decode).</desc>
+<style>
+.s{fill:#fcfcfb} .p{fill:#0b0b0b} .q{fill:#52514e} .k{stroke:#52514e} .a{fill:#2a78d6} .c{fill:#eb6834} .gap{stroke:#fcfcfb}
+@media (prefers-color-scheme: dark){.s{fill:#1a1a19} .p{fill:#f0efec} .q{fill:#c3c2b7} .k{stroke:#c3c2b7} .a{fill:#3987e5} .c{fill:#d95926} .gap{stroke:#1a1a19}}
+</style>
+<rect class="s" width="100%" height="100%"/>
+<text class="p" x="16" y="26" font-size="15" font-weight="600">Prompt vs. completion tokens</text>
+<text class="q" x="16" y="45" font-size="12">Terminal-Bench 2.0 baseline run, 10 tasks, 718 calls</text>
+<g transform="translate(0,22) translate(150,160) scale(0.94) translate(-150,-160)"><path class="a gap" d="M150,160 L159.41,60.44 A100,100 0 1 1 150.00,60.00 Z" stroke-width="2" stroke-linejoin="round"/>
+<path class="c gap" d="M150,160 L150.00,60.00 A100,100 0 0 1 159.41,60.44 Z" stroke-width="2" stroke-linejoin="round"/></g>
+<rect class="a" x="300" y="122" width="12" height="12" rx="2"/>
+<text class="p" x="320" y="132" font-size="13">Prompt (prefill): 26.66M tokens</text>
+<text class="p" x="320" y="157" font-size="22" font-weight="600">98.5%</text>
+<rect class="c" x="300" y="192" width="12" height="12" rx="2"/>
+<text class="p" x="320" y="202" font-size="13">Completion (decode): 0.41M tokens</text>
+<text class="p" x="320" y="227" font-size="22" font-weight="600">1.5%</text>
+</svg>
