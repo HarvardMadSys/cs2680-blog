@@ -28,7 +28,7 @@ Hoever, when serving a weak model as the ones used in Assignment 4 and 5, we fou
     conversation: **11/26** in 3 h 32, 11,235 turns;
   - submission 13: each attempt in a fresh conversation: **15/26** in 3 h 33,
     9,275 turns. Turns per solve 1,021 → 618.
-  One run each, so this is under two standard deviations on its own.
+  One run each, so this is within run-to-run noise (z = 1.1, p = 0.27).
 
 
 **Assignment 3:**
@@ -69,8 +69,8 @@ We found that the most failures not come from a wrong answer, but comes from the
   never got there.
 - **86 % of a turn was waiting for the model** (32.5 s a turn against 5.4 s
   of running commands). About 7.6 s of it was waiting in the agent's own
-  queue for a free server slot, and about 26 s was the model writing ~886
-  tokens at ~34 tokens a second.
+  queue for a free server slot, and the remaining ~25 s was the server
+  reading the prompt and writing ~886 tokens.
 - The tasks that ran out of time wrote 2.6 times as many tokens per turn
   (1,248 against 481): long thinking before every small step. A 15-minute
   task got about 23 turns.
