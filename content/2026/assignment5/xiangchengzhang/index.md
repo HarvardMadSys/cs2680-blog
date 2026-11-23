@@ -58,7 +58,7 @@ When working on Assignment 4, we found that the throughput monotonically increas
 
 
 
-### The clock runs out before the model gets the answer wrong
+## The clock runs out before the model gets the answer wrong
 
 We found that the most failures not come from a wrong answer, but comes from the model stuck and can not produce an answer. WHen the model can not solve the problem, it keeps working and reasoning and generating tokens. sometime this behavior blocks other tasks which may be solvable.
 
