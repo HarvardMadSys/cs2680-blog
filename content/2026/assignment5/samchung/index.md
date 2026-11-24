@@ -19,7 +19,7 @@ lightweight models.
 Over the course of Assignments 2-5, I developed different harnesses under varying computational
 constraints aimed at competing on different dimensions. In Assignment 2, my coding agent was able to
 solve 7 out of 10 SWE-bench Pro tasks. In Assignment 3, working with API-based models of three different
-tiers and a $10 budget, my harness was able to solve 19 of 26 tasks at about $0.51 per solve, putting me
+tiers and a <span>$</span>10 budget, my harness was able to solve 19 of 26 tasks at about <span>$</span>0.51 per solve, putting me
 on the Pareto frontier of the leaderboard. Assignment 4 involved an additional layer of complexity in that
 it asked us to optimize serving the model on a single GPU. My best submission was able to solve 7 of 26
 tasks in 28.8 minutes. Finally, in Assignment 5, my initial harness solved 30 of 89 Terminal-Bench 2.0
