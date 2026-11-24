@@ -1,10 +1,10 @@
 ---
-title: "TODO: a real title, not \"Assignment 5\""
+title: "Claude Code & Me"
 date: 2026-11-24
 authors: ["Michelle Si"]
-summary: "TODO: one or two sentences. What you learned."
-tags: ["TODO"]
-draft: true
+summary: "A reflection on CS2680"
+tags: ["cs2680"]
+draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
@@ -63,3 +63,7 @@ But enough waxing poetic about Claude&Me—let’s dive into some system specifi
 My workflow became much easier (and I became a 100x programmer, as Juncheng had promised in the nascent days of our class) once I human-in-the-looped pipelines for verification, case studies, and testing levers. Of course, manually testing one lever at a time was extremely inefficient, so the breakthrough came from doing /goal (praise be!) optimize for certain metrics. Running that overnight usually gave me reasonable results in the morning, which I would go back and interpret.
 
 Final thoughts: I really enjoyed this class and learned a lot from it. Strangely, it helped me de-center Claude Code in my life and learn how to make it work for *me*, rather than my being its fleshy workhorse. I’ve been using what I’ve learned extensively in other classes, and I’m immensely grateful to the teaching team for creating thoughtful assignments in this rapidly evolving time.
+
+## AI use
+
+Claude was used to make the figures from my run logs.
