@@ -1,0 +1,48 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='760' height='374' viewBox='0 0 760 374' font-family='Helvetica, Arial, sans-serif'>
+<rect width='760' height='374' fill='#ffffff'/>
+<text x='20.0' y='28.0' font-size='17' text-anchor='start' fill='#1f2937' font-weight='bold'>Run the same code again, get a different score</text>
+<text x='20.0' y='48.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>Each dot is one run. Blue: local runs. Red: leaderboard gradings.</text>
+<line x1='200.0' y1='66' x2='200.0' y2='318' stroke='#e5e7eb'/>
+<text x='200.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>0%</text>
+<line x1='304.0' y1='66' x2='304.0' y2='318' stroke='#e5e7eb'/>
+<text x='304.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>20%</text>
+<line x1='408.0' y1='66' x2='408.0' y2='318' stroke='#e5e7eb'/>
+<text x='408.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>40%</text>
+<line x1='512.0' y1='66' x2='512.0' y2='318' stroke='#e5e7eb'/>
+<text x='512.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>60%</text>
+<line x1='616.0' y1='66' x2='616.0' y2='318' stroke='#e5e7eb'/>
+<text x='616.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>80%</text>
+<line x1='720.0' y1='66' x2='720.0' y2='318' stroke='#e5e7eb'/>
+<text x='720.0' y='336.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>100%</text>
+<text x='460.0' y='358.0' font-size='13' text-anchor='middle' fill='#6b7280' font-weight='normal'>tasks solved</text>
+<text x='20.0' y='104.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A3 v4</text>
+<text x='20.0' y='121.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>local, 3 close versions</text>
+<line x1='622.5' y1='107.0' x2='687.5' y2='107.0' stroke='#9ca3af' stroke-width='2'/>
+<circle cx='687.5' cy='107.0' r='7' fill='#2563eb' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='687.5' y='94.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>15/16</text>
+<circle cx='655.0' cy='107.0' r='7' fill='#2563eb' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='655.0' y='94.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>14/16</text>
+<circle cx='622.5' cy='107.0' r='7' fill='#2563eb' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='622.5' y='94.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>13/16</text>
+<text x='20.0' y='166.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A4 S9 code</text>
+<text x='20.0' y='183.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>local</text>
+<line x1='595.2' y1='169.0' x2='657.6' y2='169.0' stroke='#9ca3af' stroke-width='2'/>
+<circle cx='657.6' cy='169.0' r='7' fill='#2563eb' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='657.6' y='156.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>22/25</text>
+<circle cx='595.2' cy='169.0' r='7' fill='#2563eb' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='595.2' y='156.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>19/25</text>
+<text x='20.0' y='228.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A4 S7 zip</text>
+<text x='20.0' y='245.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>leaderboard</text>
+<line x1='400.0' y1='231.0' x2='460.0' y2='231.0' stroke='#9ca3af' stroke-width='2'/>
+<circle cx='460.0' cy='231.0' r='7' fill='#dc2626' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='460.0' y='218.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>13/26</text>
+<circle cx='400.0' cy='231.0' r='7' fill='#dc2626' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='400.0' y='218.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>10/26</text>
+<text x='20.0' y='290.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A4 S13L zip</text>
+<text x='20.0' y='307.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>leaderboard</text>
+<line x1='460.0' y1='293.0' x2='460.0' y2='293.0' stroke='#9ca3af' stroke-width='2'/>
+<circle cx='455.5' cy='293.0' r='7' fill='#dc2626' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<circle cx='464.5' cy='293.0' r='7' fill='#dc2626' fill-opacity='0.85' stroke='#ffffff' stroke-width='1.5'/>
+<text x='460.0' y='280.0' font-size='11' text-anchor='middle' fill='#1f2937' font-weight='normal'>13/26 (x2)</text>
+<text x='482.0' y='297.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>same count, 3 tasks swapped</text>
+</svg>
