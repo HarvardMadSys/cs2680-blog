@@ -144,8 +144,5 @@ capabilities translate into successful task completion.
 
 ## AI use
 
-As the [course policy](https://cs2680.com/policy.html#ai-policy) requires: I used Claude Code throughout
-Assignments 2-5 to help write and debug my harness and serving code and to write scripts that analyzed my
-run logs. For this post, Claude Code gathered the numbers from my notes and logs into an outline, made the
-figures from my run data with those scripts, wrote the figure alt text, and converted my draft to Markdown
-with small typo fixes. The text of the post is my own.
+Claude coded and helped me iterate on all of the harnesses for all assignments. It helped me synthesize
+data and create figures for the blog post. I drafted and wrote the blog post myself.
