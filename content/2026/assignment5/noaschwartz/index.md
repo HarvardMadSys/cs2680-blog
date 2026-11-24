@@ -3,7 +3,7 @@ title: "Working backwards from the traces: what I learned optimizing an agent st
 date: 2026-11-23
 authors: ["Noa Schwartz"]
 summary: "Verify that a change actually ran, know what your local benchmark can't see, and work backwards from where the time goes: lessons from building, optimizing and serving a coding agent across Assignments 2-5."
-tags: ["local-benchmarks", "agent-harness", "serving-metrics", "resource-tradeoffs", "kv-cache"]
+tags: ["local-benchmarks", "agent-harness", "serving-metrics", "prefill-decode", "kv-cache"]
 draft: false
 toc: true
 ---
