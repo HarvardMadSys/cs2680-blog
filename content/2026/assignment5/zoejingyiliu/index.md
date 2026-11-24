@@ -99,7 +99,7 @@ Ultimately, for V3, I shifted toward <span style="color: var(--crimson)">a simpl
 
 ## Lesson 4 \- Keep Complexity Where It Matters (Compaction & Retry Mechanism)
 
-However, the simplified architecture mentioned in Lesson 2 does not imply the complete removal of context management and recovery. I have retained two mechanisms designed to address specific challenges.
+However, the simplified architecture mentioned in Lesson 3 does not imply the complete removal of context management and recovery. I have retained two mechanisms designed to address specific challenges.
 
 The first is <span style="color: var(--crimson)">"Hybrid Context Compaction."</span> When the context reaches a configured threshold (defaulting to 60%), the system compresses older interaction records. In this process, the LLM summarizes previous debugging discussions, while deterministic Python code separately logs Git changes and tool execution history as well as preserving the most recent interactions.
 
