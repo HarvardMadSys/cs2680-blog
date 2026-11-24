@@ -1,0 +1,57 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='820' height='360' viewBox='0 0 820 360' font-family='Helvetica, Arial, sans-serif'>
+<rect width='820' height='360' fill='#ffffff'/>
+<text x='20.0' y='28.0' font-size='17' text-anchor='start' fill='#1f2937' font-weight='bold'>More tasks at once: slower calls, slower decoding</text>
+<text x='80.0' y='76.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A4: median model-call time</text>
+<line x1='80' y1='290.0' x2='380' y2='290.0' stroke='#e5e7eb'/>
+<text x='74.0' y='294.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>0</text>
+<line x1='80' y1='250.0' x2='380' y2='250.0' stroke='#e5e7eb'/>
+<text x='74.0' y='254.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>10</text>
+<line x1='80' y1='210.0' x2='380' y2='210.0' stroke='#e5e7eb'/>
+<text x='74.0' y='214.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>20</text>
+<line x1='80' y1='170.0' x2='380' y2='170.0' stroke='#e5e7eb'/>
+<text x='74.0' y='174.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>30</text>
+<line x1='80' y1='130.0' x2='380' y2='130.0' stroke='#e5e7eb'/>
+<text x='74.0' y='134.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>40</text>
+<line x1='80' y1='90.0' x2='380' y2='90.0' stroke='#e5e7eb'/>
+<text x='74.0' y='94.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>50</text>
+<text transform='rotate(-90 44 190.0)' x='44.0' y='190.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>seconds</text>
+<rect x='100.0' y='270.8' width='60.0' height='19.2' fill='#2563eb' fill-opacity='0.85'/>
+<text x='130.0' y='264.8' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>4.8 s</text>
+<text x='130.0' y='307.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>8 open</text>
+<text x='130.0' y='322.0' font-size='11' text-anchor='middle' fill='#6b7280' font-weight='normal'>r02</text>
+<rect x='200.0' y='246.8' width='60.0' height='43.2' fill='#2563eb' fill-opacity='0.85'/>
+<text x='230.0' y='240.8' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>10.8 s</text>
+<text x='230.0' y='307.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>12 open</text>
+<text x='230.0' y='322.0' font-size='11' text-anchor='middle' fill='#6b7280' font-weight='normal'>r03</text>
+<rect x='300.0' y='106.0' width='60.0' height='184.0' fill='#2563eb' fill-opacity='0.85'/>
+<text x='330.0' y='100.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>46 s</text>
+<text x='330.0' y='307.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>25 open</text>
+<text x='330.0' y='322.0' font-size='11' text-anchor='middle' fill='#6b7280' font-weight='normal'>r01</text>
+<text x='500.0' y='76.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A5: decoding speed per task (A4 set)</text>
+<line x1='500' y1='290.0' x2='780' y2='290.0' stroke='#e5e7eb'/>
+<text x='494.0' y='294.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>0</text>
+<line x1='500' y1='261.4' x2='780' y2='261.4' stroke='#e5e7eb'/>
+<text x='494.0' y='265.4' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>10</text>
+<line x1='500' y1='232.9' x2='780' y2='232.9' stroke='#e5e7eb'/>
+<text x='494.0' y='236.9' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>20</text>
+<line x1='500' y1='204.3' x2='780' y2='204.3' stroke='#e5e7eb'/>
+<text x='494.0' y='208.3' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>30</text>
+<line x1='500' y1='175.7' x2='780' y2='175.7' stroke='#e5e7eb'/>
+<text x='494.0' y='179.7' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>40</text>
+<line x1='500' y1='147.1' x2='780' y2='147.1' stroke='#e5e7eb'/>
+<text x='494.0' y='151.1' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>50</text>
+<line x1='500' y1='118.6' x2='780' y2='118.6' stroke='#e5e7eb'/>
+<text x='494.0' y='122.6' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>60</text>
+<line x1='500' y1='90.0' x2='780' y2='90.0' stroke='#e5e7eb'/>
+<text x='494.0' y='94.0' font-size='11' text-anchor='end' fill='#6b7280' font-weight='normal'>70</text>
+<text transform='rotate(-90 464 190.0)' x='464.0' y='190.0' font-size='12' text-anchor='middle' fill='#6b7280' font-weight='normal'>tokens per second</text>
+<rect x='528.0' y='109.4' width='84.0' height='180.6' fill='#2563eb' fill-opacity='0.85'/>
+<text x='570.0' y='103.4' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>63.2</text>
+<text x='570.0' y='307.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>16 open</text>
+<text x='570.0' y='322.0' font-size='11' text-anchor='middle' fill='#6b7280' font-weight='normal'>r03: 17/25 solved</text>
+<rect x='668.0' y='173.7' width='84.0' height='116.3' fill='#2563eb' fill-opacity='0.85'/>
+<text x='710.0' y='167.7' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>40.7</text>
+<text x='710.0' y='307.0' font-size='12' text-anchor='middle' fill='#1f2937' font-weight='normal'>20 open</text>
+<text x='710.0' y='322.0' font-size='11' text-anchor='middle' fill='#6b7280' font-weight='normal'>r05: 12/25 solved</text>
+<text x='500.0' y='348.0' font-size='11' text-anchor='start' fill='#6b7280' font-weight='normal'>The 20-open run also had a shorter per-task cap (20 vs 60 min).</text>
+</svg>

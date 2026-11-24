@@ -1,0 +1,24 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='820' height='250' viewBox='0 0 820 250' font-family='Helvetica, Arial, sans-serif'>
+<rect width='820' height='250' fill='#ffffff'/>
+<text x='20.0' y='28.0' font-size='17' text-anchor='start' fill='#1f2937' font-weight='bold'>Finishing is not the same as solving</text>
+<text x='20.0' y='48.0' font-size='12' text-anchor='start' fill='#6b7280' font-weight='normal'>Blue: solved. Red: not solved. Gray: reviewer said fail.</text>
+<text x='20.0' y='90.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A5 TB2 run r01: how each task ended</text>
+<text x='20.0' y='126.0' font-size='13' text-anchor='start' fill='#1f2937' font-weight='normal'>agent finished</text>
+<rect x='130.0' y='112.0' width='125.3' height='22.0' fill='#2563eb' fill-opacity='0.85'/>
+<rect x='255.3' y='112.0' width='44.5' height='22.0' fill='#dc2626' fill-opacity='0.85'/>
+<text x='307.8' y='127.0' font-size='12' text-anchor='start' fill='#1f2937' font-weight='normal'>31/42 solved (74%)</text>
+<text x='20.0' y='188.0' font-size='13' text-anchor='start' fill='#1f2937' font-weight='normal'>time limit</text>
+<rect x='130.0' y='174.0' width='4.0' height='22.0' fill='#2563eb' fill-opacity='0.85'/>
+<rect x='134.0' y='174.0' width='186.0' height='22.0' fill='#dc2626' fill-opacity='0.85'/>
+<text x='328.0' y='189.0' font-size='12' text-anchor='start' fill='#1f2937' font-weight='normal'>1/47 solved (2%)</text>
+<text x='490.0' y='90.0' font-size='14' text-anchor='start' fill='#1f2937' font-weight='bold'>A5: a fresh reviewer (same model), 31 verdicts</text>
+<rect x='490.0' y='112.0' width='203.2' height='22.0' fill='#2563eb' fill-opacity='0.85'/>
+<rect x='693.2' y='112.0' width='87.1' height='22.0' fill='#dc2626' fill-opacity='0.85'/>
+<rect x='780.3' y='112.0' width='9.7' height='22.0' fill='#6b7280' fill-opacity='0.85'/>
+<rect x='490.0' y='149.0' width='12.0' height='12.0' fill='#2563eb' fill-opacity='0.85'/>
+<text x='510.0' y='160.0' font-size='12' text-anchor='start' fill='#1f2937' font-weight='normal'>pass, task solved: 21</text>
+<rect x='490.0' y='171.0' width='12.0' height='12.0' fill='#dc2626' fill-opacity='0.85'/>
+<text x='510.0' y='182.0' font-size='12' text-anchor='start' fill='#1f2937' font-weight='normal'>pass, task NOT solved: 9</text>
+<rect x='490.0' y='193.0' width='12.0' height='12.0' fill='#6b7280' fill-opacity='0.85'/>
+<text x='510.0' y='204.0' font-size='12' text-anchor='start' fill='#1f2937' font-weight='normal'>fail: 1</text>
+</svg>
