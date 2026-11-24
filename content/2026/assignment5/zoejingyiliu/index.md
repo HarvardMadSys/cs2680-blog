@@ -95,7 +95,7 @@ Ultimately, for V3, I shifted toward <span style="color: var(--crimson)">a simpl
 
 </div>
 
-<span style="font-size: 0.75em">*Figure 5. Final agent harness architecture selected for Assignment 3 (V3), featuring a simplified solver loop with context compaction and recovery mechanisms.*</span>
+<span style="font-size: 0.75em">*Figure 5. Final agent harness architecture selected for Assignment 3 (V3), featuring a simplified solver loop with context compaction and recovery mechanisms. Drawn by the author.*</span>
 
 ## Lesson 4 \- Keep Complexity Where It Matters (Compaction & Retry Mechanism)
 
@@ -342,6 +342,10 @@ I further investigated the limitations of Expert Review. Since all three model t
 None of the 30 reviews detected errors, including six submissions that ultimately failed. Even with an ideal triggering strategy, the estimated improvement remained far below the target.
 
 <span style="color: var(--crimson)">Additional reasoning is not equivalent to independent verification. When the reviewer and solver share the same model, they may also share failure patterns.</span> Additional review calls can therefore repeat existing mistakes, incorrectly reject valid solutions, and consume time otherwise available for problem-solving. This suggests that <span style="color: var(--crimson)">using a different model for Expert plan, supervision, review and verification process may be a more promising direction for reducing shared failure patterns</span>.
+
+## AI Usage Disclosure
+
+AI tools were used to assist with organizing experimental data and generating some figures based on actual experimental results. The agent harness architecture shown in Figure 5 and used as the cover image was designed and illustrated by the author.
 
 [image1]: fig1_analysisexample1_baseline_timeline.webp
 
