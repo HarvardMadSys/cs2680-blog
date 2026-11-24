@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="576pt" height="244.8pt" viewBox="0 0 576 244.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-24T10:59:41.076545</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.5.3, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 244.8 
+L 576 244.8 
+L 576 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 115.2 195.84 
+L 235.07027 195.84 
+L 235.07027 68.544 
+L 115.2 68.544 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="fill: #0b0b0b; font: 11px 'sans-serif'" transform="translate(44.060313 94.87852)">Reasoning on</text>
+      <text style="fill: #0b0b0b; font: 11px 'sans-serif'" transform="translate(65.465625 106.603832)">every call</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="fill: #0b0b0b; font: 11px 'sans-serif'; text-anchor: end" x="111.7" y="172.326808" transform="rotate(-0, 111.7, 172.326808)">Reasoning off</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 115.2 117.726545 
+L 183.308108 117.726545 
+L 183.308108 74.330182 
+L 115.2 74.330182 
+z
+" clip-path="url(#pdd96170cb7)" style="fill: #a8a7a1; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 115.2 190.053818 
+L 206.010811 190.053818 
+L 206.010811 146.657455 
+L 115.2 146.657455 
+z
+" clip-path="url(#pdd96170cb7)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 115.2 195.84 
+L 115.2 68.544 
+" style="fill: none; stroke: #e4e3df; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_3">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="186.032432" y="98.742778" transform="rotate(-0, 186.032432, 98.742778)">15</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="208.735135" y="171.07005" transform="rotate(-0, 208.735135, 171.07005)">20</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="115.2" y="60.544" transform="rotate(-0, 115.2, 60.544)">Tasks solved (of 25)</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_6">
+    <path d="M 277.024865 195.84 
+L 396.895135 195.84 
+L 396.895135 68.544 
+L 277.024865 68.544 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_3">
+     <g id="line2d_3"/>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_4"/>
+    </g>
+   </g>
+   <g id="patch_7">
+    <path d="M 277.024865 117.726545 
+L 367.835676 117.726545 
+L 367.835676 74.330182 
+L 277.024865 74.330182 
+z
+" clip-path="url(#p11c1f0e81b)" style="fill: #a8a7a1; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 277.024865 190.053818 
+L 350.518265 190.053818 
+L 350.518265 146.657455 
+L 277.024865 146.657455 
+z
+" clip-path="url(#p11c1f0e81b)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 277.024865 195.84 
+L 277.024865 68.544 
+" style="fill: none; stroke: #e4e3df; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_6">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="370.56" y="98.742778" transform="rotate(-0, 370.56, 98.742778)">64.5</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="353.24259" y="171.07005" transform="rotate(-0, 353.24259, 171.07005)">52.2</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="277.024865" y="60.544" transform="rotate(-0, 277.024865, 60.544)">End-to-end (min)</text>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="patch_10">
+    <path d="M 438.84973 195.84 
+L 558.72 195.84 
+L 558.72 68.544 
+L 438.84973 68.544 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_5"/>
+   <g id="matplotlib.axis_6">
+    <g id="ytick_5">
+     <g id="line2d_5"/>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_6"/>
+    </g>
+   </g>
+   <g id="patch_11">
+    <path d="M 438.84973 117.726545 
+L 529.660541 117.726545 
+L 529.660541 74.330182 
+L 438.84973 74.330182 
+z
+" clip-path="url(#p3c37e67f2d)" style="fill: #a8a7a1; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 438.84973 190.053818 
+L 486.417297 190.053818 
+L 486.417297 146.657455 
+L 438.84973 146.657455 
+z
+" clip-path="url(#p3c37e67f2d)" style="fill: #2a78d6; stroke: #fcfcfb; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 438.84973 195.84 
+L 438.84973 68.544 
+" style="fill: none; stroke: #e4e3df; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_9">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="532.384865" y="98.742778" transform="rotate(-0, 532.384865, 98.742778)">21.0</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="489.141622" y="171.07005" transform="rotate(-0, 489.141622, 171.07005)">11.0</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #0b0b0b; font: 10.5px 'sans-serif'; text-anchor: start" x="438.84973" y="60.544" transform="rotate(-0, 438.84973, 60.544)">Avg. min per solved task</text>
+   </g>
+  </g>
+  <g id="text_12">
+   <text style="fill: #0b0b0b; font: 700 13.5px 'sans-serif'; text-anchor: start" x="11.52" y="17.091422" transform="rotate(-0, 11.52, 17.091422)">Reasoning on every call: fewer turns, fewer solves</text>
+  </g>
+  <g id="text_13">
+   <text style="fill: #52514e; font: 10.5px 'sans-serif'; text-anchor: start" x="11.52" y="30.753656" transform="rotate(-0, 11.52, 30.753656)">Assignment 4, 25 local tasks, same agent; only reasoning changed</text>
+  </g>
+  <g id="text_14">
+   <text style="fill: #52514e; font: 9px 'sans-serif'; text-anchor: start" x="11.52" y="239.246437" transform="rotate(-0, 11.52, 239.246437)">Off made 2.1x as many model calls. On the leaderboard, reasoning only for planning and after a failure: 8/26 vs 7/26 off (#22 vs #21).</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdd96170cb7">
+   <rect x="115.2" y="68.544" width="119.87027" height="127.296"/>
+  </clipPath>
+  <clipPath id="p11c1f0e81b">
+   <rect x="277.024865" y="68.544" width="119.87027" height="127.296"/>
+  </clipPath>
+  <clipPath id="p3c37e67f2d">
+   <rect x="438.84973" y="68.544" width="119.87027" height="127.296"/>
+  </clipPath>
+ </defs>
+</svg>
