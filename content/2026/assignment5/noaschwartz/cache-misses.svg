@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 654" width="680" height="654" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>Two ways the next call loses its cached history</title>
+<desc>A header defines a call as one request from the agent to the server, which resends the whole conversation so far, with the agent running a tool and the task idle between calls. It explains that the KV cache holds the attention keys and values for every token of the conversation so far in one pool shared by all tasks, the Mamba state is a snapshot of the model's running state saved at the end of a turn in its own slots, and the next call can skip re-prefilling the history only if it finds both. Two panels then show one task's turn, a pause for a tool call, and the next turn, above the KV cache and the Mamba state slots. In the first panel the task idles for a long time, the KV cache fills with other tasks, and the task's KV entries are evicted while its Mamba state is still saved. In the second panel the task idles only about a second, its KV entries are still there, but its Mamba state was evicted from its own separate LRU list. Either way the whole conversation is re-prefilled.</desc>
+<rect width="680" height="654" fill="#FFFFFF"/>
+<text x="40" y="28" font-size="15" font-weight="700" fill="#3B4147">What happens between two calls from the same task</text>
+<text x="40" y="52" font-size="12.5" fill="#3B4147"><tspan font-weight="700">Call:</tspan> one request from the agent to the server (one turn). Each call resends the whole conversation so far.</text>
+<text x="40" y="72" font-size="12.5" fill="#3B4147">Between calls, the agent runs a tool and the task sits idle while the server serves other tasks.</text>
+<text x="40" y="96" font-size="12.5" fill="#3B4147"><tspan font-weight="700">KV cache:</tspan> attention keys and values for every token so far, one pool shared by all tasks.</text>
+<text x="40" y="116" font-size="12.5" fill="#3B4147"><tspan font-weight="700">Mamba state:</tspan> a snapshot of the model's running state, saved after a turn, in its own slots.</text>
+<text x="40" y="140" font-size="12.5" font-weight="700" fill="#8C1515">The next call (N+1) can skip re-prefilling the history only if it finds both still cached.</text>
+<line x1="40" y1="156" x2="640" y2="156" stroke="#D5D8DB"/>
+<g transform="translate(0,164)">
+
+<!-- Panel A: capacity eviction -->
+<text x="40" y="28" font-size="15" font-weight="700" fill="#3B4147">A. Capacity eviction</text>
+<text x="40" y="48" font-size="13" fill="#6B7075">The task sits idle, other tasks fill the KV cache, and its history is pushed out.</text>
+
+<rect x="40" y="64" width="96" height="26" rx="3" fill="#E4E6E8"/>
+<text x="88" y="82" font-size="12.5" text-anchor="middle" fill="#3B4147">call N</text>
+<line x1="136" y1="77" x2="440" y2="77" stroke="#6B7075" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="288" y="70" font-size="12" text-anchor="middle" fill="#6B7075">tool call, task idle (long, e.g. ~30 s)</text>
+<rect x="440" y="64" width="110" height="26" rx="3" fill="#FFFFFF" stroke="#8C1515" stroke-width="1.5"/>
+<text x="495" y="82" font-size="12.5" text-anchor="middle" fill="#8C1515">call N+1</text>
+
+<text x="40" y="119" font-size="12.5" font-weight="700" fill="#3B4147">KV cache</text><text x="40" y="132" font-size="10.5" fill="#6B7075">history tokens</text>
+<g stroke="#FFFFFF" stroke-width="1">
+<rect x="130" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="170" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="210" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="330" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="370" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="410" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="450" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="490" y="106" width="40" height="26" fill="#CDD1D4"/>
+<rect x="530" y="106" width="40" height="26" fill="#CDD1D4"/>
+</g>
+<rect x="250.5" y="106.5" width="79" height="25" fill="none" stroke="#8C1515" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="290" y="124" font-size="14" text-anchor="middle" fill="#8C1515">evicted</text>
+<text x="590" y="123" font-size="12" fill="#6B7075">pool full</text>
+
+<text x="40" y="159" font-size="12.5" font-weight="700" fill="#3B4147">Mamba state</text><text x="40" y="172" font-size="10.5" fill="#6B7075">saved snapshot</text>
+<g stroke="#FFFFFF" stroke-width="1">
+<rect x="130" y="146" width="60" height="26" fill="#CDD1D4"/>
+<rect x="250" y="146" width="60" height="26" fill="#CDD1D4"/>
+<rect x="310" y="146" width="60" height="26" fill="#CDD1D4"/>
+</g>
+<rect x="190" y="146" width="60" height="26" fill="#F2C9C9" stroke="#8C1515" stroke-width="1.5"/>
+<text x="220" y="163" font-size="12.5" text-anchor="middle" fill="#8C1515">saved</text>
+
+<text x="40" y="208" font-size="13" fill="#3B4147">Call N+1 finds no KV entries for its history, so the whole conversation is re-prefilled.</text>
+<text x="40" y="226" font-size="13" fill="#3B4147">Fixes: more KV, offload, or fewer open tasks.</text>
+
+<line x1="40" y1="250" x2="640" y2="250" stroke="#D5D8DB"/>
+
+<!-- Panel B: Mamba state eviction -->
+<text x="40" y="282" font-size="15" font-weight="700" fill="#3B4147">B. Mamba state eviction</text>
+<text x="40" y="302" font-size="13" fill="#6B7075">The task's KV history is still there, but its saved state was evicted from its own LRU list.</text>
+
+<rect x="40" y="318" width="96" height="26" rx="3" fill="#E4E6E8"/>
+<text x="88" y="336" font-size="12.5" text-anchor="middle" fill="#3B4147">call N</text>
+<line x1="136" y1="331" x2="440" y2="331" stroke="#6B7075" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="288" y="324" font-size="12" text-anchor="middle" fill="#6B7075">tool call, task idle (short, ~1 s)</text>
+<rect x="440" y="318" width="110" height="26" rx="3" fill="#FFFFFF" stroke="#8C1515" stroke-width="1.5"/>
+<text x="495" y="336" font-size="12.5" text-anchor="middle" fill="#8C1515">call N+1</text>
+
+<text x="40" y="373" font-size="12.5" font-weight="700" fill="#3B4147">KV cache</text><text x="40" y="386" font-size="10.5" fill="#6B7075">history tokens</text>
+<g stroke="#FFFFFF" stroke-width="1">
+<rect x="130" y="360" width="40" height="26" fill="#CDD1D4"/>
+<rect x="170" y="360" width="40" height="26" fill="#CDD1D4"/>
+<rect x="210" y="360" width="40" height="26" fill="#CDD1D4"/>
+<rect x="330" y="360" width="40" height="26" fill="#CDD1D4"/>
+<rect x="370" y="360" width="40" height="26" fill="#CDD1D4"/>
+<rect x="410" y="360" width="40" height="26" fill="#CDD1D4"/>
+</g>
+<rect x="250" y="360" width="80" height="26" fill="#F2C9C9" stroke="#8C1515" stroke-width="1.5"/>
+<text x="290" y="377" font-size="12.5" text-anchor="middle" fill="#8C1515">still cached</text>
+
+<text x="40" y="413" font-size="12.5" font-weight="700" fill="#3B4147">Mamba state</text><text x="40" y="426" font-size="10.5" fill="#6B7075">saved snapshot</text>
+<g stroke="#FFFFFF" stroke-width="1">
+<rect x="130" y="400" width="60" height="26" fill="#CDD1D4"/>
+<rect x="250" y="400" width="60" height="26" fill="#CDD1D4"/>
+<rect x="310" y="400" width="60" height="26" fill="#CDD1D4"/>
+</g>
+<rect x="190.5" y="400.5" width="59" height="25" fill="none" stroke="#8C1515" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="220" y="417" font-size="14" text-anchor="middle" fill="#8C1515">evicted</text>
+<text x="390" y="417" font-size="12" fill="#6B7075">own LRU list, separate from KV</text>
+
+<text x="40" y="452" font-size="13" fill="#3B4147">The KV tokens are there, but there is no state to resume from, so the whole conversation is re-prefilled.</text>
+
+<!-- Legend -->
+<rect x="40" y="466" width="12" height="12" fill="#CDD1D4"/>
+<text x="58" y="477" font-size="12" fill="#6B7075">other tasks</text>
+<rect x="140" y="466" width="12" height="12" fill="#F2C9C9" stroke="#8C1515"/>
+<text x="158" y="477" font-size="12" fill="#6B7075">this task, kept</text>
+<rect x="250" y="466" width="12" height="12" fill="none" stroke="#8C1515" stroke-dasharray="3 2"/>
+<text x="268" y="477" font-size="12" fill="#6B7075">this task, evicted</text>
+
+</g>
+</svg>
