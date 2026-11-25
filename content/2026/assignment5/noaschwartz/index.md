@@ -1,20 +1,21 @@
 ---
-title: "So you think you're good at agentic systems? Noa's reflections, i.e deep gratitude for whoever wrote the harness for claude code with out going \"MADS\""
+title: "So you think you're good at agentic systems? Noa's reflections"
 date: 2026-11-24T00:00:00.000Z
 authors: ["Noa Schwartz"]
-summary: |
-  Quick summary of what I learned for each assignment
-
-  A2, Mads-Loop: Built a basic agent loop on the course model API: call the model, run tools, feed results back. Learned that context management and tool design shape agent behavior as much as the model does.
-  A3, Mads-Opt: Made the A2 agent cheaper by cutting tokens. Learned to treat tokens as a budget and to trade cost against task performance.
-  A4, Mads-Serve: Ran an open-weight model on our own serving engine on the course GPUs. Learned how batching, scheduling and KV-cache/prefix reuse set throughput and latency.
-  A5, Mads-Stack: Optimized the whole stack, from agent down to engine, with routing, quantization and speculative decoding. Learned that choices at one layer change what pays off at the others.
+summary: "Check that a change actually ran, know what your local benchmark can't see, and aim engine changes at a measured bottleneck: lessons from building, optimizing and serving a coding agent across Assignments 2-5."
 tags: ["local-benchmarks", "agent-harness", "serving-metrics", "prefill-decode", "kv-cache"]
 draft: false
 toc: true
 ---
 
 I built an agent, made it cheaper, served a model for it, and then optimized the whole stack, as part of [CS2680](https://cs2680.com/). Below are the ways in which it humbled me. 
+
+Quick summary of what I learned for each assignment:
+
+- **A2, Mads-Loop:** Built a basic agent loop on the course model API: call the model, run tools, feed results back. Learned that context management and tool design shape agent behavior as much as the model does.
+- **A3, Mads-Opt:** Made the A2 agent cheaper by cutting tokens. Learned to treat tokens as a budget and to trade cost against task performance.
+- **A4, Mads-Serve:** Ran an open-weight model on our own serving engine on the course GPUs. Learned how batching, scheduling and KV-cache/prefix reuse set throughput and latency.
+- **A5, Mads-Stack:** Optimized the whole stack, from agent down to engine, with routing, quantization and speculative decoding. Learned that choices at one layer change what pays off at the others.
 
 Video walkthrough: [Loom](https://www.loom.com/share/54b0a7e997584461920bf8e5d2e31eaa)
 
@@ -96,11 +97,11 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 
 **Where task time goes.** Debugging cache behavior requires finding patterns in how task time is being used. In A5, I noticed that consistently across local runs, model calls were the largest share of task time. A model call, or a single request (also known as roughly one agent turn), is defined as 1 chat-completion request from the agent to our server (POST /v1/chat/completions). All runs saw that model calls took up 74% of task time, and digging in further, I noticed decode took 81% of that (ttft was 19%).
 
-**Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which serves as a pretty good benchmark for the fastest this model can write to the GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time, so the slowest 5% of calls took 36% of model time.
+**Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which is the single-stream decode speed, a pretty good benchmark for the fastest this model can generate on this GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time, so the slowest 5% of calls took 36% of model time.
 
 ![Three lanes over time. Task B sends a long prompt and writes no tokens until its prefill is done. The GPU is shared and does one step at a time: normally every step is Task A writing a token, but while Task B's long prompt is being prefilled, big prefill chunks are fitted in between Task A's steps. Task A gets one token per step, so its tokens come out fast before and after Task B's prompt and slowly while it is on the GPU. With overlap like this Task A averages about 55 tokens per second, compared with about 168 when it runs alone.](decode-stalls.svg "Figure 2. Decode was slow because another task's long prompt (its prefill) took turns on the shared GPU, leaving Task A only one step between chunks. Illustrative, not to scale.")
 
-**Ruling out a full cache.** From there, I tried to understand why there were so many large prefills happening mid-conversation - i.e in most examples across runs these were mid-conversation cache misses. The obvious reason for this might be that the cache was full, which would be true if we saw long pauses between calls (30s), but I saw idle time was much smaller (closer to 1s) and happened most commonly when concurrency was high (note NOT same as # of open tasks - concurrency is # of requests server is processing, or how many calls are sent to server / in-flight at once). Higher concurrency means more requests are sharing the same GPU and same KV cache pool, and more prefills need to fit between decode steps.
+**Ruling out a full cache.** From there, I tried to understand why there were so many large prefills happening mid-conversation - i.e in most examples across runs these were mid-conversation cache misses. The obvious reason for this might be that the cache was full. Capacity eviction would show up as misses after long pauses between calls (30s), but most misses followed much shorter idle time (closer to 1s) and happened most commonly when concurrency was high (note NOT same as # of open tasks - concurrency is # of requests server is processing, or how many calls are sent to server / in-flight at once). Higher concurrency means more requests are sharing the same GPU and same KV cache pool, and more prefills need to fit between decode steps.
 
 **Two kinds of misses.** Lesson here was that we have 2 types of miss classes: (1) capacity eviction: Task's history is evicted while it sits idle and the KV cache fills up. - you can add more KV, offload, or have fewer open tasks, or (2) Misses with no idle time where the task's history is lost seconds after it was last used.
 
