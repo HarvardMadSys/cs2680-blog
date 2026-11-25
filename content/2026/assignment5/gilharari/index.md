@@ -6,7 +6,7 @@ authors:
 summary: "Optimizations are most effective when used in tandem with one another. Implementations should be selective and
 measured: limit reasoning and expensive models, balance time cap, and be aware of systems tradeoffs."
 tags: [Agent-Design,Tool-Use,Context-Management]
-draft: true
+draft: false
 cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
