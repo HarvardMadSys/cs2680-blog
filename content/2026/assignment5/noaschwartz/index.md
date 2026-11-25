@@ -14,7 +14,7 @@ draft: false
 toc: true
 ---
 
-I built an agent, made it cheaper, served a model for it, and then optimized the whole stack. Below are the ways in which it humbled me. 
+I built an agent, made it cheaper, served a model for it, and then optimized the whole stack, as part of [CS2680](https://cs2680.com/). Below are the ways in which it humbled me. 
 
 ## Limits of local traces
 
