@@ -70,3 +70,9 @@ The same code scored 19/26, then 16/26 and 17/26 on later runs. On five full run
 *Only 32 tasks were solved in every run. One total score hid a lot of variation across tasks.*
 
 If I did this again, I would make one change at a time and repeat the full run before believing a gain or a loss, maybe even a few times. If you are running things overnight, this might be a good set of rules to impose on your agent. Still I did very well in later assignments with these design decisions. I would keep the simple tools and spend less time adding rules the model might ignore. Find the actual bottleneck, keep the context that helps the model get solves.
+
+## How I worked with Claude
+
+I used Claude to write the code. In Assignment 3 it showed, because everything came out extremely complex. In Assignments 4 and 5 I did not let anything run overnight, and I did not let the agent do things and decide by itself. I treated the work as a set of measurements instead. I studied how many tokens per second we got, how many concurrent requests we could make, and how to trade off context against the number of tasks open at a time. I looked at how much context each assignment and each task needed, how many compactions were done, how much time was spent waiting on commands, and how we could improve decode and prefill. I asked a lot of questions like these to find the constraints of what we had and to understand what had already been done, and that is what made things go well.
+
+The pace helped too. I started early and worked about an hour a day, mostly thinking about what to do next. Then I would submit with the small changes I had made and see what happened. Working slowly like this every day for about 10 days helped a lot.
