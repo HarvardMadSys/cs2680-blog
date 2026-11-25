@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" width="680" height="380" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>Early retries keep engine slots busy</title>
+<desc>Two timelines for a task whose first attempt fails. Without early retry, the task waits for its grade while its engine slot sits idle, then the retry runs. With early retry, the retry starts as soon as the first attempt ends, while grading happens alongside, so the retry finishes earlier and the slot never idles.</desc>
+<rect width="680" height="380" fill="#FFFFFF"/>
+<text x="40" y="28" font-size="15" fill="#3B4147" font-weight="700">A. Retry after the grade</text>
+<text x="40" y="66" font-size="12.5" fill="#3B4147" font-weight="700">Task</text>
+<rect x="140" y="44" width="160" height="30" fill="#6B7075"/>
+<text x="220.0" y="63.5" font-size="12" fill="#FFFFFF" text-anchor="middle">attempt 1</text>
+<rect x="300.5" y="44.5" width="139" height="29" fill="none" stroke="#6B7075" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="370.0" y="63.5" font-size="12" fill="#6B7075" text-anchor="middle">waiting for grade</text>
+<rect x="440" y="44" width="160" height="30" fill="#8C1515"/>
+<text x="520.0" y="63.5" font-size="12" fill="#FFFFFF" text-anchor="middle">retry</text>
+<text x="40" y="106" font-size="12.5" fill="#3B4147" font-weight="700">Engine slot</text>
+<rect x="140" y="84" width="160" height="30" fill="#CDD1D4"/>
+<text x="220.0" y="103.5" font-size="12" fill="#3B4147" text-anchor="middle">busy</text>
+<rect x="300.5" y="84.5" width="139" height="29" fill="none" stroke="#8C1515" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="370.0" y="103.5" font-size="12" fill="#8C1515" text-anchor="middle">idle</text>
+<rect x="440" y="84" width="160" height="30" fill="#CDD1D4"/>
+<text x="520.0" y="103.5" font-size="12" fill="#3B4147" text-anchor="middle">busy</text>
+<line x1="40" y1="170" x2="640" y2="170" stroke="#D5D8DB"/>
+<text x="40" y="198" font-size="15" fill="#3B4147" font-weight="700">B. Early retry</text>
+<text x="40" y="236" font-size="12.5" fill="#3B4147" font-weight="700">Task</text>
+<rect x="140" y="214" width="160" height="30" fill="#6B7075"/>
+<text x="220.0" y="233.5" font-size="12" fill="#FFFFFF" text-anchor="middle">attempt 1</text>
+<rect x="300" y="214" width="160" height="30" fill="#8C1515"/>
+<text x="380.0" y="233.5" font-size="12" fill="#FFFFFF" text-anchor="middle">retry</text>
+<text x="40" y="276" font-size="12.5" fill="#3B4147" font-weight="700">Grading queue</text>
+<rect x="300" y="254" width="140" height="30" fill="#E4E6E8"/>
+<text x="370.0" y="273.5" font-size="12" fill="#3B4147" text-anchor="middle">graded: fail</text>
+<text x="40" y="316" font-size="12.5" fill="#3B4147" font-weight="700">Engine slot</text>
+<rect x="140" y="294" width="320" height="30" fill="#CDD1D4"/>
+<text x="300.0" y="313.5" font-size="12" fill="#3B4147" text-anchor="middle">busy, no gap</text>
+<line x1="460" y1="206" x2="460" y2="330" stroke="#8C1515" stroke-width="1.5"/><line x1="600" y1="206" x2="600" y2="330" stroke="#8C1515" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M596 342 H464" stroke="#8C1515" stroke-width="1.5"/><path d="M464 342 l6 -4 v8 z M596 342 l-6 -4 v8 z" fill="#8C1515"/>
+<text x="530" y="360" font-size="12" fill="#8C1515" text-anchor="middle">retry finishes earlier</text>
+<text x="40" y="366" font-size="12" fill="#6B7075">If the grade comes back as a pass instead, the retry is canceled.</text>
+</svg>
