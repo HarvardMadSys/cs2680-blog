@@ -10,7 +10,7 @@ toc: true
 
 Over Assignments 2–5 I built one coding agent and kept changing it: a single loop on 10 SWE-bench Pro tasks (A2), a multi-model harness with a dollar budget (A3), the same harness running against my own SGLang server on one GPU (A4), and finally a version that also had to handle Terminal-Bench 2.0 (A5). For A4 I tested more than 40 harness versions and 10 engine versions. Here's what I learned, sorted by topic.
 
-A note on naming: I gave every version an id. H-numbers (H2, H14, H41, …) are versions of my **harness**, the agent code that talks to the model and runs the tools. E-numbers (E4, …) are versions of the **engine**, the SGLang server setup that serves the model. Each new version usually changed one thing from the one before it, so H2 is just the second harness version after my starting point (H0, the Assignment 3 agent). The numbering started over in A5, so A5's H4 is a different harness from A4's H4.
+A note on naming: I gave every version an id. H-numbers (H2, H14, H41, …) are versions of my **harness**, the agent code that talks to the model and runs the tools. E-numbers (E4, …) are versions of the **engine**.
 
 ## 1. Harness engineering is hard
 
