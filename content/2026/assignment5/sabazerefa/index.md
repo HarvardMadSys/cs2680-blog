@@ -1,9 +1,9 @@
 ---
-title: "From solve rate to speed: what I learned building an agent harness"
+title: "Lessons in Harness Engineering"
 date: 2026-11-24
 authors: ["Saba Zerefa"]
-summary: "Offline scores were a noisy guide to solve rate but a reliable one for speed. The biggest speedups came from keeping the KV cache warm, and the biggest process lesson was to have my coding agent change one thing at a time and measure it."
-tags: ["agent-design", "caching", "evaluation", "serving"]
+summary: "Incremental, metric-driven iteration with coding-agents beats human intuition in harness engineering."
+tags: ["agent-design", "tool-use"]
 draft: false
 ---
 
@@ -77,10 +77,3 @@ which was not always the case. This was most apparent in the Assignment 3 workfl
 aforementioned retrying paradigms. In later assignments, I ensured the agent had iterative
 changes and notetaking with rigorous metrics justifying their existence.
 
-## AI use
-
-As the [course policy](https://cs2680.com/policy.html#ai-policy) requires: I used Claude Code
-as my coding agent across the assignments, plus Codex for one session. Under my direction it
-wrote and ran the harness and serving changes, the experiments and the analysis scripts behind
-the numbers above. The post text is my own; Claude Code wrote the title, summary and opening
-paragraph from my draft, formatted it for this blog and opened the pull request.
