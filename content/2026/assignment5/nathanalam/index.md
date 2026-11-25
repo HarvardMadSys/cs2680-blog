@@ -29,7 +29,7 @@ Instead, I switched simply to using the standard model for everything, and using
 
 ![Models struggled to hand off work to one another](planner-handoff.svg)
 
-I learned here that while we humans may have an intuitive sense of when to hand off work, agents may not, even if explicitly prompted to do so. What was rather interesting was that students who were able to implement such a system relied on explicit turn limits to force handoffs, which highlights how AI models, if left to their own devices, are fairly overconfident in their own abilities.
+I learned here that while we humans may have an intuitive sense of when to hand off work, agents may not, even if explicitly prompted to do so. What was rather interesting was that students who were able to implement such a system, according to the student sharing sessions for assignment 3, relied on explicit turn limits to force handoffs, which highlights how AI models, if left to their own devices, are fairly overconfident in their own abilities.
 
 ### Avoid Bureaucracy
 
