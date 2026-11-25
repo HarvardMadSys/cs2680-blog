@@ -2,9 +2,9 @@
 title: "Forty harness versions: Assignments 2–5"
 date: 2026-11-25
 authors: ["Nathan Ouyang"]
-summary: ""
+summary: "6 takeaways from my assignments"
 tags: ["agent-design", "tool-use", "caching", "context-management", "evaluation"]
-draft: true
+draft: false
 toc: true
 ---
 
@@ -34,7 +34,7 @@ In my A3 write-up I said iteration had been slow and I hadn't kept careful track
 
 Agents are really good at ingesting huge amounts of data and making sense of it, but letting a single agent lead research causes tunnel vision. My analyst agent wrote 45 reports in A4, including replays of 207 recorded submits. But after about H21, most new versions were the top pick from the analyst's previous report, and ten of them (H21–H38) tweaked the same retry logic. Three of those (H29–H31) were later reverted because none of their extra attempts converted on the leaderboard, and H37 plus H38 took the leaderboard score from 11 to 9. Meanwhile, the biggest jumps came from ideas outside that loop: keeping Qwen's thinking (H11), moving search rules into the tool (H34) and bigger budgets (H41, 11 → 13 on the leaderboard). Maybe next time I would try having an adversarial agent or an idea-generating agent to prevent this problem.
 
-The best students also came up with higher-level ideas that I don't think my agent's iteration loop would ever have found. My loop only ever added things to the harness; it never took anything away. Other students found wins by stepping back:
+The best students also came up with higher-level ideas that I don't think my agent's iteration loop would ever have found. My agent's workflow loop only ever added things to the harness; it never took anything away. Some other high-level directions my agent didn't consider due to tunnel vision were:
 
 - **A simpler harness.** One conversation per task that reads, edits, tests and submits on its own beat multi-role plan/do/review pipelines.
 - **Prefix-aware scheduling.** Serving requests whose history is already cached first raised one student's cache hits to 89% and cut their replay time from 841 s to 328 s.
@@ -43,7 +43,7 @@ The best students also came up with higher-level ideas that I don't think my age
 - **Giving Qwen the tool definitions it was trained with**, using Qwen Code's exact tool names and parameters.
 - **Optimizing at the kernel level**, tuning kernels for the GPU and compiling them before the server reports ready.
 
-For A4 and A5 I ran a "head researcher" agent that planned experiments, an analyst agent that wrote reports, and a scheduled task that watched the leaderboard and uploaded zips marked READY. This let experiments run overnight, but it needed some limits. The permission system once refused to click Submit on an approval that had been relayed from another agent, which was the right call, since uploads should be my decision. The head researcher also tended to keep refining whatever it was already working on instead of stepping back to ask if it was the right thing to work on. The agents push hard in whatever direction you point them, so choosing the direction is still my job.
+For A4 and A5 I ran a "head researcher" agent that planned experiments, an analyst agent that wrote reports, and a scheduled task that watched the leaderboard and uploaded zips marked READY. This let experiments run overnight. The head researcher also tended to keep refining whatever it was already working on instead of stepping back to ask if it was the right thing to work on. The agents push hard in whatever direction you point them, so choosing the direction is crucial.
 
 ## 3. The way the model was trained matters
 
