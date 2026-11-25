@@ -2,7 +2,7 @@
 title: "KISS - Keep it simple, stupid!"
 date: 2026-11-24
 authors: ["Nathan Shiham Alam"]
-summary: "The bitter lesson of agent/harness design is that we ultimately need to keep our agents within the band of how they are trained through reinforcement learning. The best lessons ultimately came from simply looking at failure modes and solving systems-level problems instead of inventing cool tricks!"
+summary: "We ultimately need to keep our agents within the band of how they are trained through reinforcement learning. The best lessons ultimately came from simply looking at failure modes and solving systems-level problems instead of inventing cool tricks!"
 tags: ["simple tools", "retries", "elegance"]
 draft: false
 ---
@@ -17,17 +17,17 @@ In Assignment 2, I had tried asking AI to generate a prompt for the agent harnes
 
 I recalled from lecture that the most effective system prompt instructions usually involve telling agents what NOT to do, so I removed almost all of the prompt and switched it to a series of DO and DO NOT statements focused mostly on what makes this coding-agent environment unique.
 
-![Prompt ablation](prompt-ablation.svg)
+![Old ~740-word prompt vs new ~200-word DO/DO NOT prompt](prompt-ablation.svg)
 
-In a short time, I found that the agent harness suddenly started working quite well. Allowing agents to act in their best interests helped them resolve situations within the band of how they were trained, and in ways that may be more efficient than the heuristics we might define. I learned that an overly elaborate system prompt may put agents in situations that are seriously out of band with the training information on which they were fine-tuned.
+In a short time, I found that the agent harness suddenly started working quite well and passed 7/7 tests up from 4/7. Allowing agents to act in their best interests helped them resolve situations within the band of how they were trained, and in ways that may be more efficient than the heuristics we might define. I learned that an overly elaborate system prompt may put agents in situations that are seriously out of band with the training information on which they were fine-tuned.
 
 ### Enforce Ownership
 
 In Assignment 3, one issue I had was that, in trying to design a multi-model harness using powerful and standard models, I found myself running out of money from using the powerful model too much, or running out of time because the standard model never succeeded in solving the problem. When I took a look at what was happening, the issue was that either the standard model never felt like it needed to hand off the problem to the expert model, or the expert model never felt like it ought to hand the problem back to the standard model.
 
-Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This worked much better, as we finished tasks quickly, within budget, and reliably without complex handoff behavior.
+Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This worked much better, as we finished tasks quickly at 7 minutes down from 21 minutes, within budget at 7 cents down from 20 cents per solved, and reliably without complex handoff behavior solving 8/26 instead of 5/26.
 
-![Planner handoff](planner-handoff.svg)
+![Models struggled to hand off work to one another](planner-handoff.svg)
 
 I learned here that while we humans may have an intuitive sense of when to hand off work, agents may not, even if explicitly prompted to do so. What was rather interesting was that students who were able to implement such a system relied on explicit turn limits to force handoffs, which highlights how AI models, if left to their own devices, are fairly overconfident in their own abilities.
 
@@ -35,17 +35,17 @@ I learned here that while we humans may have an intuitive sense of when to hand 
 
 In Assignment 4, I was getting frustrated with how often the models would spend hours on a test only to fail when new hidden tests were added. Even if the model felt sure that it had solved the problem, it probably forgot about a few key requirements in the beginning. To address this, I tried having the model write tests at the very beginning, while the requirements were fresh, before beginning the problem and clouding its judgment with too many context tokens.
 
-![Test-first zone](test-first-zone.svg)
+![Requiring tests up front could get us writing tests forever](test-first-zone.svg)
 
-This was a mistake, however, as the agent could spend an indefinite amount of time just writing tests. If test writing was interrupted, we would end up with tests that could never pass, effectively dooming the run. After several attempts to determine how to allow test writing at the start, I realized that until the model actually tries to get started with the codebase, it will not develop enough intuition to understand what reasonable tests might be. This was another example of how agents work differently from humans: although software engineers are often instructed to embrace [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development), this is not necessarily the case for AI agent harnesses.
+This was a mistake, however, as the agent could spend an indefinite amount of time just writing tests, and so I actually dropped to 0 / 26 passing. If test writing was interrupted, we would end up with tests that could never pass, effectively dooming the run. After several attempts to determine how to allow test writing at the start, I realized that until the model actually tries to get started with the codebase, it will not develop enough intuition to understand what reasonable tests might be. This was another example of how agents work differently from humans: although software engineers are often instructed to embrace [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development), this is not necessarily the case for AI agent harnesses.
 
 ### Don't be too fancy
 
-Finally, in Assignment 5, I was also trying to be a bit too creative by attempting to implement speculative decoding as discussed in class. I took a look at the [Cursor implementation](https://cursor.com/blog/instant-apply) and thought I could use the existing codebase in which the model was operating as the draft model. The actual model could then make adjustments as needed to tokens that were outside the expected distribution, acting as the verifier model.
+Finally, in Assignment 5, I was also blindly trying to use speculative decoding from the lectures when in reality it may not have been a good fit for coding agents on a wide variety of tasks. I took a look at the [Cursor implementation](https://cursor.com/blog/instant-apply) and used SGLang's n-gram flag to enable using the existing code as the draft upon which the target model could act as a verifier.
 
 ![Speculative decoding](speculative-decoding.svg)
 
-However, this was overly ambitious and did not take into account that I would also need to use a model specifically trained for validation. Although SGLang did support some form of speculative decoding, it was not a change that would have significantly helped, as we were not in a time-limited domain anyway, and it introduced an incredible amount of complexity. This also had the unintended effect of massively increasing the amount of memory required for each request, so any speed gains were completely wiped out by the reduction in parallelism.
+However, this did not work out quite so well as the actual output from the coding agent tasks were too novel and position sensitive to get good re-use of the "draft", which was the existing code. As such, the tax for verification outweighed gains from re-using the draft model, especially as our agent could do precise edits instead of whole file replacements. This also had the unintended effect of massively increasing the amount of memory required for each request as we needed to load the drafting model, so any speed gains were completely wiped out by the reduction in parallelism as each active request consumed more memory and left less space for KV cache of other requests.
 
 ## Conclusion
 
@@ -56,4 +56,4 @@ Ultimately, collaboration and brainstorming are where learning really shines. Be
 
 ## AI use
 
-I pledge that I have not used AI in writing this blog post, and only to collect information about my previous submissions and to correct spelling mistakes. All writing here is my own.
+I wrote this post myself, but I did use AI to help with spelling mistakes and grammatical errors. The diagrams here were also generated with AI.
