@@ -3,8 +3,8 @@ title: "Trial and Error in CS2680"
 date: 2026-11-24
 authors: ["Sam Gallaudet"]
 summary: "I learned the power and limitations of agentic systems and developed better practices for working with agentic AI."
-tags: ["agent-design", "testing", "observability", "user-feedback"]
-draft: true
+tags: ["agent-design", "testing", "observability, user-feedback"]
+draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
@@ -88,4 +88,4 @@ AI without a great deal of thought.
 
 ## AI use
 
-I wrote this blog post myself. I used Claude Code to reformat it when I pasted it from google docs to the markdown file. Claude created section delineators when it reformatted which I kept. 
+I wrote this blog post myself. I used Claude Code to reformat it when I pasted it from google docs to the markdown file. Claude created section delineators when it reformatted which I kept. It also fixed typos and added several tags which I also kept. 
