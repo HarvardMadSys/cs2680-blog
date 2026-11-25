@@ -57,7 +57,7 @@ There are a lot of decisions around harness control flow that I didn't realize a
 
 I think engine changes are valuable when they're extremely targeted to a known bottleneck that you can consistently see across runs - i.e in A4 the KV cache was consistently 97% full while the mamba state slots never went above 47% used.
 
-Moving memory from the slots to the KV cache (controlled by this flag `--mamba-full-memory-ratio` which defines how GPU memory left after loading the model weights is split between the model's two caches) meant conversations stayed cached between tool calls. Changing this from the 0.9 default to 0.5 meant re-prefilled tokens fell from 12.9M to 5.9M, and calls went from 20.5 s to 9.9 s, and solves went from 10/25 to 16/25!
+Moving memory from the slots to the KV cache (controlled by this flag `--mamba-full-memory-ratio` which defines how GPU memory left after loading the model weights is split between the model's two caches) meant conversations stayed cached between tool calls. Changing this from the 0.9 default to 0.5 meant re-prefilled tokens fell from 12.9M to 5.9M, and calls went from 20.5 s to 9.9 s!
 
 One thing I didn't get a chance to investigate but would consider is how to increase concurrency beyond 12 by taking advantage of the fact that while a model serving a certain task sits idle when a tool call is in progress and the model can go serve a different task at the same time.
 
@@ -70,7 +70,7 @@ Good depends on the workload. Efficient serving is tied to the shape of the traf
 Most public engine benchmarks report throughput and time to first token on independent prompts. For agentic systems, the numbers that matter are different:
 
 - hit rate on a returning conversation after a pause of N seconds;
-- per-stream decode speed at low batch, which sets the long tail (A5: 160 tok/s at 1 request, 500 tok/s total at 10);
+- per-stream decode speed at low batch, which sets the long tail (A5: 168 tok/s at 1 request, 500 tok/s total at 10);
 - how memory is split between KV and Mamba state slots;
 - behavior as load rises.
 
@@ -97,7 +97,7 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 
 **Where task time goes.** Debugging cache behavior requires finding patterns in how task time is being used. In A5, I noticed that consistently across local runs, model calls were the largest share of task time. A model call, or a single request (also known as roughly one agent turn), is defined as 1 chat-completion request from the agent to our server (POST /v1/chat/completions). All runs saw that model calls took up 74% of task time, and digging in further, I noticed decode took 81% of that (ttft was 19%).
 
-**Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which is the single-stream decode speed, a pretty good benchmark for the fastest this model can generate on this GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time, so the slowest 5% of calls took 36% of model time.
+**Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which is the single-stream decode speed, a pretty good benchmark for the fastest this model can generate on this GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time.
 
 ![Three lanes over time. Task B sends a long prompt and writes no tokens until its prefill is done. The GPU is shared and does one step at a time: normally every step is Task A writing a token, but while Task B's long prompt is being prefilled, big prefill chunks are fitted in between Task A's steps. Task A gets one token per step, so its tokens come out fast before and after Task B's prompt and slowly while it is on the GPU. With overlap like this Task A averages about 55 tokens per second, compared with about 168 when it runs alone.](decode-stalls.svg "Figure 2. Decode was slow because another task's long prompt (its prefill) took turns on the shared GPU, leaving Task A only one step between chunks. Illustrative, not to scale.")
 
