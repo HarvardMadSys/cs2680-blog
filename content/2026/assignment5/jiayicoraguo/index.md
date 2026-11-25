@@ -220,4 +220,4 @@ Next time: Put the code I copied from before inside the check too. It is the eas
 
 ## AI use
 
-I wrote the entire piece in Chinese and used AI to translate it. I also used AI to check the accuracy of what I had written.
+I wrote the entire piece in Chinese and used AI to translate it. I also used AI to check the accuracy of what I had written. Claude Code put the text into the blog template and opened this pull request.
