@@ -1,23 +1,24 @@
 ---
-title: "Working backwards from the traces: what I learned optimizing an agent stack"
-date: 2026-11-23
+title: "So you think you're good at agentic systems? Noa's reflections, i.e deep gratitude for whoever wrote the harness for claude code with out going \"MADS\""
+date: 2026-11-24T00:00:00.000Z
 authors: ["Noa Schwartz"]
-summary: "Verify that a change actually ran, know what your local benchmark can't see, and work backwards from where the time goes: lessons from building, optimizing and serving a coding agent across Assignments 2-5."
+summary: |
+  Quick summary of what I learned for each assignment
+
+  A2, Mads-Loop: Built a basic agent loop on the course model API: call the model, run tools, feed results back. Learned that context management and tool design shape agent behavior as much as the model does.
+  A3, Mads-Opt: Made the A2 agent cheaper by cutting tokens. Learned to treat tokens as a budget and to trade cost against task performance.
+  A4, Mads-Serve: Ran an open-weight model on our own serving engine on the course GPUs. Learned how batching, scheduling and KV-cache/prefix reuse set throughput and latency.
+  A5, Mads-Stack: Optimized the whole stack, from agent down to engine, with routing, quantization and speculative decoding. Learned that choices at one layer change what pays off at the others.
 tags: ["local-benchmarks", "agent-harness", "serving-metrics", "prefill-decode", "kv-cache"]
 draft: false
 toc: true
 ---
 
-Quick summary of what we learned for each
-
-- **A2, Mads-Loop:** Built a basic agent loop on the course model API: call the model, run tools, feed results back. Learned that context management and tool design shape agent behavior as much as the model does.
-- **A3, Mads-Opt:** Made the A2 agent cheaper by cutting tokens. Learned to treat tokens as a budget and to trade cost against task performance.
-- **A4, Mads-Serve:** Ran an open-weight model on our own serving engine on the course GPUs. Learned how batching, scheduling and KV-cache/prefix reuse set throughput and latency.
-- **A5, Mads-Stack:** Optimized the whole stack, from agent down to engine, with routing, quantization and speculative decoding. Learned that choices at one layer change what pays off at the others.
-
-<!--more-->
+I built an agent, made it cheaper, served a model for it, and then optimized the whole stack. Below are the ways in which it humbled me. 
 
 ## Limits of local traces
+
+
 
 ### Challenges with creating a driver to iterate recursively on local tasks
 
@@ -55,7 +56,7 @@ I think engine changes are valuable when they're extremely targeted to a known b
 
 Moving memory from the slots to the KV cache (controlled by this flag `--mamba-full-memory-ratio` which defines how GPU memory left after loading the model weights is split between the model's two caches) meant conversations stayed cached between tool calls. Changing this from the 0.9 default to 0.5 meant re-prefilled tokens fell from 12.9M to 5.9M, and calls went from 20.5 s to 9.9 s, and solves went from 10/25 to 16/25!
 
-One thing I didn't get a chance to investigate but would consider is how to increase concurrency beyond \~12 by taking advantage of the fact that while a model serving a certain task sits idle when a tool call is in progress and the model can go serve a different task at the same time.
+One thing I didn't get a chance to investigate but would consider is how to increase concurrency beyond 12 by taking advantage of the fact that while a model serving a certain task sits idle when a tool call is in progress and the model can go serve a different task at the same time.
 
 ## What makes a serving engine good
 
@@ -66,9 +67,11 @@ Good depends on the workload. Efficient serving is tied to the shape of the traf
 Most public engine benchmarks report throughput and time to first token on independent prompts. For agentic systems, the numbers that matter are different:
 
 - hit rate on a returning conversation after a pause of N seconds;
-- per-stream decode speed at low batch, which sets the long tail (A5: \~160 tok/s at 1 request, \~500 tok/s total at 10);
+- per-stream decode speed at low batch, which sets the long tail (A5: 160 tok/s at 1 request, 500 tok/s total at 10);
 - how memory is split between KV and Mamba state slots;
 - behavior as load rises.
+
+
 
 ### Robustness and observability
 
@@ -78,23 +81,24 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 - **telling slow apart from stuck under heavy load:** Under heavy load (many tasks' model calls running on the GPU at the same time), my calls slowed to 1.5–7.7 tok/s but kept producing tokens. My fixed 300 s cap killed any call that ran longer than 300 s, so it treated these slow calls as stuck and ended 10 tasks early.
 - **make sure metrics are properly defined and tracked:** I tracked `cached_tokens` as my cache hit rate, but on this hybrid model it only counts the prefix reused up to the last saved Mamba state snapshot, so a low value didn't necessarily mean my KV cache was evicted and I couldn't properly diagnose why turns were so slow - i.e if it was because it lost its KV cache to eviction or just its Mamba state snapshot. Those two problems need different fixes.
 
-### How to compare engines
 
-How to compare engines:
+
+### How to compare engines
 
 - Judge an engine change by its own metric: call latency, cache hit rate, re-prefill - not by local end-to-end time, which the CPU, the harness and noise can muddy results.
 - Measure it on traffic that will actually represent the agentic system it will be serving. For example, agentic systems have traffic with more pauses due to tool calls.
 
+
+
 ## Cache misses and full caches
 
-
-**Where task time goes.** Debugging cache behavior requires finding patterns in how task time is being used. In A5, I noticed that consistently across local runs, model calls were the largest share of task time. A model call, or a single request (also known as roughly one agent turn), is defined as 1 chat-completion request from the agent to our server (POST /v1/chat/completions). All runs saw that model calls took up \~74% of task time, and digging in further, I noticed decode took 81% of that (ttft was 19%).
+**Where task time goes.** Debugging cache behavior requires finding patterns in how task time is being used. In A5, I noticed that consistently across local runs, model calls were the largest share of task time. A model call, or a single request (also known as roughly one agent turn), is defined as 1 chat-completion request from the agent to our server (POST /v1/chat/completions). All runs saw that model calls took up 74% of task time, and digging in further, I noticed decode took 81% of that (ttft was 19%).
 
 **Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which serves as a pretty good benchmark for the fastest this model can write to the GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time, so the slowest 5% of calls took 36% of model time.
 
 ![Two timelines of one task generating tokens. Alone on the server it generates a steady stream of tokens at about 168 tokens per second. When other tasks send large prefills, it stops generating until each prefill is done, so while tasks overlap it averages about 55 tokens per second.](decode-stalls.svg "Figure 2. Decode was slow only when other tasks' large prefills overlapped it. Illustrative, not to scale.")
 
-**Ruling out a full cache.** From there, I tried to understand why there were so many large prefills happening mid-conversation - i.e in most examples across runs these were mid-conversation cache misses. The obvious reason for this might be that the cache was full, which would be true if we saw long pauses between calls (\~30s), but I saw idle time was much smaller (closer to \~1s) and happened most commonly when concurrency was high (note NOT same as # of open tasks - concurrency is # of requests server is processing, or how many calls are sent to server / in-flight at once). Higher concurrency means more requests are sharing the same GPU and same KV cache pool, and more prefills need to fit between decode steps.
+**Ruling out a full cache.** From there, I tried to understand why there were so many large prefills happening mid-conversation - i.e in most examples across runs these were mid-conversation cache misses. The obvious reason for this might be that the cache was full, which would be true if we saw long pauses between calls (30s), but I saw idle time was much smaller (closer to 1s) and happened most commonly when concurrency was high (note NOT same as # of open tasks - concurrency is # of requests server is processing, or how many calls are sent to server / in-flight at once). Higher concurrency means more requests are sharing the same GPU and same KV cache pool, and more prefills need to fit between decode steps.
 
 **Two kinds of misses.** Lesson here was that we have 2 types of miss classes: (1) capacity eviction: Task's history is evicted while it sits idle and the KV cache fills up. - you can add more KV, offload, or have fewer open tasks, or (2) Misses with no idle time where the task's history is lost seconds after it was last used.
 
@@ -111,6 +115,15 @@ How to compare engines:
 - Where do the large prefills come from? Cache misses.
 - Which kind of miss? Not regular cache eviction due to full cache, so there must be another reason for cache misses. KV cache and SSM states (in hybrid models) have different caching policies that need to be debugged.
 
+
+
 ## AI use
 
-As the [course policy](https://cs2680.com/policy.html#ai-policy) requires: I used Claude (via Claude Code) to help build and run the experiment driver and to analyse traces and logs. The measurements and conclusions above come from my own runs, and I checked the results against the logs. Claude helped tidy it up and fix typos.
+I used Claude Code to help build and run the experiment driver and to analyse traces and logs. The measurements and conclusions above come from my own runs. Claude helped tidy it up and fix typos, as well as generate the diagrams. 
+
+## Who wrote this
+
+I'm a joint degree student (MS/MBA) at Harvard between SEAS (engineering school) and HBS. You can see my github here - [https://github.com/noas-ark](https://github.com/noas-ark). You can see my linked in here - [https://www.linkedin.com/in/noa-schwartz-32aa98166/](https://www.linkedin.com/in/noa-schwartz-32aa98166/). Many GPUs were used in the learning of these lessons. 
+
+
+
