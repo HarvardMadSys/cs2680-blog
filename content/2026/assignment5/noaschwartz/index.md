@@ -16,6 +16,8 @@ toc: true
 
 I built an agent, made it cheaper, served a model for it, and then optimized the whole stack, as part of [CS2680](https://cs2680.com/). Below are the ways in which it humbled me. 
 
+Video walkthrough: [Loom](https://www.loom.com/share/54b0a7e997584461920bf8e5d2e31eaa)
+
 ## Limits of local traces
 
 
