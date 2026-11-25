@@ -36,7 +36,7 @@ An important note here is that there was a good amount of variance in the harnes
 
 Intuitively, it makes sense to me that smarter models will be able to manage complex harnesses more effectively and get more consistent results i.e., the intelligence of a model and the complexity of its harness should increase proportionally to achieve peak performance. A lingering question I have is, how much variance does Claude Code itself have?
 
-## Human Are Still Vital
+## Humans Are Still Vital
 
 At the end of the day, my greatest takeaway is that the Claude Code user is still a vital part of a project's development.
 
