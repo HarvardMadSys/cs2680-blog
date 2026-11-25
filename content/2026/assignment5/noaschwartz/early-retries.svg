@@ -33,5 +33,5 @@
 <line x1="460" y1="206" x2="460" y2="330" stroke="#8C1515" stroke-width="1.5"/><line x1="600" y1="206" x2="600" y2="330" stroke="#8C1515" stroke-width="1" stroke-dasharray="3 3"/>
 <path d="M596 342 H464" stroke="#8C1515" stroke-width="1.5"/><path d="M464 342 l6 -4 v8 z M596 342 l-6 -4 v8 z" fill="#8C1515"/>
 <text x="530" y="360" font-size="12" fill="#8C1515" text-anchor="middle">retry finishes earlier</text>
-<text x="40" y="366" font-size="12" fill="#6B7075">If the grade comes back as a pass instead, the retry is cancelled.</text>
+<text x="40" y="366" font-size="12" fill="#6B7075">If the grade comes back as a pass instead, the retry is canceled.</text>
 </svg>

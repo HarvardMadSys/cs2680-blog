@@ -26,7 +26,7 @@ Idea: I wanted to build a driver that proposes a change to the engine or agent h
 
 Problem 1: The Driver makes changes and claims they are implemented or applied in cases where this isn't true. One engine patch in A4 changed how the prefix cache evicts dead branches. A run with it scored 16/25 and attributed the improvements to this change.
 
-Much later, while analysing cache logs, I found that every server log said `impl=UnifiedRadixCache`. The patch modified `MambaRadixCache`, a class this model never uses. The patch had never run once. The "16/25 engine" was really one flag, and the 16/25 was a lucky draw. Its cache-loss rate was no better than the base engine's.
+Much later, while analyzing cache logs, I found that every server log said `impl=UnifiedRadixCache`. The patch modified `MambaRadixCache`, a class this model never uses. The patch had never run once. The "16/25 engine" was really one flag, and the 16/25 was a lucky draw. Its cache-loss rate was no better than the base engine's.
 
 **Lesson:** checking the outcome isn't enough; check that the mechanism actually ran. Each change should come with a cheap proof it's active: a log line, a counter, a changed metric. The driver should refuse to score a change without it.
 
@@ -34,21 +34,21 @@ Problem 2: The local benchmark has different bottlenecks than the actual leaderb
 
 Digging in showed the task sandboxes all ran on one 4 vCPU box, 25 at once. A faster model sends agents back to their build tools sooner, so more Go builds overlapped. Tool timeouts rose from 49 to 65 calls, and run time is set by the slowest task. The engine improvement showed up as a loss because of a bottleneck only our local setup had: on the leaderboard, each task container gets its own core.
 
-**Lesson:** know the limits of the local benchmark and what constraints the leaderboard also has. Pick the decision metric to match what the change targets: judge engine changes on model time and cache behaviour, and agent changes on solved count.
+**Lesson:** know the limits of the local benchmark and what constraints the leaderboard also has. Pick the decision metric to match what the change targets: judge engine changes on model time and cache behavior, and agent changes on solved count.
 
 ## Harness changes beat engine changes
 
-Harness changes were the primary way to increase tasks solved on hidden tests, more than the serving engine.
+I found it was easier to improve tasks solved on hidden tests with harness changes. The serving engine was primarily a tool for reducing time, but was less predictable.
 
 ### Harness changes
 
 There are a lot of decisions around harness control flow that I didn't realize an advanced coding harness like Claude Code was doing under the hood. And it's interesting to me how the evolution of Claude specifically came about (i.e if the harness self-improved over time, vs time spent debugging traces to understand where lessons like the agent saying a task is done is an unreliable one). Some interesting harness changes:
 
 - **A4: one fresh-context retry.** When a task's first attempt fails grading, the harness starts a second attempt in a brand-new conversation. It starts from the task statement again, not from the failed chat, and the better of the two attempts is kept. Model output is random, so a second attempt from scratch can land on a different, correct approach. Fixing the failure in the same chat tends to repeat the first attempt's wrong assumptions.
-- A4: early retries. A failed task normally waited for its grade before retrying. Grading was a slow queue that ran only 3 at a time, so engine slots sat empty during that wait. Run 1042 had 107 idle slot-minutes. Early retry starts the retry right away, before the grade comes back, but only after every task has been opened once, so retries never delay first attempts. If the grade comes back as a pass, the retry is cancelled. Retries started about 15 min earlier, leading to faster runs (same score). Across runs, there was only around a minute of "wasted" work from cancelled retries.
+- A4: early retries. A failed task normally waited for its grade before retrying. Grading was a slow queue that ran only 3 at a time, so engine slots sat empty during that wait. Run 1042 had 107 idle slot-minutes. Early retry starts the retry right away, before the grade comes back, but only after every task has been opened once, so retries never delay first attempts. If the grade comes back as a pass, the retry is canceled. Retries started about 15 min earlier, leading to faster runs (same score). Across runs, there was only around a minute of "wasted" work from canceled retries.
 - A3: budget nudge and step warnings. The model couldn't see how much of its budget was left. In run 10, an Expert attempt spent 22 of its 23 steps reading code. Its only edit came after it had already gone over its $0.30 cap. I made 2 changes here: (1) at 8 steps left, the model is told to finish and call `done`; (2) if half its steps are used and it has changed no code, the model is told to stop exploring, make its best fix, test it, and finish.
 
-![Two timelines for a task whose first attempt fails. Without early retry, the task waits for its grade while its engine slot sits idle, then the retry runs. With early retry, the retry starts as soon as the first attempt ends, while grading happens alongside, so the retry finishes earlier and the slot never idles.](early-retries.svg "Figure 1. Early retry starts the retry while the first attempt is still being graded, so the engine slot stays busy and the retry finishes earlier. Illustrative, not to scale. If the grade comes back as a pass, the retry is cancelled.")
+![Two timelines for a task whose first attempt fails. Without early retry, the task waits for its grade while its engine slot sits idle, then the retry runs. With early retry, the retry starts as soon as the first attempt ends, while grading happens alongside, so the retry finishes earlier and the slot never idles.](early-retries.svg "Figure 1. Early retry starts the retry while the first attempt is still being graded, so the engine slot stays busy and the retry finishes earlier. Illustrative, not to scale. If the grade comes back as a pass, the retry is canceled.")
 
 ### Engine changes
 
@@ -96,7 +96,7 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 
 **Why decode was slow.** In some of the initial replay benchmarks (i.e just testing the speed of a single request at a time), responses were generated at 168 tok/s, which serves as a pretty good benchmark for the fastest this model can write to the GPU. But in the real runs, where many agent tasks were opened at once (12), decode was closer to 55 tok/s. Thus, something was making decode very slow when multiple tasks were being served. The reason here was that another request's large prefill was running at the same time, so the slowest 5% of calls took 36% of model time.
 
-![Two timelines of one task generating tokens. Alone on the server it generates a steady stream of tokens at about 168 tokens per second. When other tasks send large prefills, it stops generating until each prefill is done, so while tasks overlap it averages about 55 tokens per second.](decode-stalls.svg "Figure 2. Decode was slow only when other tasks' large prefills overlapped it. Illustrative, not to scale.")
+![Three lanes over time. Task B sends a long prompt. The GPU is shared and does one step at a time: normally every step is Task A writing a token, but while Task B's long prompt is being prefilled, big prefill chunks are fitted in between Task A's steps. Task A's tokens come out one per step, so they are fast before and after Task B's prompt and slow while it is on the GPU. With overlap like this Task A averages about 55 tokens per second, compared with about 168 when it runs alone.](decode-stalls.svg "Figure 2. Decode was slow because another task's long prompt (its prefill) took turns on the shared GPU, leaving Task A only one step between chunks. Illustrative, not to scale.")
 
 **Ruling out a full cache.** From there, I tried to understand why there were so many large prefills happening mid-conversation - i.e in most examples across runs these were mid-conversation cache misses. The obvious reason for this might be that the cache was full, which would be true if we saw long pauses between calls (30s), but I saw idle time was much smaller (closer to 1s) and happened most commonly when concurrency was high (note NOT same as # of open tasks - concurrency is # of requests server is processing, or how many calls are sent to server / in-flight at once). Higher concurrency means more requests are sharing the same GPU and same KV cache pool, and more prefills need to fit between decode steps.
 
@@ -119,7 +119,7 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 
 ## AI use
 
-I used Claude Code to help build and run the experiment driver and to analyse traces and logs. The measurements and conclusions above come from my own runs. Claude helped tidy it up and fix typos, as well as generate the diagrams. 
+I used Claude Code to help build and run the experiment driver and to analyze traces and logs. The measurements and conclusions above come from my own runs. Claude helped tidy it up and fix typos, as well as generate the diagrams. 
 
 ## Who wrote this
 
