@@ -43,9 +43,9 @@ After four assignments, my biggest takeaway is this: the score did not move much
 
 ![Time per Terminal-Bench task, grouped by the task's own limit: solved tasks cluster well below the 7-minute cap](dashboard-tb2-times.webp "Time per Terminal-Bench task in one run, grouped by the task's own limit.")
 
-![Time per task on the 26 repository tasks, and a grid of which tasks each submission solved](dashboard-repo-tasks.webp "The 26 repository tasks: time per task, and which tasks each submission solved.")
-
 ![A grid with one row per Terminal-Bench task and one column per run, sorted by how often each task was solved](dashboard-tb2-matrix.webp "Terminal-Bench task by task across all my runs: a stable easy set, a large never-solved set, and a band in between.")
+
+![Time per task on the 26 repository tasks, and a grid of which tasks each submission solved](dashboard-repo-tasks.webp "The 26 repository tasks: time per task, and which tasks each submission solved.")
 
 ![Bar chart of minutes to finish for the 32 tasks solved in one run: 11 in 0–2 minutes, 8 in 2–5, 8 in 5–10, 3 in 10–15, 1 in 15–20 and 1 in 20–30](solve-time.svg "Leaderboard submission 1 (no per-task cap): the 32 Terminal-Bench tasks it solved, by time to finish.")
 
