@@ -3,7 +3,7 @@ title: "So you think you're good at agentic systems? Noa's reflections"
 date: 2026-11-24T00:00:00.000Z
 authors: ["Noa Schwartz"]
 summary: "Check that a change actually ran, know what your local benchmark can't see, and aim engine changes at a measured bottleneck: lessons from building, optimizing and serving a coding agent across Assignments 2-5."
-tags: ["local-benchmarks", "agent-harness", "serving-metrics", "prefill-decode", "kv-cache"]
+tags: ["local-benchmarks", "agent-harness", "prefix-logs", "prefill-decode", "kv-cache"]
 draft: false
 toc: true
 ---
