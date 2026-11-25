@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 472" width="680" height="472" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>The Assignment 5 agent loop</title>
+<desc>The Assignment 5 agent, final version, for one task. Opening the task sets its budget and starts its clock. One pass: model call and tool calls (bash, read, write, edit) until done or the budget ends. The first done is answered with a self-check request: re-read the task and run a command showing each part is met. The second done, or the end of the budget, ends the task with done(k), which is scored in the background with no result coming back. Twenty-four tasks run at once.</desc>
+<rect width="680" height="472" fill="#FFFFFF"/>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#646A72"/></marker><marker id="ahc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#8C1515"/></marker></defs>
+<text x="24.0" y="22.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">Assignment 5 · one task, final version</text>
+<text x="656.0" y="22.0" font-size="12.5" fill="#646A72" text-anchor="end" font-weight="400">24 tasks at once</text>
+<rect x="24" y="40" width="236" height="56" rx="6" fill="#FFFFFF" stroke="#B9BEC6" stroke-width="1.5"/>
+<text x="36.0" y="61.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">Open the task</text>
+<text x="36.0" y="77.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">sets its budget; its clock starts</text>
+<rect x="404" y="40" width="236" height="56" rx="6" fill="#FFFFFF" stroke="#B9BEC6" stroke-width="1.5"/>
+<text x="416.0" y="61.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">done(k)</text>
+<text x="416.0" y="77.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">scored later; nothing comes back</text>
+<polyline points="404,68 262,68" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="332" y="62" font-size="12" fill="#3B4147" text-anchor="middle" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">next task</text>
+<polyline points="100,96 100,160" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="108" y="116" font-size="12" fill="#3B4147" text-anchor="start" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">system + task prompt</text>
+<rect x="24" y="124" width="316" height="284" rx="8" fill="#F4F5F7"/>
+<text x="36.0" y="146.0" font-size="13.5" fill="#1E2126" text-anchor="start" font-weight="600">Pass</text>
+<text x="328.0" y="146.0" font-size="12" fill="#646A72" text-anchor="end" font-weight="400">until done or the budget ends</text>
+<rect x="40" y="162" width="120" height="64" rx="6" fill="#FFFFFF" stroke="#B9BEC6" stroke-width="1.5"/>
+<text x="52.0" y="183.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">Model call</text>
+<text x="52.0" y="199.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">own server,</text>
+<text x="52.0" y="215.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">reasoning kept</text>
+<rect x="216" y="162" width="108" height="64" rx="6" fill="#FFFFFF" stroke="#B9BEC6" stroke-width="1.5"/>
+<text x="228.0" y="183.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">Tools</text>
+<text x="228.0" y="199.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">bash, read,</text>
+<text x="228.0" y="215.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">write, edit</text>
+<polyline points="160,184 214,184" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="188" y="178" font-size="12" fill="#3B4147" text-anchor="middle" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">calls</text>
+<polyline points="216,204 162,204" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="188" y="218" font-size="12" fill="#3B4147" text-anchor="middle" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">results</text>
+<rect x="40" y="272" width="284" height="64" rx="6" fill="#FFFFFF" stroke="#B9BEC6" stroke-width="1.5"/>
+<text x="52.0" y="293.0" font-size="14" fill="#1E2126" text-anchor="start" font-weight="600">Self-check</text>
+<text x="52.0" y="309.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">first done: re-read the task and run</text>
+<text x="52.0" y="325.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">a command showing each part is met</text>
+<polyline points="72,226 72,270" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="78" y="253" font-size="12" fill="#3B4147" text-anchor="start" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">done</text>
+<polyline points="136,272 136,228" fill="none" stroke="#8C1515" stroke-width="2" stroke-linejoin="round" marker-end="url(#ahc)"/>
+<text x="142" y="253" font-size="12" fill="#3B4147" text-anchor="start" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">check request</text>
+<text x="36.0" y="362.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">No tool call → nudge, at most 8 in a row</text>
+<text x="36.0" y="380.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">Cut off at 16k → next call without thinking</text>
+<text x="36.0" y="398.0" font-size="12" fill="#646A72" text-anchor="start" font-weight="400">Over 40k tokens → compact the history</text>
+<polyline points="324,304 540,304 540,98" fill="none" stroke="#646A72" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="432" y="298" font-size="12" fill="#3B4147" text-anchor="middle" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" paint-order="stroke">second done, or out of time</text>
+<text x="24.0" y="442.0" font-size="12.5" fill="#646A72" text-anchor="start" font-weight="400">Budget: the smallest of the task&#x27;s own limit (less 20 s), 60 minutes, and the time left to the</text>
+<text x="24.0" y="460.0" font-size="12.5" fill="#646A72" text-anchor="start" font-weight="400">run&#x27;s 72-minute target. No task opens after minute 75, and every task stops at 77.</text>
+</svg>
