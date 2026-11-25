@@ -3,7 +3,7 @@ title: "KISS - Keep it simple, stupid!"
 date: 2026-11-24
 authors: ["Nathan Shiham Alam"]
 summary: "We ultimately need to keep our agents within the band of how they are trained through reinforcement learning. The best lessons ultimately came from simply looking at failure modes and solving systems-level problems instead of inventing cool tricks!"
-tags: ["simple tools", "retries", "elegance"]
+tags: ["agent-design"]
 draft: false
 ---
 
