@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 446" width="680" height="446" role="img" font-family="'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title>Prompt tokens served from cache</title>
+<desc>Share of prompt tokens served from cache. Assignment 3, course API with an append-only history: 95% (run cost $0.42 against $2.97 uncached). Assignment 4, our SGLang server on one GPU: 96% with 2 tasks at once, 11% with 25 tasks at once (median model call 61 s), 37% after adding a host-memory cache with write-through (51 s), 86% with write-back (32 s).</desc>
+<rect width="680" height="446" fill="#FFFFFF"/>
+<text x="24.0" y="30.0" font-size="13.5" fill="#646A72" text-anchor="start" font-weight="400">Share of prompt tokens served from cache</text>
+<text x="24.0" y="70.0" font-size="15.5" fill="#1E2126" text-anchor="start" font-weight="600">Assignment 3 · the course&#x27;s API</text>
+<text x="24.0" y="96.0" font-size="15" fill="#3B4147" text-anchor="start" font-weight="400">Append-only conversation history</text>
+<text x="656.0" y="96.0" font-size="14" fill="#646A72" text-anchor="end" font-weight="400">run cost $0.42, vs $2.97 uncached</text>
+<path d="M24.0,104.0 H533.0 Q537.0,104.0 537.0,108.0 V120.0 Q537.0,124.0 533.0,124.0 H24.0 Z" fill="#B9BEC6"/>
+<text x="545.0" y="119.0" font-size="14.5" fill="#1E2126" text-anchor="start" font-weight="600">95%</text>
+<text x="24.0" y="164.0" font-size="15.5" fill="#1E2126" text-anchor="start" font-weight="600">Assignment 4 · our own server on one GPU</text>
+<text x="24.0" y="190.0" font-size="15" fill="#3B4147" text-anchor="start" font-weight="400">2 tasks at once</text>
+<path d="M24.0,198.0 H538.4 Q542.4,198.0 542.4,202.0 V214.0 Q542.4,218.0 538.4,218.0 H24.0 Z" fill="#B9BEC6"/>
+<text x="550.4" y="213.0" font-size="14.5" fill="#1E2126" text-anchor="start" font-weight="600">96%</text>
+<text x="24.0" y="244.0" font-size="15" fill="#3B4147" text-anchor="start" font-weight="400">25 tasks at once</text>
+<text x="656.0" y="244.0" font-size="14" fill="#646A72" text-anchor="end" font-weight="400">median model call 61 s</text>
+<path d="M24.0,252.0 H79.4 Q83.4,252.0 83.4,256.0 V268.0 Q83.4,272.0 79.4,272.0 H24.0 Z" fill="#8C1515"/>
+<text x="91.4" y="267.0" font-size="14.5" fill="#1E2126" text-anchor="start" font-weight="600">11%</text>
+<text x="24.0" y="298.0" font-size="15" fill="#3B4147" text-anchor="start" font-weight="400">+ host-memory cache, write-through</text>
+<text x="656.0" y="298.0" font-size="14" fill="#646A72" text-anchor="end" font-weight="400">51 s</text>
+<path d="M24.0,306.0 H219.8 Q223.8,306.0 223.8,310.0 V322.0 Q223.8,326.0 219.8,326.0 H24.0 Z" fill="#8C1515"/>
+<text x="231.8" y="321.0" font-size="14.5" fill="#1E2126" text-anchor="start" font-weight="600">37%</text>
+<text x="24.0" y="352.0" font-size="15" fill="#3B4147" text-anchor="start" font-weight="400">+ host-memory cache, write-back</text>
+<text x="656.0" y="352.0" font-size="14" fill="#646A72" text-anchor="end" font-weight="400">32 s</text>
+<path d="M24.0,360.0 H484.4 Q488.4,360.0 488.4,364.0 V376.0 Q488.4,380.0 484.4,380.0 H24.0 Z" fill="#8C1515"/>
+<text x="496.4" y="375.0" font-size="14.5" fill="#1E2126" text-anchor="start" font-weight="600">86%</text>
+<text x="24.0" y="416.0" font-size="13.5" fill="#646A72" text-anchor="start" font-weight="400">Assignment 4 rows are local agent runs on the same 25 tasks.</text>
+<text x="24.0" y="436.0" font-size="13.5" fill="#646A72" text-anchor="start" font-weight="400">The host-memory cache is SGLang&#x27;s HiCache.</text>
+</svg>
