@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" font-family="system-ui,-apple-system,Segoe UI,sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Assignment 4 leaderboard gradings: tasks solved out of 26</title>
+<desc id="d">Fourteen gradings. Solved rose from 2 to 10 to 11 to 13. The last grading solved 16 but took 3 h 47 min, past the 100-minute baseline.</desc>
+<style>
+.bg{fill:#ffffff}.tx{fill:#191919}.t2{fill:#666666}.grid{stroke:#e6e6e6}.base{stroke:#191919}
+.ok{fill:#257de0}.over{fill:none;stroke:#257de0;stroke-width:2}.ref{stroke:#f47230}
+@media (prefers-color-scheme: dark){.bg{fill:#191919}.tx{fill:#efefef}.t2{fill:#9c9c9c}.grid{stroke:#333333}.base{stroke:#efefef}
+.ok{fill:#338ced}.over{stroke:#338ced}.ref{stroke:#e76624}}
+</style>
+<rect class="bg" width="880" height="420"/>
+<text class="tx" x="52" y="24" font-size="16" font-weight="600">Assignment 4 leaderboard: tasks solved (of 26) per grading</text>
+<text class="t2" x="52" y="43" font-size="12">Label under each bar: harness version, then end-to-end minutes</text>
+<line class="grid" x1="52" x2="864" y1="328.0" y2="328.0" stroke-width="1"/>
+<text class="t2" x="44" y="332.0" font-size="11" text-anchor="end">0</text>
+<line class="grid" x1="52" x2="864" y1="282.7" y2="282.7" stroke-width="1"/>
+<text class="t2" x="44" y="286.7" font-size="11" text-anchor="end">3</text>
+<line class="grid" x1="52" x2="864" y1="237.3" y2="237.3" stroke-width="1"/>
+<text class="t2" x="44" y="241.3" font-size="11" text-anchor="end">6</text>
+<line class="grid" x1="52" x2="864" y1="192.0" y2="192.0" stroke-width="1"/>
+<text class="t2" x="44" y="196.0" font-size="11" text-anchor="end">9</text>
+<line class="grid" x1="52" x2="864" y1="146.7" y2="146.7" stroke-width="1"/>
+<text class="t2" x="44" y="150.7" font-size="11" text-anchor="end">12</text>
+<line class="grid" x1="52" x2="864" y1="101.3" y2="101.3" stroke-width="1"/>
+<text class="t2" x="44" y="105.3" font-size="11" text-anchor="end">15</text>
+<line class="grid" x1="52" x2="864" y1="56.0" y2="56.0" stroke-width="1"/>
+<text class="t2" x="44" y="60.0" font-size="11" text-anchor="end">18</text>
+<path d="M61.0,328.0 V301.8 Q61.0,297.8 65.0,297.8 H97.0 Q101.0,297.8 101.0,301.8 V328.0 Z" class="ok"/>
+<text class="tx" x="81.0" y="291.8" font-size="11" text-anchor="middle">2</text>
+<text class="tx" x="81.0" y="344.0" font-size="11" text-anchor="middle">H2</text>
+<text class="t2" x="81.0" y="358.0" font-size="10.5" text-anchor="middle">49</text>
+<path d="M119.0,328.0 V301.8 Q119.0,297.8 123.0,297.8 H155.0 Q159.0,297.8 159.0,301.8 V328.0 Z" class="ok"/>
+<text class="tx" x="139.0" y="291.8" font-size="11" text-anchor="middle">2</text>
+<text class="tx" x="139.0" y="344.0" font-size="11" text-anchor="middle">H9</text>
+<text class="t2" x="139.0" y="358.0" font-size="10.5" text-anchor="middle">55</text>
+<path d="M177.0,328.0 V271.6 Q177.0,267.6 181.0,267.6 H213.0 Q217.0,267.6 217.0,271.6 V328.0 Z" class="ok"/>
+<text class="tx" x="197.0" y="261.6" font-size="11" text-anchor="middle">4</text>
+<text class="tx" x="197.0" y="344.0" font-size="11" text-anchor="middle">H11</text>
+<text class="t2" x="197.0" y="358.0" font-size="10.5" text-anchor="middle">60</text>
+<path d="M235.0,328.0 V180.9 Q235.0,176.9 239.0,176.9 H271.0 Q275.0,176.9 275.0,180.9 V328.0 Z" class="ok"/>
+<text class="tx" x="255.0" y="170.9" font-size="11" text-anchor="middle">10</text>
+<text class="tx" x="255.0" y="344.0" font-size="11" text-anchor="middle">H14</text>
+<text class="t2" x="255.0" y="358.0" font-size="10.5" text-anchor="middle">64</text>
+<path d="M293.0,328.0 V211.1 Q293.0,207.1 297.0,207.1 H329.0 Q333.0,207.1 333.0,211.1 V328.0 Z" class="ok"/>
+<text class="tx" x="313.0" y="201.1" font-size="11" text-anchor="middle">8</text>
+<text class="tx" x="313.0" y="344.0" font-size="11" text-anchor="middle">H16</text>
+<text class="t2" x="313.0" y="358.0" font-size="10.5" text-anchor="middle">66</text>
+<path d="M351.0,328.0 V180.9 Q351.0,176.9 355.0,176.9 H387.0 Q391.0,176.9 391.0,180.9 V328.0 Z" class="ok"/>
+<text class="tx" x="371.0" y="170.9" font-size="11" text-anchor="middle">10</text>
+<text class="tx" x="371.0" y="344.0" font-size="11" text-anchor="middle">H18</text>
+<text class="t2" x="371.0" y="358.0" font-size="10.5" text-anchor="middle">61</text>
+<path d="M409.0,328.0 V196.0 Q409.0,192.0 413.0,192.0 H445.0 Q449.0,192.0 449.0,196.0 V328.0 Z" class="ok"/>
+<text class="tx" x="429.0" y="186.0" font-size="11" text-anchor="middle">9</text>
+<text class="tx" x="429.0" y="344.0" font-size="11" text-anchor="middle">H32</text>
+<text class="t2" x="429.0" y="358.0" font-size="10.5" text-anchor="middle">62</text>
+<path d="M467.0,328.0 V165.8 Q467.0,161.8 471.0,161.8 H503.0 Q507.0,161.8 507.0,165.8 V328.0 Z" class="ok"/>
+<text class="tx" x="487.0" y="155.8" font-size="11" text-anchor="middle">11</text>
+<text class="tx" x="487.0" y="344.0" font-size="11" text-anchor="middle">H36</text>
+<text class="t2" x="487.0" y="358.0" font-size="10.5" text-anchor="middle">56</text>
+<path d="M525.0,328.0 V196.0 Q525.0,192.0 529.0,192.0 H561.0 Q565.0,192.0 565.0,196.0 V328.0 Z" class="ok"/>
+<text class="tx" x="545.0" y="186.0" font-size="11" text-anchor="middle">9</text>
+<text class="tx" x="545.0" y="344.0" font-size="11" text-anchor="middle">H38</text>
+<text class="t2" x="545.0" y="358.0" font-size="10.5" text-anchor="middle">58</text>
+<path d="M583.0,328.0 V180.9 Q583.0,176.9 587.0,176.9 H619.0 Q623.0,176.9 623.0,180.9 V328.0 Z" class="ok"/>
+<text class="tx" x="603.0" y="170.9" font-size="11" text-anchor="middle">10</text>
+<text class="tx" x="603.0" y="344.0" font-size="11" text-anchor="middle">H40</text>
+<text class="t2" x="603.0" y="358.0" font-size="10.5" text-anchor="middle">62</text>
+<path d="M641.0,328.0 V165.8 Q641.0,161.8 645.0,161.8 H677.0 Q681.0,161.8 681.0,165.8 V328.0 Z" class="ok"/>
+<text class="tx" x="661.0" y="155.8" font-size="11" text-anchor="middle">11</text>
+<text class="tx" x="661.0" y="344.0" font-size="11" text-anchor="middle">H36</text>
+<text class="t2" x="661.0" y="358.0" font-size="10.5" text-anchor="middle">59</text>
+<path d="M699.0,328.0 V150.7 Q699.0,146.7 703.0,146.7 H735.0 Q739.0,146.7 739.0,150.7 V328.0 Z" class="ok"/>
+<text class="tx" x="719.0" y="140.7" font-size="11" text-anchor="middle">12</text>
+<text class="tx" x="719.0" y="344.0" font-size="11" text-anchor="middle">H40</text>
+<text class="t2" x="719.0" y="358.0" font-size="10.5" text-anchor="middle">72</text>
+<path d="M757.0,328.0 V135.6 Q757.0,131.6 761.0,131.6 H793.0 Q797.0,131.6 797.0,135.6 V328.0 Z" class="ok"/>
+<text class="tx" x="777.0" y="125.6" font-size="11" text-anchor="middle">13</text>
+<text class="tx" x="777.0" y="344.0" font-size="11" text-anchor="middle">H41</text>
+<text class="t2" x="777.0" y="358.0" font-size="10.5" text-anchor="middle">79</text>
+<path d="M815.0,328.0 V90.2 Q815.0,86.2 819.0,86.2 H851.0 Q855.0,86.2 855.0,90.2 V328.0 Z" class="over"/>
+<text class="tx" x="835.0" y="80.2" font-size="11" text-anchor="middle">16</text>
+<text class="tx" x="835.0" y="344.0" font-size="11" text-anchor="middle">H42</text>
+<text class="t2" x="835.0" y="358.0" font-size="10.5" text-anchor="middle">227</text>
+<line class="ref" x1="52" x2="864" y1="222.2" y2="222.2" stroke-width="2" stroke-dasharray="5 4"/>
+<text class="t2" x="56" y="217.2" font-size="11">baseline: 7 solved</text>
+<line class="base" x1="52" x2="864" y1="328.0" y2="328.0" stroke-width="1"/>
+<rect x="52" y="388" width="12" height="12" rx="2" class="ok"/><text class="tx" x="70" y="398" font-size="12">grading within the time limit</text>
+<rect x="262" y="389" width="10" height="10" rx="2" class="over"/><text class="tx" x="279" y="398" font-size="12">over the 100-min limit (curiosity run)</text>
+</svg>
