@@ -80,7 +80,7 @@ Most public engine benchmarks report throughput and time to first token on indep
 
 Robustness and observability: Throughput and time to first token on a benchmark don't tell you whether an engine will:
 
-- **Maintain a 2–4 hour run when server briefly loses connection:** when my server froze for about 3 minutes in R1, I lost 6 of 25 tasks at once, and in A4 my rerun lost every model call from 18:40 on;
+- **Maintain a 2–4 hour run when server briefly loses connection:** when my server froze for about 3 minutes in R1 (my first A5 run), I lost 6 of 25 tasks at once, and in A4 my rerun lost every model call from 18:40 on;
 - **telling slow apart from stuck under heavy load:** Under heavy load (many tasks' model calls running on the GPU at the same time), my calls slowed to 1.5–7.7 tok/s but kept producing tokens. My fixed 300 s cap killed any call that ran longer than 300 s, so it treated these slow calls as stuck and ended 10 tasks early.
 - **make sure metrics are properly defined and tracked:** I tracked `cached_tokens` as my cache hit rate, but on this hybrid model it only counts the prefix reused up to the last saved Mamba state snapshot, so a low value didn't necessarily mean my KV cache was evicted and I couldn't properly diagnose why turns were so slow - i.e if it was because it lost its KV cache to eviction or just its Mamba state snapshot. Those two problems need different fixes.
 
@@ -109,7 +109,7 @@ Robustness and observability: Throughput and time to first token on a benchmark 
 
 **Why speculative decoding wouldn't help.** I thought this methodology of working backwards from where the latency is used was helpful because my instinct was to try to use MTP speculative decoding to speed up decode (and decode was 81% of call time). But instead decode was slow because it was stalled by re-prefills after cache misses. This slowness was other requests' prefills holding up the server (only existed when tasks overlapped) so MTP which would help with per-token cost wouldn't have helped. In fact, it would've made it worse because the speedup comes from using more of the KV pool. In our case that would have caused more misses, and more stalling.
 
-**The real cause.** In this case, the misses were due to the way the hybrid model's saved MAMBA (SSM) states were evicted: they have their own LRU list which is separate from KV cache. When a task's saved state is evicted, the history couldn't be used even if the history KV tokens were still there. So the whole convo had to be prefilled!
+**The real cause.** In this case, the misses were due to the way the hybrid model's saved MAMBA (SSM) states were evicted: they have their own LRU list which is separate from KV cache. When a task's saved state is evicted, the history couldn't be used even if the history KV tokens were still there. So the whole convo had to be prefilled! My A5 runs still used the 0.5 ratio from A4 (75 Mamba state slots against 497,196 KV tokens), so the smaller Mamba pool may have made these evictions more likely. I didn't isolate how much it contributed.
 
 **Takeaway.** This was all a long explanation to say that working backwards as follows is helpful:
 
