@@ -19,18 +19,31 @@ I could see as I worked on Assignment 3 and onwards that having shorter sessions
 
 ## On Harness Design
 
-While working on Assignments 3 and 4, I found that I was able to achieve the best performance by creating harnesses with relatively simple designs (for reference, I achieved Rank 1 for both). For Assignment 3, my harness used an expert probe to break down the task into smaller tasks for a more standard model to tackle; for Assignment 4, my harness had access to some language-specific skills and simply ran a single trajectory until the time limit was reached. While there were some more features involved (e.g., repo-specific memory, basic context compaction), everything was relatively simple, and I was surprised by how effective this was.
+While working on Assignments 3 and 4, I found that I was able to achieve the best performance by creating harnesses with relatively simple designs. For reference, I achieved Rank 1 in both.
 
-However, I also noticed that there was a good amount of variance in the harnesses' performances across different submissions with identical code. I figure that this is most likely due to how simple and gentle the harnesses were, in conjunction with the lower intelligence of the models we used. Intuitively, it makes sense to me that smarter models will be able to manage complex harnesses more effectively and get more consistent results i.e., the intelligence of a model and the complexity of its harness should increase proportionally to achieve peak performance.
+For Assignment 3, my harness used an expert probe to break down the task into smaller tasks for a more standard model to tackle. While I acknowledge this is a non-trivial design, I'd consider it to still be relatively simple and accessible, as it's very similar to Claude Code's subagent structure which was covered in class. This scored 19/26, <span>$</span>0.4544, 8:04 on the online leaderboard. Notably, a later design that gave the probe the option to solve the task on its own was Pareto-dominated (15/26, <span>$</span>0.5509, 9:53) by this forced subagent system!
 
-A lingering question I have is, how much variance does Claude Code itself have?
+For Assignment 4, I attempted to reuse my Assignment 3 harness to not much success, likely because there was no longer an especially smart model that we could access; we only solved 8/26. I decided to simplify the harness, running a single trajectory until the time limit was reached. While there were some more features involved (e.g., cross-task per-repo memory), I didn't have to reach for anything outside of what was covered in class, and I was surprised by how effective they were, ending up with a score of 18/26.
+
+An important note here is that there was a good amount of variance in the harnesses' performances across different submissions with identical code. For example, the aforementioned 19/<span>$</span>0.4544/8:04 harness for Assignment 3 also scored 12/<span>$</span>0.7283/13:36 when I resubmitted it. I figure that variance emerges due to how simple and gentle my harnesses were, in conjunction with the lower intelligence of the models we used. For reference, a harness version I created later on was much more robust (larger time and turn budgets), and its results were much more stable:
+
+| Submission | Solved | Cost / solved | Time / solved |
+|---|---|---|---|
+| 4.8 | 18/26 | \$0.4708 | 8:48 |
+| 4.8r1 | 16/26 | \$0.5301 | 14:01 |
+| 4.8r2 | 19/26 | \$0.4377 | 9:50 | 14:44:29 |
+| 4.8r3 | 19/26 | \$0.4387 | 9:49 |
+
+Intuitively, it makes sense to me that smarter models will be able to manage complex harnesses more effectively and get more consistent results i.e., the intelligence of a model and the complexity of its harness should increase proportionally to achieve peak performance. A lingering question I have is, how much variance does Claude Code itself have?
 
 ## Human Are Still Vital
 
-At the end of the day, my greatest takeaway is that the Claude Code user is still a vital part to a project's development. As I was working on Assignments 3 and 4, I found that I was the one introducing key features to development while Claude Code was making suggestions that seemed relatively insignificant. The effects of this are probably most easily observed through the fact that students who did most of the steering were able to beat students who used auto-research loops.
+At the end of the day, my greatest takeaway is that the Claude Code user is still a vital part of a project's development.
 
-I expect this to change in the future, but perhaps us engineers still have substantial purpose in the meantime.
+As I was working on Assignments 3 and 4, I found that I was the one introducing key features to development while Claude Code was making suggestions that seemed relatively insignificant. For example, I was the one who thought to include features like cross-task per-repo memory, full context compaction, and per-language skills, all of which were very important to my Assignment 4 success. Meanwhile, Claude Code was suggesting things like only compressing tool outputs (instead of the entire trajectory) and tweaking config numbers.
+
+I think that the greatest pieces of evidence in support of my argument are the results of Assignment 3. We were told in the feedback presentation that there were some students who had opted for auto-research loops with Claude Code, yet most of the Rank 1 students who presented on their designs seemed to have done a lot of manual thinking and reasoning. The fact that Rank 1 was not full of students who had used auto-research assured me that us engineers still have substantial purpose at least for a little longer.
 
 ## AI use
 
-I did not use AI at all for this writeup.
+I used AI to help me resolve some formatting desires in this post (e.g., the Markdown table), but all of the prose was written by me.
