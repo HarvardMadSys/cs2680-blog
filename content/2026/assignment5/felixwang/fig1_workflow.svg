@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="662.4pt" height="187.2pt" viewBox="0 0 662.4 187.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 187.2 
+L 662.4 187.2 
+L 662.4 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 31.7952 106.08 
+L 139.7664 106.08 
+Q 150.3648 106.08 150.3648 96.096 
+L 150.3648 47.424 
+Q 150.3648 37.44 139.7664 37.44 
+L 31.7952 37.44 
+Q 21.1968 37.44 21.1968 47.424 
+L 21.1968 96.096 
+Q 21.1968 106.08 31.7952 106.08 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #fcfcfb; stroke: #c3c2b7; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 195.408 106.08 
+L 303.3792 106.08 
+Q 313.9776 106.08 313.9776 96.096 
+L 313.9776 47.424 
+Q 313.9776 37.44 303.3792 37.44 
+L 195.408 37.44 
+Q 184.8096 37.44 184.8096 47.424 
+L 184.8096 96.096 
+Q 184.8096 106.08 195.408 106.08 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #fcfcfb; stroke: #c3c2b7; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 359.0208 106.08 
+L 466.992 106.08 
+Q 477.5904 106.08 477.5904 96.096 
+L 477.5904 47.424 
+Q 477.5904 37.44 466.992 37.44 
+L 359.0208 37.44 
+Q 348.4224 37.44 348.4224 47.424 
+L 348.4224 96.096 
+Q 348.4224 106.08 359.0208 106.08 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #fcfcfb; stroke: #c3c2b7; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 522.6336 106.08 
+L 630.6048 106.08 
+Q 641.2032 106.08 641.2032 96.096 
+L 641.2032 47.424 
+Q 641.2032 37.44 630.6048 37.44 
+L 522.6336 37.44 
+Q 512.0352 37.44 512.0352 47.424 
+L 512.0352 96.096 
+Q 512.0352 106.08 522.6336 106.08 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #fcfcfb; stroke: #2a78d6; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 156.341278 71.76 
+Q 167.588091 71.76 177.828672 71.76 
+" clip-path="url(#p978061f2fe)" style="fill: none; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 173.828672 69.76 
+L 177.828672 71.76 
+L 173.828672 73.76 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #9a988f; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 319.954078 71.76 
+Q 331.200891 71.76 341.441472 71.76 
+" clip-path="url(#p978061f2fe)" style="fill: none; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 337.441472 69.76 
+L 341.441472 71.76 
+L 337.441472 73.76 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #9a988f; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 483.566878 71.76 
+Q 494.813691 71.76 505.054272 71.76 
+" clip-path="url(#p978061f2fe)" style="fill: none; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 501.054272 69.76 
+L 505.054272 71.76 
+L 501.054272 73.76 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #9a988f; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 576.6192 111.821926 
+L 576.6192 153.999456 
+L 85.7808 153.999456 
+L 85.7808 112.828156 
+" clip-path="url(#p978061f2fe)" style="fill: none; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 83.7808 116.828156 
+L 85.7808 112.828156 
+L 87.7808 116.828156 
+z
+" clip-path="url(#p978061f2fe)" style="fill: #9a988f; stroke: #9a988f; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="85.7808" y="62.248472" transform="rotate(-0 85.7808 62.248472)">Research</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(46.421816 82.699934)">slides, papers, docs,</text>
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(51.614784 92.568566)">public agent code</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="249.3936" y="62.248472" transform="rotate(-0 249.3936 62.248472)">Build</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(205.079381 82.611713)">one switch per change,</text>
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(224.517155 92.674053)">off by default</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="413.0064" y="62.248472" transform="rotate(-0 413.0064 62.248472)">Controlled A/B tests</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(356.717806 82.699934)">same tasks, order and server;</text>
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(359.315619 92.568566)">repeat what looks promising</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="576.6192" y="62.248472" transform="rotate(-0 576.6192 62.248472)">Human decision</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(538.98213 82.751066)">keep, drop or rerun;</text>
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(540.236544 92.619699)">the human submits</text>
+   </g>
+   <g id="text_9">
+    <text style="font-style: italic; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #898781" x="331.2" y="169.687898" transform="rotate(-0 331.2 169.687898)">repeat</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p978061f2fe">
+   <rect x="0" y="0" width="662.4" height="187.2"/>
+  </clipPath>
+ </defs>
+</svg>
