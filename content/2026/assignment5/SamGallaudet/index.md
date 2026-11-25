@@ -3,7 +3,7 @@ title: "Trial and Error in CS2680"
 date: 2026-11-24
 authors: ["Sam Gallaudet"]
 summary: "I learned the power and limitations of agentic systems and developed better practices for working with agentic AI."
-tags: ["agent-design", "testing", "observability, user-feedback"]
+tags: ["agent-design", "testing", "observability", "user-feedback"]
 draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
