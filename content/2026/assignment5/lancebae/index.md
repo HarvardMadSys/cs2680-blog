@@ -3,7 +3,7 @@ title: "What I've Learned from COMPSCI 2680"
 date: 2026-11-24
 authors: ["Lance Bae"]
 summary: "COMPSCI 2680 was my first real experience using Claude Code and building agent harnesses, and I've learned a lot!"
-tags: ["Claude-Code", "Agent-Design"]
+tags: ["claude-code", "agent-design", "context-management"]
 draft: false
 ---
 
@@ -15,7 +15,7 @@ As I worked on Assignment 2, I thought that the easiest way to do so was by havi
 
 Starting with Assignment 3, I realized how useful it was to have a good CLAUDE.md file, and I switched to having more sessions that were shorter. In CLAUDE.md, I could give my agent sufficient context about what I was working on without having to keep one long session running. Since Assignment 3 (and also Assignments 4 and 5) required constant iteration on results, I also had Claude version its commits (each commit message included which version it was e.g., Version 3.1.4) and manage a HISTORY.md file that detailed what each version introduced and how it did when submitted to the online leaderboard. This versioning and written history made it much easier to inform Claude on what we had tried in the past and how effective each new feature was. I could also use the versioning to very easily backtrack to a previous iteration if new features seemed to do more harm than good.
 
-I could see as I worked on Assignment 3 and onwards that having shorter sessions was better. Since sessions are independent, I could rely on Claude having a relatively fresh approach to each new prompt rather than being influenced by something that it had said or recommended previously in its trajectory. Context compaction can also be a black box when working with long sessions, as you might not know what details are retained or lost; this is undesirable. Shorter sessions also means shorter trajectories i.e., less tokens having to be processed, which will result in cheaper work (though this was never a serious issue given how generous my limits were).
+I could see as I worked on Assignment 3 and onwards that having shorter sessions was better. Since sessions are independent, I could rely on Claude having a relatively fresh approach to each new prompt rather than being influenced by something that it had said or recommended previously in its trajectory. Context compaction can also be a black box when working with long sessions, as you might not know what details are retained or lost; this is undesirable. Shorter sessions also mean shorter trajectories i.e., fewer tokens having to be processed, which will result in cheaper work (though this was never a serious issue given how generous my limits were).
 
 ## On Harness Design
 
