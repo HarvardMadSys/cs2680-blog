@@ -5,9 +5,6 @@ authors: ["Ruyi Yang"]
 summary: "Across four assignments, my score moved less with smarter prompts than with how tools, time and budget were allocated, and with how carefully I ran experiments. The lessons are mostly told through tables and charts."
 tags: ["agent-design", "harness", "serving", "evaluation", "terminal-bench"]
 draft: false
-cover: "dashboard-runs.webp"
-coverAlt: "My A5 submission dashboard: every leaderboard and local run, with tasks solved, end-to-end time, per-task cap, model and workers"
-coverCaption: "The submission dashboard I kept for Assignment 5: one row per run."
 ---
 
 After four assignments, my biggest takeaway is this: the score did not move much with smarter prompts. It moved with how tools, time and budget were allocated, and with how disciplined my experiments were. Measure first, then optimize: find out where the time goes and how each task ends before changing anything.
@@ -23,10 +20,10 @@ After four assignments, my biggest takeaway is this: the score did not move much
     4. Start from existing references, not from zero
     5. A single result is very noisy
 2. [How to design the harness](#2-how-to-design-the-harness)
-    1. [Put the rules in the harness, not in the model's hands](#put-the-rules-in-the-harness-not-in-the-models-hands)
-    2. [Keep checks light and hard; retry with a fresh mind](#keep-checks-light-and-hard-retry-with-a-fresh-mind)
+    1. Put the rules in the harness, not in the model's hands
+    2. Keep checks light and hard; retry with a fresh mind
 3. [How to make serving keep up with the agent](#3-how-to-make-serving-keep-up-with-the-agent)
-    1. [Don't open more tasks than the engine can run](#dont-open-more-tasks-than-the-engine-can-run)
+    1. Don't open more tasks than the engine can run
     2. How memory is split matters more than advanced options (with the Qwen3.8 settings)
 4. [How to make trade-offs](#4-how-to-make-trade-offs)
     1. First look at how each task ended
@@ -38,7 +35,9 @@ After four assignments, my biggest takeaway is this: the score did not move much
 
 ## 1. How to run experiments
 
-**1. Record every change, and look at time per task (measure first, then optimize).** Keep every submission's changes and results in one place. I had Claude build me a dashboard for this (the cover image and the screenshots below). Looking back, it is then clear which changes really helped. The most useful view was the time each task took: the tasks that get solved mostly finish quickly, and a task that runs for a long time is rarely solved. Based on that distribution, I gave every task a time wall (a per-task cap), which saved a lot of time.
+**1. Record every change, and look at time per task (measure first, then optimize).** Keep every submission's changes and results in one place. I had Claude build me a dashboard for this (screenshots below). Looking back, it is then clear which changes really helped. The most useful view was the time each task took: the tasks that get solved mostly finish quickly, and a task that runs for a long time is rarely solved. Based on that distribution, I gave every task a time wall (a per-task cap), which saved a lot of time.
+
+![My A5 submission dashboard: every leaderboard and local run, with tasks solved, end-to-end time, per-task cap, model and workers](dashboard-runs.webp "The submission dashboard: one row per run.")
 
 ![The dashboard card for my chosen leaderboard run: tasks solved, end-to-end time, workers, per-task cap and settings](dashboard-lb11.webp "The dashboard card for the run I chose.")
 
