@@ -3,15 +3,12 @@ title: "Trial and Error in CS2680"
 date: 2026-11-24
 authors: ["Sam Gallaudet"]
 summary: "I learned the power and limitations of agentic systems and developed better practices for working with agentic AI."
-tags: ["agent-design", "testing", "observability"]
+tags: ["agent-design", "testing", "observability", "user-feedback"]
 draft: true
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
-Over the course of Assignments 2 through 5 I learned a lot about how to use AI effectively
-when coding: make the agent show evidence for its claims, keep a record of what it changed,
-and change one thing at a time without reading too much into a single noisy run.
-
+Over the course of Assignments 2 through 5 I learned how to use AI more effectively when coding through a number of mistakes and corrections. 
 <!--more-->
 
 ## Early success led to overconfidence
@@ -91,6 +88,4 @@ AI without a great deal of thought.
 
 ## AI use
 
-TODO: as the [course policy](https://cs2680.com/policy.html#ai-policy) requires, say what
-you used and what it did. For example: "I wrote this post myself. Claude Code reformatted it
-into sections and fixed typos."
+I wrote this blog post myself. I used Claude Code to reformat it when I pasted it from google docs to the markdown file. Claude created section delineators when it reformatted which I kept. 
