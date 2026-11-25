@@ -89,7 +89,7 @@ it, like when I increased the turn cap from 200 to 300 between submissions 5 and
 only one solve but took an extra hour.
 
 In Assignment 5 I applied these same lessons, although I spent less time on it altogether.
-In my first three submissions I steadily reduced runtime while keeping the tasks solved above 20. On the
+In my first three submissions I steadily reduced runtime while keeping the tasks solved above 20/89. On the
 fourth submission I improved a lot on the Assignment 4 tasks, and since I had changed so little, I knew
 the improvement came from the hierarchical cache engine flag.
 
