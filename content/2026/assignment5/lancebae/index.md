@@ -4,7 +4,7 @@ date: 2026-11-24
 authors: ["Lance Bae"]
 summary: "COMPSCI 2680 was my first real experience using Claude Code and building agent harnesses, and I've learned a lot!"
 tags: ["Claude-Code", "Agent-Design"]
-draft: true
+draft: false
 ---
 
 In this post, I'll talk about the key lessons I've learned when working with and building coding agents: (1) how to effectively manage agent sessions and memory; (2) simple harnesses worked best for our assignments; (3) human reasoning is still needed for Claude Code.
