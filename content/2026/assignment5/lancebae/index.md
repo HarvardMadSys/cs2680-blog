@@ -25,7 +25,7 @@ However, I also noticed that there was a good amount of variance in the harnesse
 
 A lingering question I have is, how much variance does Claude Code itself have?
 
-## Human are Still Vital
+## Human Are Still Vital
 
 At the end of the day, my greatest takeaway is that the Claude Code user is still a vital part to a project's development. As I was working on Assignments 3 and 4, I found that I was the one introducing key features to development while Claude Code was making suggestions that seemed relatively insignificant. The effects of this are probably most easily observed through the fact that students who did most of the steering were able to beat students who used auto-research loops.
 
