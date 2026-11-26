@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 410" width="860" height="410" role="img" aria-label="All 22 graded A5 TB2 leaderboard submissions showing time vs solved progression">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1a1f24; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1f24; }
+      .subtitle { font-size: 12px; fill: #59636e; }
+      .panel-title { font-size: 13.5px; font-weight: 700; fill: #1a1f24; }
+      .axis-label { font-size: 12px; font-weight: 600; fill: #3b434d; }
+      .tick { font-size: 11px; fill: #59636e; }
+      .val { font-size: 11.5px; font-weight: 600; fill: #1a1f24; }
+      .val-muted { font-size: 10.5px; fill: #59636e; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .note { font-size: 10.5px; fill: #59636e; }
+    </style>
+  </defs>
+  <rect x="0.5" y="0.5" width="859" height="409" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
+  <text class="title" x="26" y="32">A5 · All 22 Graded TB2 Leaderboard Submissions</text>
+  <text class="subtitle" x="26" y="50">Three structural shifts drove a 21× speedup and +9 solves: per-task caps, matching Terminal-RSI's JSON protocol, and unlocking 21 server slots.</text>
+  <line x1="123.9" y1="92" x2="123.9" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="123.9" y="344" text-anchor="middle">10</text>
+  <line x1="211.1" y1="92" x2="211.1" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="211.1" y="344" text-anchor="middle">15</text>
+  <line x1="272.9" y1="92" x2="272.9" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="272.9" y="344" text-anchor="middle">20</text>
+  <line x1="360.0" y1="92" x2="360.0" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="360.0" y="344" text-anchor="middle">30</text>
+  <line x1="508.9" y1="92" x2="508.9" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="508.9" y="344" text-anchor="middle">60</text>
+  <line x1="657.9" y1="92" x2="657.9" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="657.9" y="344" text-anchor="middle">120</text>
+  <line x1="767.6" y1="92" x2="767.6" y2="326" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="767.6" y="344" text-anchor="middle">200</text>
+  <line x1="76" y1="309.3" x2="824" y2="309.3" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="313.3" text-anchor="end">20</text>
+  <line x1="76" y1="267.5" x2="824" y2="267.5" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="271.5" text-anchor="end">25</text>
+  <line x1="76" y1="225.7" x2="824" y2="225.7" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="229.7" text-anchor="end">30</text>
+  <line x1="76" y1="183.9" x2="824" y2="183.9" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="187.9" text-anchor="end">35</text>
+  <line x1="76" y1="142.1" x2="824" y2="142.1" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="146.1" text-anchor="end">40</text>
+  <line x1="76" y1="100.4" x2="824" y2="100.4" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="104.4" text-anchor="end">45</text>
+  <line x1="76" y1="92" x2="76" y2="326" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="76" y1="326" x2="824" y2="326" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="450.0" y="368" text-anchor="middle">End-to-end TB2 time (minutes, log scale — lower is faster)</text>
+  <text class="axis-label" x="24" y="209.0" text-anchor="middle" transform="rotate(-90 24 209.0)">TB2 tasks solved / 89</text>
+  <line x1="768.0" y1="200.6" x2="367.4" y2="259.1" stroke="#7a8591" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+  <line x1="367.4" y1="259.1" x2="279.7" y2="225.7" stroke="#7a8591" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+  <line x1="279.7" y1="225.7" x2="268.2" y2="133.8" stroke="#7a8591" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+  <line x1="268.2" y1="133.8" x2="142.2" y2="125.4" stroke="#7a8591" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+  <line x1="142.2" y1="125.4" x2="112.1" y2="125.4" stroke="#7a8591" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+  <circle cx="768.0" cy="200.6" r="6.0" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="367.4" cy="259.1" r="6.0" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="390.6" cy="250.8" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="395.1" cy="259.1" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="386.7" cy="225.7" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="328.6" cy="267.5" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="282.2" cy="259.1" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="283.6" cy="250.8" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="299.8" cy="259.1" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="230.1" cy="267.5" r="6.0" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="283.8" cy="242.4" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="245.5" cy="259.1" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="297.0" cy="242.4" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="279.7" cy="225.7" r="6.0" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="215.2" cy="300.9" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="285.3" cy="242.4" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="298.9" cy="259.1" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="222.8" cy="267.5" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="270.4" cy="242.4" r="4.5" fill="#8eb3c2" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="268.2" cy="133.8" r="6.2" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.4"/>
+  <circle cx="142.2" cy="125.4" r="6.2" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.4"/>
+  <circle cx="112.1" cy="125.4" r="7.5" fill="#cc6b2c" stroke="#1a1f24" stroke-width="2.0"/>
+  <text class="val" x="760.0" y="188.6" text-anchor="end" style="fill:#1f6f8b">#1 · 33 @ 200.3m (uncapped)</text>
+  <text class="val" x="377.4" y="274.1" text-anchor="start" style="fill:#1f6f8b">#2 · 26 @ 31.1m (300 s cap)</text>
+  <text class="val" x="188.1" y="235.5" text-anchor="middle" style="fill:#1f6f8b">#11 · 25 @ 16.4m (short cap)</text>
+  <text class="val" x="291.7" y="217.7" text-anchor="start" style="fill:#1f6f8b">#15 · 30 @ 20.6m (best course model)</text>
+  <text class="val" x="280.2" y="137.8" text-anchor="start" style="fill:#cc6b2c">#21 · 41 @ 19.6m (JSON protocol, 6 req)</text>
+  <text class="val" x="153.2" y="113.4" text-anchor="start" style="fill:#cc6b2c">#22 · 42 @ 10.9m (16 req)</text>
+  <text class="val" x="112.1" y="149.4" text-anchor="start" style="fill:#cc6b2c">#23 · 42 @ 9.5m (21 req, best)</text>
+  <rect x="530" y="102" width="284" height="52" rx="6" fill="#ffffff" stroke="#dfddd5" stroke-width="1"/>
+  <circle cx="546" cy="119" r="5" fill="#1f6f8b"/>
+  <text class="tick" x="558" y="123" style="fill:#1a1f24">Qwen3.6-35B-A3B · tool calls (#1–#20)</text>
+  <circle cx="546" cy="139" r="5" fill="#cc6b2c"/>
+  <text class="tick" x="558" y="143" style="fill:#1a1f24">Terminal-RSI-27B · JSON actions (#21–#23)</text>
+  <text class="note" x="26" y="394">#3 omitted (OOM 74 s after ready, 0 solved). Better is up-left. #23 closed in TB2 round 1 (+2 bonus); #13 held 26-task round 1 (+3 bonus).</text>
+</svg>

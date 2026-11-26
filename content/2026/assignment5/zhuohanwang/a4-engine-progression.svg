@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" width="860" height="400" role="img" aria-label="A4 closed-loop engine latency progression from E8p to E40k">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1a1f24; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1f24; }
+      .subtitle { font-size: 12px; fill: #59636e; }
+      .panel-title { font-size: 13.5px; font-weight: 700; fill: #1a1f24; }
+      .axis-label { font-size: 12px; font-weight: 600; fill: #3b434d; }
+      .tick { font-size: 11px; fill: #59636e; }
+      .val { font-size: 11.5px; font-weight: 600; fill: #1a1f24; }
+      .val-muted { font-size: 10.5px; fill: #59636e; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .note { font-size: 10.5px; fill: #59636e; }
+    </style>
+  </defs>
+  <rect x="0.5" y="0.5" width="859" height="399" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
+  <text class="title" x="26" y="32">A4 · Engine Latency Progression on Closed-Loop Benchmark (26 Clients)</text>
+  <text class="subtitle" x="26" y="50">Adding MTP without rebalancing host KV (E17) made latency 32% worse. Rebalancing KV + verify kernels cut time by 39.5%.</text>
+  <line x1="76" y1="304.0" x2="826" y2="304.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="308.0" text-anchor="end">0 s</text>
+  <line x1="76" y1="258.2" x2="826" y2="258.2" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="262.2" text-anchor="end">4 s</text>
+  <line x1="76" y1="212.4" x2="826" y2="212.4" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="216.4" text-anchor="end">8 s</text>
+  <line x1="76" y1="166.7" x2="826" y2="166.7" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="170.7" text-anchor="end">12 s</text>
+  <line x1="76" y1="120.9" x2="826" y2="120.9" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="124.9" text-anchor="end">16 s</text>
+  <line x1="76" y1="165.6" x2="826" y2="165.6" stroke="#7a8591" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text class="val-muted" x="822" y="159.6" text-anchor="end">E8p base: 12.09 s</text>
+  <line x1="76" y1="98" x2="76" y2="304" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="76" y1="304" x2="826" y2="304" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="24" y="201.0" text-anchor="middle" transform="rotate(-90 24 201.0)">Seconds per request (lower is better)</text>
+  <rect x="93.7" y="165.6" width="48" height="138.4" rx="3" fill="#7a8591" opacity="1.0"/>
+  <text class="val mono" x="117.7" y="158.6" text-anchor="middle" style="fill:#1a1f24">12.09</text>
+  <text class="val" x="117.7" y="322" text-anchor="middle">E8p</text>
+  <text class="val-muted" x="117.7" y="337" text-anchor="middle">base</text>
+  <rect x="177.0" y="120.9" width="48" height="183.1" rx="3" fill="#c0392b" opacity="0.82"/>
+  <text class="val mono" x="201.0" y="113.9" text-anchor="middle" style="fill:#c0392b">16.00</text>
+  <text class="val" x="201.0" y="322" text-anchor="middle">E17</text>
+  <text class="val-muted" x="201.0" y="337" text-anchor="middle">MTP overflow</text>
+  <rect x="260.3" y="161.9" width="48" height="142.1" rx="3" fill="#c0392b" opacity="0.82"/>
+  <text class="val mono" x="284.3" y="154.9" text-anchor="middle" style="fill:#c0392b">12.42</text>
+  <text class="val" x="284.3" y="322" text-anchor="middle">NG4</text>
+  <text class="val-muted" x="284.3" y="337" text-anchor="middle">n-gram spec</text>
+  <rect x="343.7" y="198.5" width="48" height="105.5" rx="3" fill="#1f6f8b" opacity="1.0"/>
+  <text class="val mono" x="367.7" y="191.5" text-anchor="middle" style="fill:#1a1f24">9.22</text>
+  <text class="val" x="367.7" y="322" text-anchor="middle">E21</text>
+  <text class="val-muted" x="367.7" y="337" text-anchor="middle">MTP + 11.5G KV</text>
+  <rect x="427.0" y="202.5" width="48" height="101.5" rx="3" fill="#1f6f8b" opacity="1.0"/>
+  <text class="val mono" x="451.0" y="195.5" text-anchor="middle" style="fill:#1a1f24">8.87</text>
+  <text class="val" x="451.0" y="322" text-anchor="middle">E25h</text>
+  <text class="val-muted" x="451.0" y="337" text-anchor="middle">4 tok / 3 step</text>
+  <rect x="510.3" y="204.8" width="48" height="99.2" rx="3" fill="#1f6f8b" opacity="1.0"/>
+  <text class="val mono" x="534.3" y="197.8" text-anchor="middle" style="fill:#1a1f24">8.67</text>
+  <text class="val" x="534.3" y="322" text-anchor="middle">E35d4</text>
+  <text class="val-muted" x="534.3" y="337" text-anchor="middle">causal verify</text>
+  <rect x="593.7" y="211.5" width="48" height="92.5" rx="3" fill="#1f6f8b" opacity="1.0"/>
+  <text class="val mono" x="617.7" y="204.5" text-anchor="middle" style="fill:#1a1f24">8.08</text>
+  <text class="val" x="617.7" y="322" text-anchor="middle">E35b</text>
+  <text class="val-muted" x="617.7" y="337" text-anchor="middle">exact ties</text>
+  <rect x="677.0" y="218.7" width="48" height="85.3" rx="3" fill="#1f6f8b" opacity="1.0"/>
+  <text class="val mono" x="701.0" y="211.7" text-anchor="middle" style="fill:#1a1f24">7.45</text>
+  <text class="val" x="701.0" y="322" text-anchor="middle">E37b</text>
+  <text class="val-muted" x="701.0" y="337" text-anchor="middle">XQA + p64</text>
+  <rect x="760.3" y="220.3" width="48" height="83.7" rx="3" fill="#cc6b2c" opacity="1.0"/>
+  <text class="val mono" x="784.3" y="213.3" text-anchor="middle" style="fill:#cc6b2c">7.31</text>
+  <text class="val" x="784.3" y="322" text-anchor="middle">E40k</text>
+  <text class="val-muted" x="784.3" y="337" text-anchor="middle">final board</text>
+  <text class="val" x="784.3" y="197.3" text-anchor="middle" style="fill:#cc6b2c">−39.5%</text>
+  <rect x="86" y="64" width="12" height="12" rx="2" fill="#7a8591"/>
+  <text class="tick" x="103" y="74" style="fill:#1a1f24;font-weight:600">Baseline (E8p)</text>
+  <rect x="225.2" y="64" width="12" height="12" rx="2" fill="#c0392b"/>
+  <text class="tick" x="242.2" y="74" style="fill:#1a1f24;font-weight:600">Rejected</text>
+  <rect x="323.6" y="64" width="12" height="12" rx="2" fill="#1f6f8b"/>
+  <text class="tick" x="340.6" y="74" style="fill:#1a1f24;font-weight:600">Kept milestone</text>
+  <rect x="462.8" y="64" width="12" height="12" rx="2" fill="#cc6b2c"/>
+  <text class="tick" x="479.8" y="74" style="fill:#1a1f24;font-weight:600">Final board engine (E40k)</text>
+  <text class="note" x="26" y="384">Measured on agent_load.py (26 clients, 36.6K avg prompt, 94.9% hit rate). E40 reached 6.25 s using disallowed levers and was excluded.</text>
+</svg>

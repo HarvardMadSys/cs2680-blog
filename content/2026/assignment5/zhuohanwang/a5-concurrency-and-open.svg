@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400" role="img" aria-label="A5 server concurrency vs runtime and agent open-task oversubscription">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1a1f24; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1f24; }
+      .subtitle { font-size: 12px; fill: #59636e; }
+      .panel-title { font-size: 13.5px; font-weight: 700; fill: #1a1f24; }
+      .axis-label { font-size: 12px; font-weight: 600; fill: #3b434d; }
+      .tick { font-size: 11px; fill: #59636e; }
+      .val { font-size: 11.5px; font-weight: 600; fill: #1a1f24; }
+      .val-muted { font-size: 10.5px; fill: #59636e; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .note { font-size: 10.5px; fill: #59636e; }
+    </style>
+  </defs>
+  <rect x="0.5" y="0.5" width="919" height="399" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
+  <text class="title" x="26" y="32">A5 · Server Concurrency vs. Open-Task Oversubscription</text>
+  <text class="subtitle" x="26" y="50">Raising server concurrency (along with open tasks) nearly halved runtime; opening past ~28 tasks starved each task of turns.</text>
+  <text class="panel-title" x="26" y="80">A. Server max_running_requests (dev ~43–44/85 solved)</text>
+  <line x1="152.0" y1="104" x2="152.0" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="152.0" y="332" text-anchor="middle">0 s</text>
+  <line x1="232.9" y1="104" x2="232.9" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="232.9" y="332" text-anchor="middle">400 s</text>
+  <line x1="313.7" y1="104" x2="313.7" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="313.7" y="332" text-anchor="middle">800 s</text>
+  <line x1="394.6" y1="104" x2="394.6" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="394.6" y="332" text-anchor="middle">1200 s</text>
+  <line x1="152" y1="104" x2="152" y2="314" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="152" y1="314" x2="435" y2="314" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="293.5" y="356" text-anchor="middle">End-to-end dev time (seconds)</text>
+  <text class="val" x="142" y="146" text-anchor="end">6 running</text>
+  <text class="val-muted" x="142" y="161" text-anchor="end">9 open · end 1200 s</text>
+  <rect x="152" y="132" width="252.3" height="34" rx="4" fill="#7a8591"/>
+  <text class="val mono" x="412.3" y="147">1248.0 s</text>
+  <text class="val-muted" x="412.3" y="162" style="fill:#7a8591;font-weight:600">base</text>
+  <text class="val" x="142" y="212" text-anchor="end">16 running</text>
+  <text class="val-muted" x="142" y="227" text-anchor="end">24 open · no end</text>
+  <rect x="152" y="198" width="143.7" height="34" rx="4" fill="#1f6f8b"/>
+  <text class="val mono" x="303.7" y="213">711.0 s</text>
+  <text class="val-muted" x="303.7" y="228" style="fill:#1f6f8b;font-weight:600">−43%</text>
+  <text class="val" x="142" y="278" text-anchor="end">21 running</text>
+  <text class="val-muted" x="142" y="293" text-anchor="end">24 open · no end</text>
+  <rect x="152" y="264" width="133.9" height="34" rx="4" fill="#cc6b2c"/>
+  <text class="val mono" x="293.9" y="279">662.5 s</text>
+  <text class="val-muted" x="293.9" y="294" style="fill:#cc6b2c;font-weight:600">−47%</text>
+  <line x1="504" y1="68" x2="504" y2="372" stroke="#dfddd5" stroke-width="1" stroke-dasharray="4 4"/>
+  <text class="panel-title" x="526" y="80">B. Open tasks (MAX_LIVE) vs. solved at 21 running</text>
+  <rect x="594.5" y="102" width="71.0" height="212" fill="#d9efe2" opacity="0.45"/>
+  <text class="val-muted" x="630.0" y="117" text-anchor="middle" style="fill:#2b7a4b;font-weight:700">Sweet spot</text>
+  <line x1="568.0" y1="102" x2="568.0" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568.0" y="332" text-anchor="middle">20</text>
+  <line x1="610.4" y1="102" x2="610.4" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="610.4" y="332" text-anchor="middle">24</text>
+  <line x1="652.8" y1="102" x2="652.8" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="652.8" y="332" text-anchor="middle">28</text>
+  <line x1="695.2" y1="102" x2="695.2" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="695.2" y="332" text-anchor="middle">32</text>
+  <line x1="737.6" y1="102" x2="737.6" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="737.6" y="332" text-anchor="middle">36</text>
+  <line x1="780.0" y1="102" x2="780.0" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="780.0" y="332" text-anchor="middle">40</text>
+  <line x1="822.4" y1="102" x2="822.4" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="822.4" y="332" text-anchor="middle">44</text>
+  <line x1="864.8" y1="102" x2="864.8" y2="314" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="864.8" y="332" text-anchor="middle">48</text>
+  <line x1="568" y1="314.0" x2="886" y2="314.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="318.0" text-anchor="end">34</text>
+  <line x1="568" y1="283.7" x2="886" y2="283.7" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="287.7" text-anchor="end">36</text>
+  <line x1="568" y1="253.4" x2="886" y2="253.4" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="257.4" text-anchor="end">38</text>
+  <line x1="568" y1="223.1" x2="886" y2="223.1" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="227.1" text-anchor="end">40</text>
+  <line x1="568" y1="192.9" x2="886" y2="192.9" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="196.9" text-anchor="end">42</text>
+  <line x1="568" y1="162.6" x2="886" y2="162.6" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="166.6" text-anchor="end">44</text>
+  <line x1="568" y1="132.3" x2="886" y2="132.3" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="136.3" text-anchor="end">46</text>
+  <line x1="568" y1="102.0" x2="886" y2="102.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="560" y="106.0" text-anchor="end">48</text>
+  <line x1="568" y1="102" x2="568" y2="314" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="568" y1="314" x2="886" y2="314" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="727.0" y="356" text-anchor="middle">Tasks open concurrently (MAX_LIVE, cap 200 s)</text>
+  <text class="axis-label" x="526" y="208.0" text-anchor="middle" transform="rotate(-90 526 208.0)">TB2 dev solved / 85</text>
+  <polyline fill="none" stroke="#1f6f8b" stroke-width="2.2" stroke-dasharray="5 3" points="610.4,155.0 652.8,155.0 674.0,192.9 695.2,226.9 737.6,253.4 864.8,238.3"/>
+  <circle cx="610.4" cy="177.7" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="610.4" cy="132.3" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <text class="val-muted mono" x="610.4" y="194.7" text-anchor="middle">11.0m</text>
+  <circle cx="652.8" cy="177.7" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="652.8" cy="132.3" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <text class="val-muted mono" x="652.8" y="194.7" text-anchor="middle">10.6m</text>
+  <circle cx="674.0" cy="162.6" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="674.0" cy="223.1" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="695.2" cy="208.0" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="695.2" cy="238.3" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="695.2" cy="283.7" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="695.2" cy="177.7" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="737.6" cy="253.4" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <text class="val-muted mono" x="737.6" y="270.4" text-anchor="middle">10.0m</text>
+  <circle cx="864.8" cy="238.3" r="4.8" fill="#cc6b2c" stroke="#ffffff" stroke-width="1.2"/>
+  <text class="val-muted mono" x="864.8" y="255.3" text-anchor="middle">9.2m</text>
+  <circle cx="716" cy="116" r="4.5" fill="#cc6b2c"/>
+  <text class="tick" x="726" y="120">Single dev run</text>
+  <line x1="710" y1="134" x2="728" y2="134" stroke="#1f6f8b" stroke-width="2.2" stroke-dasharray="4 3"/>
+  <text class="tick" x="734" y="138">Mean per open count</text>
+  <text class="note" x="26" y="386">Terminal-RSI-27B (JSON actions, board order). Panel A confounds server slots with open count (9 vs. 24) and run end (1200 s vs. none).</text>
+</svg>
