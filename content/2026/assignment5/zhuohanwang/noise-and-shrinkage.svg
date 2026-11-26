@@ -15,7 +15,7 @@
   </defs>
   <rect x="0.5" y="0.5" width="919" height="409" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
   <text class="title" x="26" y="32">Measurement Noise Across Assignments 3–5</text>
-  <text class="subtitle" x="26" y="50">Identical zips routinely vary by 3–6 tasks per run, and small-sample gains shrink or flip sign as sample size grows.</text>
+  <text class="subtitle" x="26" y="50">Identical configs routinely vary by 3–7 tasks per run, and small-sample gains shrink or flip sign as sample size grows.</text>
   <text class="panel-title" x="26" y="80">A. Identical config, repeated runs (% solved)</text>
   <line x1="190.0" y1="96" x2="190.0" y2="336" stroke="#eceae3" stroke-width="1"/>
   <text class="tick" x="190.0" y="354" text-anchor="middle">20%</text>
@@ -124,10 +124,10 @@
   <text class="val mono" x="667.9" y="213.8" text-anchor="start" style="fill:#1f6f8b">+1.64</text>
   <circle cx="857.3" cy="251.8" r="5" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.5"/>
   <text class="val mono" x="829.3" y="240.8" text-anchor="start" style="fill:#1f6f8b">+0.93</text>
-  <rect x="708" y="102" width="172" height="48" rx="6" fill="#ffffff" stroke="#dfddd5" stroke-width="1"/>
-  <circle cx="722" cy="118" r="4.5" fill="#1f6f8b"/>
-  <text class="tick" x="733" y="122" style="fill:#1a1f24">L46 (cap 46, kept)</text>
-  <circle cx="722" cy="136" r="4.5" fill="#c0392b"/>
-  <text class="tick" x="733" y="140" style="fill:#1a1f24">S44 (soft 44, rejected)</text>
+  <rect x="692" y="102" width="188" height="48" rx="6" fill="#ffffff" stroke="#dfddd5" stroke-width="1"/>
+  <circle cx="706" cy="118" r="4.5" fill="#1f6f8b"/>
+  <text class="tick" x="717" y="122" style="fill:#1a1f24">L46 (dev 48→46m, kept)</text>
+  <circle cx="706" cy="136" r="4.5" fill="#c0392b"/>
+  <text class="tick" x="717" y="140" style="fill:#1a1f24">S44 (dev soft 44m, off)</text>
   <text class="note" x="26" y="396">Black vertical ticks in Panel A mark configuration means. Panel B tracks A4 dev factorial estimates (F6, 25-task swing set).</text>
 </svg>
