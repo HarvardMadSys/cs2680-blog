@@ -43,7 +43,7 @@ Other changes that worked:
 
 Tried and dropped: a spec recap, convention advice, a boundary note and alternate sampling had no effect. Changes that gave the model information or checkable facts changed outcomes, and advice alone did not. Over repeat runs of the final harness, tasks 0–5 passed 18/18 and task 9 passed 3/3, so the gains held up.
 
-Tasks 7 and 8 still fail. Both require exact strings or formats the spec never states. To rule out the environment, I scored the real upstream fixes and all 8 passed.
+Tasks 7 and 8 still fail. Both require exact strings or formats the spec never states. To rule out the environment, I scored the real upstream fixes for all 8 tasks v1 failed, including 7 and 8, with the official evaluator, and all 8 passed.
 
 The same lesson showed up in A4 from the other side. Hiding context to save tokens backfired. History compaction solved 1/4 tasks vs 3/4 without it and a 9K character cap on file views added 15% more steps. In both cases the agent re-read what it had lost. In A5, the additions that helped were also facts: an environment snapshot in the first message and a prompt line saying the work is graded by automated tests.
 
@@ -95,7 +95,7 @@ Output was 47% of spend. Runaways, replies that hit the output cap without a too
 
 I also made the opposite mistake. In #7 I tried to cut cost by squeezing outputs and pushing early submits. Total cost stayed flat ($0.71 vs $0.74) and solves fell from 8 to 4.
 
-My best result was leancost (#17): 9/26 at $0.062 and 6:47 per solve, which was also my best-ranked submission. The expensive designs added few solves (Figure 5). Expert-for-everything (#22) also got 8, at 14× the cost per solve. The subagent investigator and the checker both stayed at 8. r3 reached 11, but its 3 extra solves cost about $2.60 each.
+My best result was leancost (#17): 9/26 at $0.062 and 6:47 per solve, which was also my best-ranked submission. The expensive designs added few solves (Figure 5). Expert-for-everything (#22) got 8, one fewer, at 14× the cost per solve. The subagent investigator and the checker both stayed at 8. r3 reached 11, but its 3 extra solves cost about $2.60 each.
 
 ![Scatter of A3 submissions, tasks solved against cost per solve on a log scale: leancost 9 at $0.062, lean 8 at $0.092, cost-squeezed 4 at $0.18, subagents 8 at $0.31, feedback ladder 11 at $0.73, r3 11 at $0.78, expert-only 8 at $0.89, a3-v1 8 at $0.94](fig5-a3-cost-vs-solves.svg)
 
@@ -113,7 +113,7 @@ Once the mechanical failures were fixed, almost every remaining failure was a wr
 
 The extra stages in A3, an investigator subagent and a checker, did not change this. What helped was smaller and more specific: A2's done gate, where the checklist made passing runs catch their own regression.
 
-In A5 there is no `evaluate()`, so the agent's own check is the main defense against a wrong answer. I added an "are you sure?" confirmation before finishing, taken from Terminus 2, Terminal-Bench's reference agent.
+In A5 there is no `evaluate()`, so the agent's own check is the main defense against a wrong answer. I added an "are you sure?" confirmation before finishing, taken from Terminus 2, Terminal-Bench's reference agent. I didn't measure how often it made the agent keep going instead of finishing.
 
 **Takeaway:** put effort into how the agent checks a fix, not into more stages that generate fixes.
 
@@ -126,7 +126,7 @@ I took several ideas from existing agents and research:
 - **Terminus 2:** the "are you sure?" check before finishing, polling instead of blocking, and a clearer timeout message.
 - **Meta-Harness:** the environment snapshot in the first message.
 - **LangChain deepagents:** the "graded by automated tests" line and loop detection.
-- **Task-CoEvolve:** a benchmark instead of code. This same model scores about 35% with Terminus 2 on Terminal-Bench 2.1, and speed per turn is the main lever.
+- **Task-CoEvolve:** a reference score, not code. It reports this same model at about 35% with Terminus 2 on Terminal-Bench 2.1 (my runs used 2.0), and speed per turn is the main lever.
 
 The full harness (#1) scored 34/89 in 2 h 33 min, which met the accurate target. 20 of its 34 solves took under 5 minutes, and many took under 2 (fix-git 0:43, log-summary 0:29). That led to a second design, the sprint (#2):
 
@@ -150,7 +150,7 @@ Comparing the two runs (Figure 8), 23 tasks were solved by both, so there is a s
 
 *A5 leaderboard history. The full harness (#1, bottom row) scored 34/89 in 2 h 33 min and 10/26 on the A4 stage. The sprint (#2, top row) scored 28/89 in 54 min and 0/26.*
 
-Net, the drop rules cost 6 solves (11 lost, 5 gained) and saved 1 h 39 min. A3 showed the same thing: my cheapest submission ranked best.
+Net, the sprint configuration as a whole (the drop rules, thinking only on some turns, and 16 tasks at a time with a 15-minute cap) cost 6 solves (11 lost, 5 gained) and saved 1 h 39 min.
 
 **Takeaway:** when the goal is N solves in a fixed time, find the easy set fast and stop spending on the long tail.
 
@@ -168,7 +168,7 @@ The sprint repeated this on a bigger scale. On the 26-task A4 repo stage, the fu
 
 ## Single runs are noisy, and practice sets overstate
 
-In A3, the same zip solved anywhere from 5 to 10 depending on the time of day. In the evenings, cache hits fell from about 95% to 2–15%. My best run was at 6 AM. In A4, scores moved about ±3 tasks run to run, and the version that solved 16/25 on practice tasks scored 6/26 on the leaderboard. In A5, my two runs disagreed on 16 tasks.
+In A3, the same zip solved anywhere from 5 to 10 depending on the time of day. In the evenings, cache hits fell from about 95% to 2–15%. My best run was at 6 AM. In A4, scores moved about ±3 tasks run to run, and the version that solved 16/25 on practice tasks scored 6/26 on the leaderboard. In A5, I never ran the same configuration twice, so I have no clean repeat; my two runs used different harnesses.
 
 Some of my improvements were probably noise, and so were some regressions. I didn't run enough repeats to tell for every change.
 
