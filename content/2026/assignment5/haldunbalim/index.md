@@ -76,7 +76,7 @@ For Assignment 5 I changed how I worked. I ran the model server on a course node
 
 Assignment 4 let the agent run the hidden tests in the middle of a task, and my harness grew around that feedback until it was a fairly large piece of software: background gradings, retries, an arbiter between attempts, a build gate, memory carried across attempts. Assignment 5 took the tests away. The agent I wrote for it is a small fraction of the size (one lane per task, its own checks before `finish`, a time budget per task), and it cleared the baseline on its first submission.
 
-![Dot plot of repository tasks solved out of 26 per graded run: Assignment 4 runs, where the agent could run the hidden tests, ending at 36 to 56 minutes: 32 runs, median 10, range 6 to 14. Assignment 5 runs without the tests ending at 45 to 60 minutes: 7 runs, median 8, range 5 to 10; ending at 30 to 35 minutes: 12 runs, median 7, range 5 to 10.](fig9-feedback.svg "Figure 9. The same 26 repository tasks in both assignments. Each dot is one graded run.")
+![Dot plot of repository tasks solved out of 26 per graded run: Assignment 4 runs, where the agent could run the hidden tests, ending at 36 to 56 minutes: 32 runs, median 10, range 6 to 14. Assignment 5 runs without the tests ending at 45 to 60 minutes: 7 runs, median 8, range 5 to 10; ending at 30 to 35 minutes: 12 runs, median 7, range 5 to 10. Excludes the 200-min-cap runs.](fig9-feedback.svg "Figure 9. The same 26 repository tasks in both assignments. Each dot is one graded run. Excludes the 200-min-cap runs.")
 
 On the same 26 repository tasks with the same engine, having the tests was worth a few tasks per run, not most of them (Figure 9). The two agents differ in plenty of other ways, so I treat this as a rough comparison, but it was a lot less than I expected given how much code I had built around the tests.
 
@@ -90,4 +90,4 @@ If I started over, I would spend less time inventing agent tricks and more time 
 
 ## AI use
 
-As the [course policy](https://cs2680.com/policy.html#ai-policy) requires I used Claude Code throughout. It helped me build and run the agent, the serving setup and the experiments, and it ran the scheduled leaderboard submissions. For this post it made the figures from my leaderboard and run data. I wrote the text entirely.
+As the [course policy](https://cs2680.com/policy.html#ai-policy) requires, I am disclosing that I used Claude Code to build and run the agent, the serving setup and the experiments, and it ran the scheduled leaderboard submissions. For this post it made the figures, from my leaderboard and run data, and wrote the alt texts. I wrote the text entirely and used Claude code to commit and create pull request. Finally, I used Claude code for fixing the typos that were identified after my initial request.
