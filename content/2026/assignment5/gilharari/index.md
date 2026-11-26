@@ -21,27 +21,29 @@ Using expensive models and extensive reasoning for every model call is wasteful,
 slowing down the overall harness. In assignment 3, using the expert model for all retries, or as a planner/reviewer 
 significantly inflated the overall cost without a notable improvement in task solutions. Indeed, in a run where the 
 expert was used for every retry, as a reviewer (requirements checker), tester (subagent to write its own tests), 
-and planner (explore repo and plan), the number of expert calls was 116, the expert/total cost was $7.13/8.32, and the 
-number of locally solved tasks was 3/5. With the expert only used for rescue, the number of expert calls was 4, the 
-expert/total cost was $0.28/1.27, and the number of locally solved tasks was 4/5. In assignment 5, limiting the thinking
-only to the first step and after a failed tool call managed to retain number of local tasks solved on Terminal-Bench 
-(8/16) while decreasing the overall number of output tokens (from about 38k tokens per task to 33k, ~13% decrease).
-Interestingly, the number of output tokens per call dropped by half (from about 1.4k tokens to 0.7k) but the number of 
-model calls increased (428 to 727) leading to the overall smaller decrease in output tokens. 
+and planner (explore repo and plan), the number of expert calls was 116, the expert/total cost was 
+7.13/8.32 USD, and the number of locally solved tasks was 3/5. With the expert only used for rescue, the 
+number of expert calls was 4, the expert/total cost was 0.28/1.27 USD, and the number of locally solved tasks
+was 4/5. In assignment 5, limiting the thinking only to the first step and after a failed tool call managed to retain
+number of local tasks solved on Terminal-Bench (8/16) while decreasing the overall number of output tokens (from about
+38k tokens per task to 33k, ~13% decrease). Interestingly, the number of output tokens per call dropped by half (from
+about 1.4k tokens to 0.7k) but the number of model calls increased (428 to 727) leading to the overall smaller decrease
+in output tokens. Wall clock time per task on average remained flat (311 to 309 seconds). While as expected the time per
+call fell from (11.6 to 6.8 seconds), this was offset increase in number of overall calls.
 
 
 ## Slower system with more parallelism
-In assignment 4, several attempts to speed up serving did not succeed in significant acceleration due to decreasing 
-the KV cache hit rate. First, increasing the number of concurrent workers from 5 to 13 caused the hit rate to fall from
-88% to 52%. The total run time still decreased (from 135 min to 128 min), yet not as much as expected by increasing the
-number of workers over 2.5x. Secondly, using speculative decoding leads to less free GPU memory for the KV cache as more
-memory is occupied for the draft model and verification buffers. In my initial MTP attempt, the GPU space for KV cache
-decreased from 305k to 116k tokens and the maximum number of running requests decreased from 16 to 3. Throughput 
-increased from 165 to 258 tokens/s when processing one request at a time. However, with eight concurrent requests, 
-throughput instead decreased from 572 to 367 tokens/s. This was partially accommodated by using the RAM as a second
-tier cache, increasing the hit rate from 11% to 35%. Turning off prefill CUDA graphs, increasing the static memory 
-pool, and a leaner Mamba cache managed to increase it to 95%. With these fixed the submitted MTP version reduced the
-time per turn from 24 to 18 seconds.
+In assignment 4, several naive attempts to speed up serving did not initially succeed in significant acceleration due to
+decreasing the KV cache hit rate. First, increasing the number of concurrent workers from 5 to 13 caused the hit rate to
+fall from 88% to 52%. The total run time still decreased (from 135 min to 128 min), yet not as much as expected by
+increasing the number of workers over 2.5x. Secondly, using speculative decoding leads to less free GPU memory for the 
+KV cache as more memory is occupied for the draft model and verification buffers. In my initial MTP attempt, the GPU 
+space for KV cache decreased from 305k to 116k tokens and the maximum number of running requests decreased from 16 to 3.
+Throughput increased from 165 to 258 tokens/s when processing one request at a time. However, with eight concurrent 
+requests, throughput instead decreased from 572 to 367 tokens/s. This was partially accommodated by using the RAM as a 
+second tier cache, increasing the hit rate from 11% to 35%. Turning off prefill CUDA graphs, increasing the static 
+memory pool, and a leaner Mamba cache managed to increase it to 95%. With these fixed the submitted MTP version reduced 
+the time per turn from 24 to 18 seconds.
 
 ## Balancing the time cap
 In assignments 3-5 including a timecap was necessary to prevent runaway tasks. However, using too strict of a rule
