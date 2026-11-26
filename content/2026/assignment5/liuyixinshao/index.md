@@ -64,7 +64,7 @@ In Assignment 5, I started to set a time limit for each task. Since all the Term
 
 More concurrency isn't always better. At first, in Assignment 4, I opened all 25 local tasks at once, and only 9/25 local tasks were solved. Based on the SGLang metrics, the average KV cache use hit 83%, and many model calls waited in the queue for a long time. When I reduced the task concurrency from 25 to 5 and the API concurrency from 25 to 8 (as in Assignment 3), the number of solved tasks went up to 17/25 and 18/25 tasks in two runs, and the average KV cache dropped to around 37%.
 
-I spent a lot of time playing with different SGLang settings in Assignment 4. Small decode CUDA graph buckets made a single leaderboard run 29 minutes faster and solved one more task. FP4 KV was another useful tweak, increasing the KV pool from 358K to 540K tokens and reducing the number of lost prefix tokens from 12.0M to 7.4M.
+I spent a lot of time playing with different SGLang settings in Assignment 4. Small decode CUDA graph buckets made a single leaderboard run 29 minutes faster and solved one more task (though I did not repeat this experiment). FP4 KV was another useful tweak, increasing the KV pool from 358K to 540K tokens and reducing the number of lost prefix tokens from 12.0M to 7.4M.
 
 In Assignment 5, I ran into some different issues with longer prefills in Terminal-Bench tasks (also, I enabled the Qwen model to preserve thinking, so some context became longer). In one SGLang performance test, a new request with a fairly long prompt (around 190K tokens) caused the seven requests that were already decoding to pause for 44-47 seconds. To solve this issue, I enabled the server to run decoding steps between the long prompt's prefill batches and set `prefill-decode-interval` to 2, which dramatically reduced the longest pause to about 1.8 seconds (a great success!). The trade-off was that the new request's time to first token (TTFT) increased by about 3% (acceptable!).
 
@@ -90,9 +90,12 @@ Later, during the Assignment 3 student sharing, I noticed that many of the top s
 
 I learned three lessons about running experiments. The first was to change only one thing at a time. Early in Assignment 3, I was greedy and changed several features at once. I remember in one experiment, I used a leaner prompt, set to only the Standard model, reduced the turn limit to 35, allowed only one evaluation, and removed restarts, and harness performance dropped from 12/26 tasks in the previous version to only 3/26. But I couldn't tell which change caused the problem, so I later had to test them one by one (which took me more time…).
 
-The second lesson is that one run is not enough to draw any conclusion about the harness performance. Because of randomness in LLM token generation, even with the same harness and the same setup, my harness may still solve a completely different number of tasks or take a completely different amount of time across runs. The table below shows the four leaderboard submissions of my final Assignment 5 harness. I submitted exactly the same package all four times.
+The second lesson is that one run is not enough to draw a solid conclusion about the harness performance. Because of randomness in LLM token generation, even with the same harness and the same setup, the result on leaderboard still varied across submissions. The table below shows the four leaderboard submissions of my final Assignment 5 harness. I submitted exactly the same package all four times.
 
-![](leaderboard-runs.webp)
+![Four leaderboard submissions of the same final Assignment 5 harness package, showing Terminal-Bench and SWE-bench results](leaderboard-runs.webp)
+
+(Note: This table was redrawn from the leaderboard screenshot. All numbers were verified by me against the original leaderboard.)
+
 
 Third, local results didn't always match the leaderboard performance. So, repeated experiments are necessary. When time allowed, I resubmitted the same harness package to the leaderboard at least 2 times before coming to a conclusion.
 
