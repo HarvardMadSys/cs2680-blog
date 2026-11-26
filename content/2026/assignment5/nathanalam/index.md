@@ -25,7 +25,7 @@ In my ablation, on `isort` the shorter prompt went from 4/7 to 7/7 requirements 
 
 In Assignment 3, one issue I had was that, in trying to design a multi-model harness using powerful and standard models, I found myself running out of money from using the powerful model too much, or running out of time because the standard model never succeeded in solving the problem. When I took a look at what was happening, the issue was that either the standard model never felt like it needed to hand off the problem to the expert model, or the expert model never felt like it ought to hand the problem back to the standard model.
 
-Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This cut runtime and cost roughly 3×—finishing in about 7 minutes down from 21 minutes, and 7 cents down from 20 cents per solved task—while in a single run on the 26 Assignment 3 tasks it solved 8/26 compared to 5/26 without complex handoff behavior.
+Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This cut runtime and cost roughly 3×—finishing in about 7 minutes down from 21 minutes, and 7 cents down from 20 cents per solved task—while in a single run on the 26 Assignment 3 tasks it solved 8/26 without any handoff logic, versus 5/26 for the handoff harness.
 
 ![Models struggled to hand off work to one another compared to a standard-only loop](planner-handoff.svg "Multi-model handoffs stalled at 5/26 Assignment 3 tasks (21 min, 20¢/solved), while a standard-only loop solved 8/26 (7 min, 7¢/solved).")
 
@@ -45,7 +45,7 @@ Finally, in Assignment 5, I was also blindly trying to use speculative decoding 
 
 ![Base SGLang configuration (~21 running requests) vs n-gram speculative decoding (~3 running requests)](speculative-decoding.svg "N-gram speculative decoding had low reuse on targeted edits and cut concurrency from ~21 to ~3 running requests.")
 
-However, this backfired: enabling n-gram speculative decoding cut our concurrent capacity from ~21 running requests down to ~3, wiping out any potential speedups. Because our agent made targeted edits rather than whole-file replacements, the generated output was too novel and position-sensitive to get good n-gram reuse from the existing code, so the verification tax outweighed any drafting gains. At the same time, the extra per-request memory and verification state (or tighter CUDA-graph/running-request caps under speculative mode) likely reduced available KV-cache capacity for other requests, crippling parallel throughput.
+However, this backfired: enabling n-gram speculative decoding cut our concurrent capacity from ~21 running requests down to ~3, wiping out any potential speedups. Because our agent made targeted edits rather than whole-file replacements, the generated output was too novel and position-sensitive to get good n-gram reuse from the existing code, so the verification tax outweighed any drafting gains. At the same time, the extra per-request memory and verification state likely reduced available KV-cache capacity (or speculative mode imposed tighter CUDA-graph / running-request caps), crippling parallel throughput.
 
 ## Conclusion
 
