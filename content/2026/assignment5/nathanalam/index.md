@@ -19,13 +19,13 @@ I recalled from lecture that the most effective system prompt instructions usual
 
 ![Old ~740-word prompt vs new ~200-word DO/DO NOT prompt](prompt-ablation.svg "Replacing a ~740-word step-by-step prompt with a ~200-word DO / DO NOT prompt improved isort from 4/7 to 7/7.")
 
-In a short time, I found that the agent harness suddenly started working quite well and passed 7/7 tests up from 4/7. Allowing agents to act in their best interests helped them resolve situations within the band of how they were trained, and in ways that may be more efficient than the heuristics we might define. I learned that an overly elaborate system prompt may put agents in situations that are seriously out of band with the training information on which they were fine-tuned.
+In my ablation, on `isort` the shorter prompt went from 4/7 to 7/7 requirements passing (and preserved the Python-Markdown edge case). Allowing agents to act in their best interests helped them resolve situations within the band of how they were trained, and in ways that may be more efficient than the heuristics we might define. I learned that an overly elaborate system prompt may put agents in situations that are seriously out of band with the training information on which they were fine-tuned.
 
 ### Enforce Ownership
 
 In Assignment 3, one issue I had was that, in trying to design a multi-model harness using powerful and standard models, I found myself running out of money from using the powerful model too much, or running out of time because the standard model never succeeded in solving the problem. When I took a look at what was happening, the issue was that either the standard model never felt like it needed to hand off the problem to the expert model, or the expert model never felt like it ought to hand the problem back to the standard model.
 
-Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This worked much better, as we finished tasks quickly at 7 minutes down from 21 minutes, within budget at 7 cents down from 20 cents per solved, and reliably without complex handoff behavior, solving 8/26 Assignment 3 tasks instead of 5/26.
+Instead, I switched simply to using the standard model for everything, and using a better harness instead to augment the core model intelligence. This cut runtime and cost roughly 3×—finishing in about 7 minutes down from 21 minutes, and 7 cents down from 20 cents per solved task—while in a single run on the 26 Assignment 3 tasks it solved 8/26 compared to 5/26 without complex handoff behavior.
 
 ![Models struggled to hand off work to one another compared to a standard-only loop](planner-handoff.svg "Multi-model handoffs stalled at 5/26 Assignment 3 tasks (21 min, 20¢/solved), while a standard-only loop solved 8/26 (7 min, 7¢/solved).")
 
@@ -37,7 +37,7 @@ In Assignment 4, I was getting frustrated with how often the models would spend 
 
 ![Requiring tests up front could get us writing tests forever](test-first-zone.svg "Test-first authoring consumed the run before reaching the repository, dropping to 0/26 passing.")
 
-This was a mistake, however, as the agent could spend an indefinite amount of time just writing tests, and so I actually dropped to 0 / 26 passing. If test writing was interrupted, we would end up with tests that could never pass, effectively dooming the run. After several attempts to determine how to allow test writing at the start, I realized that until the model actually tries to get started with the codebase, it will not develop enough intuition to understand what reasonable tests might be. This was another example of how agents work differently from humans: although software engineers are often instructed to embrace [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development), this is not necessarily the case for AI agent harnesses.
+This was a mistake, however, as the agent could spend an indefinite amount of time just writing tests, and so I actually dropped to 0/26 Assignment 4 tasks passing. If test writing was interrupted, we would end up with tests that could never pass, effectively dooming the run. After several attempts to determine how to allow test writing at the start, I realized that until the model actually tries to get started with the codebase, it will not develop enough intuition to understand what reasonable tests might be. This was another example of how agents work differently from humans: although software engineers are often instructed to embrace [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development), this is not necessarily the case for AI agent harnesses.
 
 ### Don't be too fancy
 
@@ -45,7 +45,7 @@ Finally, in Assignment 5, I was also blindly trying to use speculative decoding 
 
 ![Base SGLang configuration (~21 running requests) vs n-gram speculative decoding (~3 running requests)](speculative-decoding.svg "N-gram speculative decoding had low reuse on targeted edits and cut concurrency from ~21 to ~3 running requests.")
 
-However, this backfired: enabling n-gram speculative decoding cut our concurrent capacity from ~21 running requests down to ~3, wiping out any potential speedups. Because our agent made targeted edits rather than whole-file replacements, the generated output was too novel and position-sensitive to get good n-gram reuse from the existing code, so the verification tax outweighed any drafting gains. At the same time, the extra per-request buffers and verification state required for speculative decoding reduced available KV-cache capacity for other requests, crippling parallel throughput.
+However, this backfired: enabling n-gram speculative decoding cut our concurrent capacity from ~21 running requests down to ~3, wiping out any potential speedups. Because our agent made targeted edits rather than whole-file replacements, the generated output was too novel and position-sensitive to get good n-gram reuse from the existing code, so the verification tax outweighed any drafting gains. At the same time, the extra per-request memory and verification state (or tighter CUDA-graph/running-request caps under speculative mode) likely reduced available KV-cache capacity for other requests, crippling parallel throughput.
 
 ## Conclusion
 

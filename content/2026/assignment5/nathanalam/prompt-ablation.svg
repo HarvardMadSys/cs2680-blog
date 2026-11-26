@@ -3,7 +3,7 @@
     .title{font:700 30px system-ui,sans-serif;fill:#172033}.sub{font:16px system-ui,sans-serif;fill:#58657a}.label{font:700 18px system-ui,sans-serif;fill:#172033}.body{font:15px system-ui,sans-serif;fill:#334155}.small{font:13px system-ui,sans-serif;fill:#64748b}.old{fill:#fff1f2;stroke:#fda4af}.new{fill:#ecfdf5;stroke:#86efac}.line{stroke:#94a3b8;stroke-width:3;fill:none}.red{fill:#be123c}.green{fill:#15803d}.amber{fill:#b45309}
   </style>
   <rect width="1200" height="700" fill="#f8fafc"/>
-  <text x="60" y="58" class="title">A shorter prompt produced broader verification</text>
+  <text x="60" y="58" class="title">A shorter DO / DO NOT prompt beat 740 words of instructions</text>
   <text x="60" y="88" class="sub">Cutting the prompt to ~200 words of DO / DO NOT rules outperformed 740 words of step-by-step choreography.</text>
   <rect x="60" y="125" width="470" height="210" rx="18" class="old"/>
   <text x="90" y="165" class="label">Old prompt · ~740 words</text>
