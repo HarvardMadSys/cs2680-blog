@@ -4,7 +4,7 @@ date: 2026-11-25
 authors: ["Eric Gong"]
 summary: "Engine and Harness Optimizations Act on Different Aspects of Agent Performance, but they must co-evolve: the design of one closely influences what optimizations are optimal in the other"
 tags: ["Agent-Design", "Tool-Use"]
-draft: true
+draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
 
