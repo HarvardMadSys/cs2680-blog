@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" width="720" height="470" font-family="Lato, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">MTP vs the base engine, by number of requests at once</title>
+<desc id="d">Total output speed in tokens per second at 1, 6, 12, 16 requests at once. Alone, MTP is 1.49 times as fast (244 vs 164). At 12 at once it is 0.58 times as fast (431 vs 742). Data: mtp_under_load_table.md.</desc>
+<rect width="720" height="470" fill="#FFFFFF"/>
+<text x="16" y="22" font-size="14" font-weight="700" fill="#1E2126">Speculative decoding (MTP): faster alone, slower with many requests at once</text>
+<text x="16" y="40" font-size="11.5" fill="#646A72">(Assignment 5 engine test: same model, same GPU, one run per setting)</text>
+<line x1="16" x2="34" y1="58" y2="58" stroke="#2a78d6" stroke-width="2"/><circle cx="25" cy="58" r="4" fill="#2a78d6" stroke="#FFFFFF" stroke-width="2"/>
+<text x="40" y="62" font-size="12" fill="#3B4147">without MTP (base engine)</text>
+<line x1="220" x2="238" y1="58" y2="58" stroke="#eb6834" stroke-width="2"/><circle cx="229" cy="58" r="4" fill="#eb6834" stroke="#FFFFFF" stroke-width="2"/>
+<text x="244" y="62" font-size="12" fill="#3B4147">with MTP</text>
+<rect x="398.0" y="92" width="44" height="238" fill="#EEF1F5"/>
+<text x="420.0" y="86" font-size="11.5" fill="#3B4147" text-anchor="middle">my agents: 12 at once</text>
+<text x="16" y="86" font-size="11.5" fill="#646A72">total output speed (tokens/s, all requests together)</text>
+<line x1="70" x2="560" y1="330.0" y2="330.0" stroke="#C4CAD3" stroke-width="1"/>
+<text x="62" y="334.0" font-size="11" fill="#646A72" text-anchor="end">0</text>
+<line x1="70" x2="560" y1="278.0" y2="278.0" stroke="#E9ECEF" stroke-width="1"/>
+<text x="62" y="282.0" font-size="11" fill="#646A72" text-anchor="end">200</text>
+<line x1="70" x2="560" y1="226.0" y2="226.0" stroke="#E9ECEF" stroke-width="1"/>
+<text x="62" y="230.0" font-size="11" fill="#646A72" text-anchor="end">400</text>
+<line x1="70" x2="560" y1="174.0" y2="174.0" stroke="#E9ECEF" stroke-width="1"/>
+<text x="62" y="178.0" font-size="11" fill="#646A72" text-anchor="end">600</text>
+<line x1="70" x2="560" y1="122.0" y2="122.0" stroke="#E9ECEF" stroke-width="1"/>
+<text x="62" y="126.0" font-size="11" fill="#646A72" text-anchor="end">800</text>
+<text x="90.0" y="346" font-size="11" fill="#646A72" text-anchor="middle">1</text>
+<text x="240.0" y="346" font-size="11" fill="#646A72" text-anchor="middle">6</text>
+<text x="420.0" y="346" font-size="11" fill="#646A72" text-anchor="middle">12</text>
+<text x="540.0" y="346" font-size="11" fill="#646A72" text-anchor="middle">16</text>
+<text x="315.0" y="364" font-size="11.5" fill="#646A72" text-anchor="middle">requests running at once</text>
+<polyline points="90.0,287.4 240.0,212.0 420.0,137.2 540.0,117.4" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round"/>
+<circle data-setting="base" data-conc="1" data-agg="163.8" cx="90.0" cy="287.4" r="4" fill="#2a78d6" stroke="#FFFFFF" stroke-width="2"><title>without MTP, 1 at once: 164 tokens/s total; 3 requests finished in 14.7 s</title></circle>
+<circle data-setting="base" data-conc="6" data-agg="453.8" cx="240.0" cy="212.0" r="4" fill="#2a78d6" stroke="#FFFFFF" stroke-width="2"><title>without MTP, 6 at once: 454 tokens/s total; 18 requests finished in 29.4 s</title></circle>
+<circle data-setting="base" data-conc="12" data-agg="741.7" cx="420.0" cy="137.2" r="4" fill="#2a78d6" stroke="#FFFFFF" stroke-width="2"><title>without MTP, 12 at once: 742 tokens/s total; 36 requests finished in 35.5 s</title></circle>
+<circle data-setting="base" data-conc="16" data-agg="817.7" cx="540.0" cy="117.4" r="4" fill="#2a78d6" stroke="#FFFFFF" stroke-width="2"><title>without MTP, 16 at once: 818 tokens/s total; 48 requests finished in 42.2 s</title></circle>
+<text x="550.0" y="121.4" font-size="12" fill="#3B4147">without MTP</text>
+<polyline points="90.0,266.6 240.0,221.1 420.0,217.9 540.0,214.6" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round"/>
+<circle data-setting="mtp" data-conc="1" data-agg="243.7" cx="90.0" cy="266.6" r="4" fill="#eb6834" stroke="#FFFFFF" stroke-width="2"><title>with MTP, 1 at once: 244 tokens/s total; 3 requests finished in 9.8 s</title></circle>
+<circle data-setting="mtp" data-conc="6" data-agg="418.7" cx="240.0" cy="221.1" r="4" fill="#eb6834" stroke="#FFFFFF" stroke-width="2"><title>with MTP, 6 at once: 419 tokens/s total; 18 requests finished in 32.4 s</title></circle>
+<circle data-setting="mtp" data-conc="12" data-agg="431.3" cx="420.0" cy="217.9" r="4" fill="#eb6834" stroke="#FFFFFF" stroke-width="2"><title>with MTP, 12 at once: 431 tokens/s total; 36 requests finished in 63.3 s</title></circle>
+<circle data-setting="mtp" data-conc="16" data-agg="443.8" cx="540.0" cy="214.6" r="4" fill="#eb6834" stroke="#FFFFFF" stroke-width="2"><title>with MTP, 16 at once: 444 tokens/s total; 48 requests finished in 77.9 s</title></circle>
+<text x="550.0" y="218.6" font-size="12" fill="#3B4147">with MTP</text>
+<text data-check="alone" x="100.0" y="312" font-size="12" fill="#3B4147">1 at a time: 244 vs 164 tokens/s, MTP <tspan font-weight="700">1.49×</tspan> as fast</text>
+<text data-check="load-base" x="412.0" y="128.2" font-size="12" fill="#3B4147" text-anchor="end">742</text>
+<text data-check="load-mtp" x="420.0" y="237.9" font-size="12" fill="#3B4147" text-anchor="middle">431</text>
+<path d="M446.0,143.2 H450.0 V211.9 H446.0" fill="none" stroke="#8B9199" stroke-width="1"/>
+<text data-check="load-ratio" x="456.0" y="181.5" font-size="12" fill="#3B4147"><tspan font-weight="700">0.58×</tspan> as fast</text>
+<text x="16" y="392" font-size="12" fill="#3B4147" font-weight="700">Why: MTP’s draft layer took GPU memory away from the KV cache: 321,826 → 142,294 tokens.</text>
+<text x="16" y="409" font-size="12" fill="#3B4147">So at most 3 requests could run at once instead of 17, and the rest waited in line.</text>
+<text x="16" y="426" font-size="12" fill="#3B4147">At 12 at once, the same 36 requests took 63.3 s with MTP and 35.5 s without.</text>
+<text x="16" y="451" font-size="11" fill="#8B9199">Each setting: c conversations at once, 3 requests each; prompts ≈ 9,800 tokens, up to 800 output tokens per request.</text>
+</svg>
