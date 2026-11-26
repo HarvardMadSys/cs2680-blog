@@ -1,5 +1,5 @@
 ---
-title: "Automated Loops isn't all you need"
+title: "Automated Loops Aren't All You Need"
 date: 2026-11-25
 authors: ["Linus Habetha"]
 summary: "How I went from copy-pasting prompts to letting agents run my assignments on AWS, why the loops kept getting stuck, and what I'd change about them."
@@ -31,7 +31,7 @@ The start was honestly great. Four hours after its first turn, the worker had bu
 
 Assignment 3 is the one that went well, so it's worth figuring out what exactly my agent loop did together with my steering. What it converged on was surprisingly simple. The final agent ran five tasks at a time with one attempt per task and no retries. The stronger model (DeepSeek V4 Flash) took basically all tasks, with the Qwen model from Assignment 2 only as the fallback. An edit tool that applies up to 20 edits in one call saved a lot of turns: 16 calls carried 76 edits. Also, only ever appending as the newest message kept 92 to 97% of the input cached. On the way there, the loop had built money shares, model cascades, triage for "hopeless" tasks and a strategy document that reached version 51. The winner was a stripped-down version of all that.
 
-And luck helped. I'd be lying if I left that out. Assignment 3 allowed a run to stop after n confirmed passes, so the board really scored how fast you got to n. The exact same code, run 12 times, solved 8 to 11 (due to tasks still being graded when the attempt already has been terminated) tasks at anywhere from 1:31 to 8:42 (mm:ss) per solve. This was largely due to the model's randomness, which we obviously just cannot eliminate, but we could still use the variance to our advantage, which is kinda exactly what I did by reuploading the same code, which I knew worked somewhat well, over and over again.
+And luck helped. I'd be lying if I left that out. Assignment 3 allowed a run to stop after n confirmed passes, so the board really scored how fast you got to n. The exact same code, run 12 times, solved 8 to 11 tasks (the count varies because some tasks were still being graded when the run was stopped), at anywhere from 1:31 to 8:42 (mm:ss) per solve. This was largely due to the model's randomness, which we obviously just cannot eliminate, but we could still use the variance to our advantage, which is kinda exactly what I did by reuploading the same code, which I knew worked somewhat well, over and over again.
 
 ## Assignments 4 and 5: more autonomy, worse results
 
@@ -74,4 +74,4 @@ The more general point I want to make here goes beyond Assignment 3. Basically, 
 
 In case it wasn't obvious by now: Claude did basically everything during the Assignments[^1] (coding, experiments, doing the uploads, planning, reviewing, etc., even helping me understand the assignments - it was basically involved in the entire process). It's hard to feel a sense of responsibility for this type of work when all I ever did was some slight steering (I am slightly exaggerating here), and even that, as said, not that much in Assignments 4 and 5 (although, to be fair, that's also where the subpar results come from). It almost hurts my ego knowing that a few years back I felt like I had skills other people didn't have, and learning how to code was a process that took time and work that I actually put in, but now seemingly everyone with access to Claude Code can just do it. The words "almost" and "seemingly" are doing a lot of work here, though, since the point I am trying to make is that the steering was what separated my high-ranking assignments from my low-ranking ones. And that one can only do with an understanding of the topic at hand, which (at least for now) helps me to sleep a bit better at night.
 
-[^1]: Since this got flagged and just to be clear: the writeups and the Blog Post are not included here
+[^1]: This excludes the write-ups and the blog post.
