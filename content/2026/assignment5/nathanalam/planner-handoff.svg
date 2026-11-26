@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <style>.title{font:700 30px system-ui,sans-serif;fill:#172033}.sub{font:16px system-ui,sans-serif;fill:#58657a}.label{font:700 18px system-ui,sans-serif;fill:#172033}.body{font:15px system-ui,sans-serif;fill:#334155}.small{font:13px system-ui,sans-serif;fill:#64748b}.box{fill:#fff;stroke:#cbd5e1;stroke-width:2}.bad{fill:#fff7ed;stroke:#fdba74}.good{fill:#ecfdf5;stroke:#86efac}.line{stroke:#94a3b8;stroke-width:3;fill:none}.red{fill:#be123c}.green{fill:#15803d}.amber{fill:#b45309}</style>
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  <text x="60" y="58" class="title">Multi-model handoffs stalled; a standard-only loop won</text>
+  <text x="60" y="88" class="sub">Neither the standard model nor the expert model reliably handed work off—a single standard model solved more tasks faster and cheaper.</text>
+  <rect x="60" y="135" width="700" height="235" rx="18" class="bad"/>
+  <text x="90" y="175" class="label">Multi-model harness: broken handoffs</text>
+  <rect x="100" y="215" width="190" height="85" rx="14" class="box"/><text x="142" y="248" class="label">STANDARD</text><text x="120" y="276" class="small">never escalates on time</text>
+  <path d="M300 245 C370 205 430 205 500 245" class="line" marker-end="url(#arrow)"/><text x="392" y="206" font-size="28" class="red">×</text>
+  <rect x="510" y="215" width="190" height="85" rx="14" class="box"/><text x="565" y="248" class="label">EXPERT</text><text x="533" y="276" class="small">never hands work back</text>
+  <path d="M500 280 C430 320 370 320 300 280" class="line" marker-end="url(#arrow)"/><text x="392" y="328" font-size="28" class="red">×</text>
+  <text x="90" y="348" class="body">Models were overconfident and either burned budget on Expert or timed out on Standard.</text>
+  <rect x="810" y="135" width="330" height="235" rx="18" fill="#fee2e2" stroke="#fca5a5"/><text x="845" y="180" class="label red">Handoff result (A3)</text><text x="845" y="228" class="body">5 / 26 tasks solved</text><text x="845" y="262" class="body">~21 min per task</text><text x="845" y="296" class="body">~20¢ per solved task</text>
+  <path d="M600 410 L600 455" class="line" marker-end="url(#arrow)"/>
+  <rect x="60" y="470" width="700" height="165" rx="18" class="good"/>
+  <text x="90" y="510" class="label">Simple baseline: standard-only loop</text>
+  <rect x="100" y="540" width="220" height="52" rx="12" fill="#fff" stroke="#86efac"/><text x="143" y="572" class="label">inspect → edit → test</text>
+  <path d="M330 566 H450" class="line" marker-end="url(#arrow)"/><rect x="465" y="540" width="220" height="52" rx="12" fill="#fff" stroke="#86efac"/><text x="515" y="572" class="label">submit or retry</text>
+  <rect x="810" y="470" width="330" height="165" rx="18" fill="#dcfce7" stroke="#86efac"/><text x="845" y="510" class="label green">Standard-only result (A3)</text><text x="845" y="550" class="body">8 / 26 tasks solved</text><text x="845" y="582" class="body">~7 min · ~7¢ per solved</text><text x="845" y="612" class="small">no handoff overhead</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+</svg>

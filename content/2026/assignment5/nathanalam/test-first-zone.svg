@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <style>.title{font:700 30px system-ui,sans-serif;fill:#172033}.sub{font:16px system-ui,sans-serif;fill:#58657a}.label{font:700 18px system-ui,sans-serif;fill:#172033}.body{font:15px system-ui,sans-serif;fill:#334155}.small{font:13px system-ui,sans-serif;fill:#64748b}.line{stroke:#94a3b8;stroke-width:3;fill:none}.green{fill:#15803d}.red{fill:#be123c}.amber{fill:#b45309}</style>
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  <text x="60" y="58" class="title">Test-first looked like a shortcut to confidence</text>
+  <text x="60" y="88" class="sub">In reality, the test-authoring pipeline consumed the run before the coding agent reached the repository.</text>
+  <path d="M170 255 Q210 120 370 170 Q500 55 620 165 Q780 120 800 270 Q750 360 620 330 Q500 410 390 330 Q230 370 170 255" fill="#fff" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="295" y="190" class="label">In the thought bubble</text><text x="245" y="235" font-size="30" class="green">✓ ✓ ✓ ✓ ✓</text><text x="230" y="275" class="body">acceptance tests catch every bug</text><text x="275" y="305" class="small">then the patch is obvious</text>
+  <path d="M500 365 L500 420" class="line" marker-end="url(#arrow)"/>
+  <rect x="60" y="450" width="1080" height="175" rx="20" fill="#fff7ed" stroke="#fdba74" stroke-width="3"/>
+  <text x="90" y="492" class="label amber">Reality: the agent never leaves the test zone</text>
+  <rect x="100" y="530" width="180" height="55" rx="12" fill="#fff" stroke="#fdba74"/><text x="134" y="564" class="label">author tests</text>
+  <path d="M290 557 H360" class="line" marker-end="url(#arrow)"/><rect x="380" y="530" width="180" height="55" rx="12" fill="#fff" stroke="#fdba74"/><text x="402" y="564" class="label">validate tests</text>
+  <path d="M570 557 H640" class="line" marker-end="url(#arrow)"/><rect x="660" y="530" width="180" height="55" rx="12" fill="#fff" stroke="#fdba74"/><text x="692" y="564" class="label">rewrite tests</text>
+  <path d="M850 557 C950 510 950 605 850 557" class="line" marker-end="url(#arrow)"/><text x="920" y="548" font-size="34" class="red">↻</text>
+  <text x="90" y="610" class="body">Time expires here → no useful patch reaches grading</text><text x="870" y="610" font-size="27" class="red">0 / 26</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+</svg>

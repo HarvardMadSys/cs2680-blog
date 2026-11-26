@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <style>
+    .title{font:700 30px system-ui,sans-serif;fill:#172033}.sub{font:16px system-ui,sans-serif;fill:#58657a}.label{font:700 18px system-ui,sans-serif;fill:#172033}.body{font:15px system-ui,sans-serif;fill:#334155}.small{font:13px system-ui,sans-serif;fill:#64748b}.old{fill:#fff1f2;stroke:#fda4af}.new{fill:#ecfdf5;stroke:#86efac}.line{stroke:#94a3b8;stroke-width:3;fill:none}.red{fill:#be123c}.green{fill:#15803d}.amber{fill:#b45309}
+  </style>
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  <text x="60" y="58" class="title">A shorter DO / DO NOT prompt beat 740 words of instructions</text>
+  <text x="60" y="88" class="sub">Cutting the prompt to ~200 words of DO / DO NOT rules outperformed 740 words of step-by-step choreography.</text>
+  <rect x="60" y="125" width="470" height="210" rx="18" class="old"/>
+  <text x="90" y="165" class="label">Old prompt · ~740 words</text>
+  <rect x="90" y="190" width="380" height="18" rx="9" fill="#fda4af"/><rect x="90" y="220" width="335" height="18" rx="9" fill="#fecdd3"/><rect x="90" y="250" width="290" height="18" rx="9" fill="#fecdd3"/><rect x="90" y="280" width="250" height="18" rx="9" fill="#fecdd3"/>
+  <text x="90" y="315" class="body">Step 1 → step 2 → reproduce → edit → test</text>
+  <path d="M555 230 C600 230 610 230 650 230" class="line" marker-end="url(#arrow)"/>
+  <rect x="670" y="125" width="470" height="210" rx="18" class="new"/>
+  <text x="700" y="165" class="label">New prompt · ~200 words</text>
+  <rect x="700" y="192" width="115" height="30" rx="8" fill="#bbf7d0"/><text x="727" y="213" class="label green">DO</text>
+  <text x="700" y="250" class="body">✓ run the repo’s tests</text><text x="700" y="277" class="body">✓ verify every requirement exactly</text><text x="700" y="304" class="body">✓ test edge cases and new code</text>
+  <rect x="925" y="192" width="145" height="30" rx="8" fill="#fecdd3"/><text x="950" y="213" class="label red">DO NOT</text>
+  <text x="925" y="250" class="body">× weaken tests</text><text x="925" y="277" class="body">× leave work stashed</text><text x="925" y="304" class="body">× stop before checking</text>
+  <text x="60" y="395" class="label">Ablation outcome</text>
+  <text x="60" y="425" class="sub">Green checks are requirements passed; red crosses are failures remaining.</text>
+  <rect x="60" y="460" width="500" height="170" rx="18" fill="#fff" stroke="#cbd5e1"/><text x="90" y="500" class="label">Old prompt</text>
+  <text x="90" y="548" class="body">isort</text><text x="220" y="548" font-size="29" class="red">✗ ✗ ✗</text><text x="350" y="548" class="small">4 / 7 resolved</text>
+  <text x="90" y="590" class="body">Python-Markdown</text><text x="350" y="590" font-size="29" class="red">✗</text><text x="390" y="590" class="small">regressed an edge case</text>
+  <rect x="640" y="460" width="500" height="170" rx="18" fill="#fff" stroke="#cbd5e1"/><text x="670" y="500" class="label">New prompt</text>
+  <text x="670" y="548" class="body">isort</text><text x="800" y="548" font-size="29" class="green">✓ ✓ ✓ ✓ ✓ ✓ ✓</text><text x="670" y="590" class="body">Python-Markdown</text><text x="870" y="590" font-size="29" class="green">✓</text><text x="910" y="590" class="small">edge case preserved</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+</svg>
