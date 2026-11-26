@@ -3,7 +3,7 @@ title: "My Learnings from the past several assignments"
 date: 2026-11-25
 authors: ["William Wu"]
 summary: "I have spent the past several weeks testing and experimenting to improve a coding agent across several assignments. Here is what I have learned"
-tags: ["assigmnent5", "agent-design", "testing", "llm-serving"]
+tags: ["agent-design", "testing", "llm-serving"]
 draft: false
 # cover: "cover.webp"   # optional: a figure to show on the listing
 ---
