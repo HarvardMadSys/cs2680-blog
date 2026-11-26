@@ -17,19 +17,19 @@ measured: limit reasoning and expensive models, balance time cap, and be aware o
 
 ## Selectively using thinking and expensive models
 
-Using expensive models and extensive reasoning for every model call is wasteful in time and tokens, causing simple tasks
-to prolong and slowing down the overall harness. In assignment 3, using the expert model for all retries, or as a 
-planner/reviewer significantly inflated the overall cost without a notable improvement in task solutions. Indeed, in a 
-run where the expert was used for every retry, as a reviewer (requirements checker), tester (subagent to write its own 
-tests), and planner (explore repo and plan), the number of expert calls was 116, the expert/total cost was 
-7.13/8.32 USD, and the number of locally solved tasks was 3/5. With the expert only used for rescue, the 
-number of expert calls was 4, the expert/total cost was 0.28/1.27 USD, and the number of locally solved tasks
-was 4/5. In assignment 5, limiting the thinking only to the first step and after a failed tool call managed to retain
-number of local tasks solved on Terminal-Bench (8/16) while decreasing the overall number of output tokens (from about
-38k tokens per task to 33k, ~13% decrease). Interestingly, the number of output tokens per call dropped by half (from
-about 1.4k tokens to 0.7k) but the number of model calls increased (428 to 727) leading to the overall smaller decrease
-in output tokens. Wall clock time per task on average remained flat (311 to 309 seconds). While as expected the time per
-call fell from (11.6 to 6.8 seconds), this was offset by the increase in number of overall calls.
+Using expensive models and extensive reasoning for every model call is wasteful in cost and tokens. In assignment 3, 
+using the expert model for all retries, or as a planner/reviewer significantly inflated the overall cost without a
+notable improvement in task solutions. Indeed, in a run where the expert was used for every retry, as a reviewer 
+(requirements checker), tester (subagent to write its own tests), and planner (explore repo and plan), the number of 
+expert calls was 116, the expert/total cost was 7.13/8.32 USD, and the number of locally solved tasks was 3/5. With the 
+expert only used for rescue, the number of expert calls was 4, the expert/total cost was 0.28/1.27 USD, and the number 
+of locally solved tasks was 4/5. In assignment 5, limiting the thinking only to the first step and after a failed tool 
+call retained the number of local tasks solved on Terminal-Bench (8/16) while decreasing the overall number of 
+output tokens (from about 38k tokens per task to 33k, ~13% decrease). Interestingly, the number of output tokens per 
+call dropped by half (from about 1.4k tokens to 0.7k) but the number of model calls increased (428 to 727) leading to 
+the overall smaller decrease in output tokens. Wall clock time per task on average remained flat (311 to 309 seconds). 
+While as expected the time per call fell (from 11.6 to 6.8 seconds), this was offset by the increase in number of 
+overall calls.
 
 
 ## Slower system with more parallelism
