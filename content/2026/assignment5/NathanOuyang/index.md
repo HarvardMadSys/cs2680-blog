@@ -2,7 +2,7 @@
 title: "Forty harness versions: Assignments 2–5"
 date: 2026-11-25
 authors: ["Nathan Ouyang"]
-summary: "6 takeaways from my assignments"
+summary: "What 40+ harness versions across Assignments 2–5 taught me: runs are slow and noisy, one research agent gets tunnel vision, the model works best in the format it was trained on, and fresh retries often beat appended ones."
 tags: ["agent-design", "tool-use", "caching", "context-management", "evaluation"]
 draft: false
 toc: true
@@ -14,7 +14,7 @@ A note on naming: I gave every version an id. H-numbers (H2, H14, H41, …) are 
 
 ## 1. Harness engineering is hard
 
-Solving tasks takes a long time, and the agents are non-deterministic. In A4 I did 74 local runs at 35–60 minutes each, and one leaderboard upload even waited 1 h 49 min in the queue before its hour-long grading even started. A5 allowed two gradings a day. Also, identical code scored 20, 23, 21 and 24 out of 25 across four local runs (H30).
+Solving tasks takes a long time, and the agents are non-deterministic. In A4 I did 74 local runs at 35–60 minutes each, and one leaderboard upload waited 1 h 49 min in the queue before its hour-long grading even started. A5 allowed two gradings a day. Also, identical code scored 20, 23, 21 and 24 out of 25 across four local runs (H30).
 
 **The noise was an issue in every assignment.** Over seven A2 runs I got 5, 8, 4, 6, 4, 7 and 7 out of 10. I was changing things between runs (run 3, for example, cut the budget), but the swings were bigger than any single change could explain. A3 was worse, as with only 5 local tasks, every version landed between 1/5 and 3/5, so I couldn't tell any of them apart. In A4, one H36 zip was graded twice on the leaderboard and scored 11 both times, but H40 scored 10 and then 12. In A5, my H4 agent solved 32/89 in one local Terminal-Bench run and 30/89 in another (on a slightly different engine), then 28/89 in each of two leaderboard gradings of the same zip. Even when the totals matched, the *set* of solved tasks shifted by 12 to 17 tasks between identical runs. So I started treating one run as one sample: a gain of one or two tasks doesn't mean much until it shows up again.
 
@@ -22,8 +22,7 @@ Solving tasks takes a long time, and the agents are non-deterministic. In A4 I d
 
 The leaderboard tasks were different, and each turn ran about 1.4× slower there, so the budgets I'd tuned on local timing were cutting tasks off before they could finish. When I later gave H36 roughly 1.5× the turns and 1.4× the time (H41), it went from 11 to **13/26**, and four of those solves finished after H36's whole run would already have been over.
 
-![Bar chart of 14 Assignment 4 leaderboard gradings. Solved rises from 2 (H2, H9) to 10 (H14), 11 (H36) and 13 (H41). H42 solved 16 but took 227 minutes.](a4-leaderboard.svg)
-*My A4 leaderboard gradings. The last bar was a run that used the whole 4-hour limit.*
+![Bar chart of 14 Assignment 4 leaderboard gradings. Solved rises from 2 (H2, H9) to 10 (H14), 11 (H36) and 13 (H41). H42 solved 16 but took 227 minutes.](a4-leaderboard.svg "My A4 leaderboard gradings. The last bar is H42, whose budgets filled the 4-hour limit; it finished in 3 h 47 min.")
 
 In my A3 write-up I said iteration had been slow and I hadn't kept careful track of what I changed. Since every run was slow and noisy, in A4 I tried to be more careful:
 
@@ -76,33 +75,33 @@ After a first grading where half or more of the tests failed, retrying in the sa
 
 ## 6. How to optimize the KV cache
 
-Assignment 4 helped me to think about and understand the KV cache in a real system. At the start of A4, the SGLang benchmark showed a median call of 3.3 s, but my agent's calls averaged around 30 s, and about 31% of each call was time spent waiting in the queue. The KV cache was 91% full, yet only 31% of prompt tokens hit the cache, so the server kept re-prefilling the same conversations. The problem wasn't decode speed, but memory.
+Assignment 4 helped me to think about and understand the KV cache in a real system. At the start of A4, the SGLang benchmark showed a median call of 3.3 s, but in my first local run (H0 + E0) my agent's calls averaged 57 s, and about 31% of each call was time spent waiting in the queue. The KV cache was 91% full, yet only 31% of prompt tokens hit the cache, so the server kept re-prefilling the same conversations. The problem wasn't decode speed, but memory.
 
-- **Hierarchical cache (E4)** keeps evicted prefixes in host RAM so they don't have to be recomputed. Cache hits went from 31–34% to **66–73%**, and the average call dropped from about 57–60 s to 42.7 s.
-- **Compaction (H14)** was the biggest single win of A4. Even with only 16 tasks open, prompts grew to 55–62k tokens and spilled out of the host cache. Once a conversation passed 42k tokens, I dropped older tool output and old thinking. Cache hits reached **93%**, queueing almost disappeared, runs went from 54–59 min to **38–40 min**, and the leaderboard score went from **4 to 10**.
-- **Running more tasks at once made everything slower.** With all 25 tasks open (H9), the mean call time went from 22 s to 117 s at peak. Going from 16 to 20 open tasks (H22) made calls about 21% slower without shortening the run, so I went back to 16.
+- **Hierarchical cache (E4)** keeps evicted prefixes in host RAM so they don't have to be recomputed. Cache hits went from 31–34% to **66–73%**, and in local H2 runs the average call dropped from about 57–60 s to 39–47 s.
+- **Compaction (H14)** was the biggest single win of A4. Even with only 16 tasks open, prompts grew to 55–62k tokens and spilled out of the host cache. Once a conversation passed 42k tokens, I dropped older tool output and old thinking. Cache hits reached **93%**, queueing almost disappeared, local runs went from 54–59 min to **38–40 min**, and the leaderboard score went from **4 to 10**.
+- **Running more tasks at once made everything slower.** In one local H9 run with all 25 tasks open, the mean call time went from 22 s early on to 117 s at the peak. Going from 16 to 20 open tasks (H22) made calls about 21% slower without shortening the run, so I went back to 16.
 - **Not every memory idea fit.** A 2.0× host cache couldn't allocate enough RAM to start (E7). Speculative decoding ran out of GPU memory at startup and would have nearly halved KV capacity anyway (E9). Raising GPU memory to 92% (E2) gave me one good run and then an OOM 20 s into the next one.
 
 ## 7. The slowest task sets the total time
 
 The leaderboard measures time from the start of the run until the last task finishes, so the slowest task matters much more than the average one.
 
-- In A4, H26 added a second attempt for failed tasks. It gained two passes, but one failing attempt stretched the run to 60.6 min. Stopping second attempts at minute 45 (H28) kept the passes and brought runs back to 38–41 min.
+- In A4, H26 added a second attempt for failed tasks. It gained two passes, but one failing attempt stretched the run to 60.6 min. Stopping second attempts at minute 45 (H28) kept the passes and brought local runs back to 38–41 min.
 - In A5, my H3 harness gave tasks extra time once every task had been opened. On the leaderboard, one of those tasks ran until the 100-minute cap, so a run that should have taken about an hour took 1 h 39 min (31/89). H4 removed the extension, and its two gradings took 56 and 55 min (28/89 both times). Locally it did 32/89 in 59.5 min.
 - I also checked whether opening tasks sooner would help, and it wouldn't have: in 9 of 16 runs, the task that finished last had already been opened in the first wave.
 - Out of curiosity, I gave H42 budgets that filled the whole 4-hour limit. It solved 16/26 in 3 h 47 min, which is more solves but far past the 100-minute baseline.
 
-My best A5 leaderboard result was H1 with 33/89 in 71 min. H4 averaged about the same number of solves across its runs and finished about 15 minutes sooner, so I used my last grading on a second run of H4 instead of H1. It came back 28/89 in 55 min. All of my A5 gradings cleared the Fast baseline of 20 tasks in 2 hours.
+My best A5 leaderboard result was H1 with 33/89 in 71 min. But H1 only solved 27 in my local run, so it averaged about 30. H4 also averaged about 30 (32 and 30 locally, 28 on the leaderboard) and finished about 15 minutes sooner, so I used my last grading on a second run of H4 instead of H1. It came back 28/89 in 55 min. All of my A5 gradings cleared the Fast baseline of 20 tasks in 2 hours.
 
 ## Takeaways
 
 1. Treat one run as one sample. Run baselines at least twice and compare against the variance.
 2. If a behaviour really matters, enforce it in the tool or the harness, not the prompt.
-3. Match the format the model was trained on. For Qwen, keeping its earlier thinking.
+3. Match the format the model was trained on. For Qwen, that means keeping its earlier thinking.
 4. With one GPU, fix memory and cache hits before decode speed. Compaction helped more than server flags.
 5. Start over instead of retrying in the same chat, and treat a duplicate submission as a sign the agent is stuck.
 6. The slowest task sets the total time, so cap it.
 
 ---
 
-*AI use: iterating on the harness locally, analyzing performance of the harness, blog layout*
+*AI use: I used Claude Code to iterate on the harness locally, analyze the harness's performance, and help with the blog layout.*
