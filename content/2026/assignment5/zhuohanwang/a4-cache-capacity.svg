@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 390" width="840" height="390" role="img" aria-label="A4 local runs showing KV cache capacity vs hit rate, latency, and solved tasks">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1a1f24; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1f24; }
+      .subtitle { font-size: 12px; fill: #59636e; }
+      .panel-title { font-size: 13.5px; font-weight: 700; fill: #1a1f24; }
+      .axis-label { font-size: 12px; font-weight: 600; fill: #3b434d; }
+      .tick { font-size: 11px; fill: #59636e; }
+      .val { font-size: 11.5px; font-weight: 600; fill: #1a1f24; }
+      .val-muted { font-size: 10.5px; fill: #59636e; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .note { font-size: 10.5px; fill: #59636e; }
+    </style>
+  </defs>
+  <rect x="0.5" y="0.5" width="839" height="389" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
+  <text class="title" x="26" y="32">A4 · Fixing Working-Set Capacity Before Tuning Speed</text>
+  <text class="subtitle" x="26" y="50">Same agent, 25 local tasks. Only once host KV (10 GB ≈ 976K tokens) exceeded the 500–600K active set did thrashing stop.</text>
+  <line x1="76" y1="312.0" x2="804" y2="312.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="316.0" text-anchor="end">0%</text>
+  <line x1="76" y1="270.0" x2="804" y2="270.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="274.0" text-anchor="end">20%</text>
+  <line x1="76" y1="228.0" x2="804" y2="228.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="232.0" text-anchor="end">40%</text>
+  <line x1="76" y1="186.0" x2="804" y2="186.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="190.0" text-anchor="end">60%</text>
+  <line x1="76" y1="144.0" x2="804" y2="144.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="148.0" text-anchor="end">80%</text>
+  <line x1="76" y1="102.0" x2="804" y2="102.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="66" y="106.0" text-anchor="end">100%</text>
+  <line x1="76" y1="102" x2="76" y2="312" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="76" y1="312" x2="804" y2="312" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="24" y="207.0" text-anchor="middle" transform="rotate(-90 24 207.0)">Percentage (%)</text>
+  <rect x="112.0" y="228.0" width="50" height="84.0" rx="3" fill="#1f6f8b"/>
+  <rect x="172.0" y="190.2" width="50" height="121.8" rx="3" fill="#cc6b2c"/>
+  <text class="val" x="137.0" y="221.0" text-anchor="middle">10/25</text>
+  <text class="val" x="197.0" y="183.2" text-anchor="middle" style="fill:#cc6b2c">58%</text>
+  <text class="val" x="167.0" y="331" text-anchor="middle">b3 · GPU KV only</text>
+  <text class="val-muted" x="167.0" y="347" text-anchor="middle">391K GPU KV</text>
+  <text class="val-muted mono" x="167.0" y="364" text-anchor="middle" style="fill:#59636e;font-weight:500">24 s wait · 14.8M prefill</text>
+  <rect x="294.0" y="177.6" width="50" height="134.4" rx="3" fill="#1f6f8b"/>
+  <rect x="354.0" y="169.2" width="50" height="142.8" rx="3" fill="#cc6b2c"/>
+  <text class="val" x="319.0" y="170.6" text-anchor="middle">16/25</text>
+  <text class="val" x="379.0" y="162.2" text-anchor="middle" style="fill:#cc6b2c">68%</text>
+  <text class="val" x="349.0" y="331" text-anchor="middle">e1 · +8 GB host</text>
+  <text class="val-muted" x="349.0" y="347" text-anchor="middle">~412K host KV</text>
+  <text class="val-muted mono" x="349.0" y="364" text-anchor="middle" style="fill:#59636e;font-weight:500">21 s wait · 11.7M prefill</text>
+  <rect x="476.0" y="211.2" width="50" height="100.8" rx="3" fill="#1f6f8b"/>
+  <rect x="536.0" y="175.5" width="50" height="136.5" rx="3" fill="#cc6b2c"/>
+  <text class="val" x="501.0" y="204.2" text-anchor="middle">12/25</text>
+  <text class="val" x="561.0" y="168.5" text-anchor="middle" style="fill:#cc6b2c">65%</text>
+  <text class="val" x="531.0" y="331" text-anchor="middle">e4 · 2 Mamba states</text>
+  <text class="val-muted" x="531.0" y="347" text-anchor="middle">state hypothesis</text>
+  <text class="val-muted mono" x="531.0" y="364" text-anchor="middle" style="fill:#59636e;font-weight:500">23 s wait · 12.9M prefill</text>
+  <rect x="632.9" y="94" width="160.2" height="220" rx="8" fill="#d9efe2" opacity="0.38"/>
+  <rect x="658.0" y="160.8" width="50" height="151.2" rx="3" fill="#1f6f8b"/>
+  <rect x="718.0" y="112.5" width="50" height="199.5" rx="3" fill="#cc6b2c"/>
+  <text class="val" x="683.0" y="153.8" text-anchor="middle">18/25</text>
+  <text class="val" x="743.0" y="105.5" text-anchor="middle" style="fill:#cc6b2c">95%</text>
+  <text class="val" x="713.0" y="331" text-anchor="middle">e5 · +15 GB host tier</text>
+  <text class="val-muted" x="713.0" y="347" text-anchor="middle">~976K host KV</text>
+  <text class="val-muted mono" x="713.0" y="364" text-anchor="middle" style="fill:#2b7a4b;font-weight:700">10 s wait · 3.5M prefill</text>
+  <rect x="86" y="64" width="12" height="12" rx="2" fill="#1f6f8b"/>
+  <text class="tick" x="104" y="74" style="fill:#1a1f24;font-weight:600">Solved (% of 25 tasks)</text>
+  <rect x="266" y="64" width="12" height="12" rx="2" fill="#cc6b2c"/>
+  <text class="tick" x="284" y="74" style="fill:#1a1f24;font-weight:600">Prefix-cache hit rate (%)</text>
+  <text class="note" x="26" y="380">E4 tested whether Mamba state slots caused E1's low peak hits (17%); hits dropped to 13% and solves to 12/25, proving KV capacity bound.</text>
+</svg>

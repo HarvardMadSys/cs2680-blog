@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 410" width="920" height="410" role="img" aria-label="Measurement noise across A3-A5 and A4 effect-size shrinkage vs sample size">
+  <defs>
+    <style>
+      text { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; fill: #1a1f24; }
+      .title { font-size: 16px; font-weight: 700; fill: #1a1f24; }
+      .subtitle { font-size: 12px; fill: #59636e; }
+      .panel-title { font-size: 13.5px; font-weight: 700; fill: #1a1f24; }
+      .axis-label { font-size: 12px; font-weight: 600; fill: #3b434d; }
+      .tick { font-size: 11px; fill: #59636e; }
+      .val { font-size: 11.5px; font-weight: 600; fill: #1a1f24; }
+      .val-muted { font-size: 10.5px; fill: #59636e; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .note { font-size: 10.5px; fill: #59636e; }
+    </style>
+  </defs>
+  <rect x="0.5" y="0.5" width="919" height="409" fill="#fcfcfb" rx="10" stroke="#dfddd5" stroke-width="1"/>
+  <text class="title" x="26" y="32">Measurement Noise Across Assignments 3–5</text>
+  <text class="subtitle" x="26" y="50">Identical zips routinely vary by 3–6 tasks per run, and small-sample gains shrink or flip sign as sample size grows.</text>
+  <text class="panel-title" x="26" y="80">A. Identical config, repeated runs (% solved)</text>
+  <line x1="190.0" y1="96" x2="190.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="190.0" y="354" text-anchor="middle">20%</text>
+  <line x1="245.0" y1="96" x2="245.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="245.0" y="354" text-anchor="middle">30%</text>
+  <line x1="300.0" y1="96" x2="300.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="300.0" y="354" text-anchor="middle">40%</text>
+  <line x1="355.0" y1="96" x2="355.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="355.0" y="354" text-anchor="middle">50%</text>
+  <line x1="410.0" y1="96" x2="410.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="410.0" y="354" text-anchor="middle">60%</text>
+  <line x1="465.0" y1="96" x2="465.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="465.0" y="354" text-anchor="middle">70%</text>
+  <line x1="190" y1="336" x2="465" y2="336" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="327.5" y="378" text-anchor="middle">Tasks solved (% of suite; each dot = one run)</text>
+  <text class="tick" x="180" y="114.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A3 v31-mid (/26)</text>
+  <line x1="333.8" y1="110.0" x2="439.6" y2="110.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="384.6" y1="101.0" x2="384.6" y2="119.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="333.8" cy="110.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="376.2" cy="107.5" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="376.2" cy="112.5" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="397.3" cy="110.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="439.6" cy="110.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="449.6" y="114.0">12–17</text>
+  <text class="tick" x="180" y="158.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A3 v31-cheap (/26)</text>
+  <line x1="206.9" y1="154.0" x2="312.7" y2="154.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="261.0" y1="145.0" x2="261.0" y2="163.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="206.9" cy="154.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="228.1" cy="154.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="249.2" cy="151.5" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="249.2" cy="156.5" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="270.4" cy="149.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="270.4" cy="154.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="270.4" cy="159.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="291.5" cy="154.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="312.7" cy="154.0" r="4.3" fill="#1f6f8b" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="322.7" y="158.0">6–11</text>
+  <text class="tick" x="180" y="202.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A4 s47 zip (/26)</text>
+  <line x1="291.5" y1="198.0" x2="418.5" y2="198.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="347.9" y1="189.0" x2="347.9" y2="207.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="291.5" cy="198.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="312.7" cy="198.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="355.0" cy="193.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="355.0" cy="198.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="355.0" cy="203.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="418.5" cy="198.0" r="4.3" fill="#cc6b2c" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="428.5" y="202.0">10–16</text>
+  <text class="tick" x="180" y="246.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A5 TY 24 open (/85)</text>
+  <line x1="358.2" y1="242.0" x2="377.6" y2="242.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="364.7" y1="233.0" x2="364.7" y2="251.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="358.2" cy="239.5" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="358.2" cy="244.5" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="377.6" cy="242.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="387.6" y="246.0">43–46</text>
+  <text class="tick" x="180" y="290.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A5 TY 28 open (/85)</text>
+  <line x1="358.2" y1="286.0" x2="377.6" y2="286.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="367.9" y1="277.0" x2="367.9" y2="295.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="358.2" cy="286.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="377.6" cy="286.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="387.6" y="290.0">43–46</text>
+  <text class="tick" x="180" y="334.0" text-anchor="end" style="fill:#1a1f24;font-weight:500">A5 TY 32 open (/85)</text>
+  <line x1="312.9" y1="330.0" x2="358.2" y2="330.0" stroke="#e8ebee" stroke-width="9" stroke-linecap="round"/>
+  <line x1="337.2" y1="321.0" x2="337.2" y2="339.0" stroke="#1a1f24" stroke-width="1.5"/>
+  <circle cx="312.9" cy="330.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="332.4" cy="330.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="345.3" cy="330.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="358.2" cy="330.0" r="4.3" fill="#2b7a4b" stroke="#ffffff" stroke-width="1"/>
+  <text class="val mono" x="368.2" y="334.0">36–43</text>
+  <line x1="518" y1="68" x2="518" y2="386" stroke="#dfddd5" stroke-width="1" stroke-dasharray="4 4"/>
+  <text class="panel-title" x="540" y="80">B. A4 effect estimate vs. sample size (n runs)</text>
+  <line x1="576.0" y1="96" x2="576.0" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="576.0" y="354" text-anchor="middle">5</text>
+  <line x1="657.9" y1="96" x2="657.9" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="657.9" y="354" text-anchor="middle">10</text>
+  <line x1="739.9" y1="96" x2="739.9" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="739.9" y="354" text-anchor="middle">20</text>
+  <line x1="848.2" y1="96" x2="848.2" y2="336" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="848.2" y="354" text-anchor="middle">50</text>
+  <line x1="576" y1="336.0" x2="888" y2="336.0" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568" y="340.0" text-anchor="end">-1</text>
+  <line x1="576" y1="292.4" x2="888" y2="292.4" stroke="#3b434d" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text class="tick" x="568" y="296.4" text-anchor="end">0</text>
+  <line x1="576" y1="248.7" x2="888" y2="248.7" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568" y="252.7" text-anchor="end">+1</text>
+  <line x1="576" y1="205.1" x2="888" y2="205.1" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568" y="209.1" text-anchor="end">+2</text>
+  <line x1="576" y1="161.5" x2="888" y2="161.5" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568" y="165.5" text-anchor="end">+3</text>
+  <line x1="576" y1="117.8" x2="888" y2="117.8" stroke="#eceae3" stroke-width="1"/>
+  <text class="tick" x="568" y="121.8" text-anchor="end">+4</text>
+  <line x1="576" y1="96" x2="576" y2="336" stroke="#3b434d" stroke-width="1.2"/>
+  <line x1="576" y1="336" x2="888" y2="336" stroke="#3b434d" stroke-width="1.2"/>
+  <text class="axis-label" x="732.0" y="378" text-anchor="middle">Runs in experiment (log scale)</text>
+  <text class="axis-label" x="538" y="216.0" text-anchor="middle" transform="rotate(-90 538 216.0)">Estimated effect (solves / 25)</text>
+  <polyline fill="none" stroke="#c0392b" stroke-width="2.4" points="631.6,194.2 713.5,287.1 857.3,311.1"/>
+  <circle cx="631.6" cy="194.2" r="5" fill="#c0392b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="622.6" y="198.2" text-anchor="end" style="fill:#c0392b">+2.25</text>
+  <circle cx="713.5" cy="287.1" r="5" fill="#c0392b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="722.5" y="279.1" text-anchor="start" style="fill:#c0392b">+0.12</text>
+  <circle cx="857.3" cy="311.1" r="5" fill="#c0392b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="829.3" y="328.1" text-anchor="start" style="fill:#c0392b">-0.43</text>
+  <polyline fill="none" stroke="#1f6f8b" stroke-width="2.4" points="615.8,123.1 657.9,220.8 857.3,251.8"/>
+  <circle cx="615.8" cy="123.1" r="5" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="624.8" y="127.1" text-anchor="start" style="fill:#1f6f8b">+3.88</text>
+  <circle cx="657.9" cy="220.8" r="5" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="667.9" y="213.8" text-anchor="start" style="fill:#1f6f8b">+1.64</text>
+  <circle cx="857.3" cy="251.8" r="5" fill="#1f6f8b" stroke="#ffffff" stroke-width="1.5"/>
+  <text class="val mono" x="829.3" y="240.8" text-anchor="start" style="fill:#1f6f8b">+0.93</text>
+  <rect x="708" y="102" width="172" height="48" rx="6" fill="#ffffff" stroke="#dfddd5" stroke-width="1"/>
+  <circle cx="722" cy="118" r="4.5" fill="#1f6f8b"/>
+  <text class="tick" x="733" y="122" style="fill:#1a1f24">L46 (cap 46, kept)</text>
+  <circle cx="722" cy="136" r="4.5" fill="#c0392b"/>
+  <text class="tick" x="733" y="140" style="fill:#1a1f24">S44 (soft 44, rejected)</text>
+  <text class="note" x="26" y="396">Black vertical ticks in Panel A mark configuration means. Panel B tracks A4 dev factorial estimates (F6, 25-task swing set).</text>
+</svg>
