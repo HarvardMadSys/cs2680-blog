@@ -25,7 +25,7 @@ LLMs pick each token at random (sampling), so the same code (a zip, which is one
 ![Board tasks solved by each harness version. A3 by money spent, A4 and A5 by run time. The grey band is the range of one unchanged zip; the dashed line is other teams' best.](figures/2-harness-vs-model-ceiling.svg "Figure 2. With one model for all teams (A4), other teams solved 16 of 26 by 48 min and 18 by 84 min; my best version needed 165 min to reach 18.")
 
 Across the three assignments combined, I used 68 different versions of the harness, but no version's average score rose above the noise band of my own best zip (the score range of one unchanged zip).
-- In assignment 3 (A3), my harness chose the model mix, and that choice moved the score the most. Using the starter model alone resulted in 0 solves, whereas using the standard model alone kept the solves at 12 or fewer. Adding the expert model raised the solves to up to 19, but the trade-off is that the expert model is costly.
+- In assignment 3 (A3), my harness chose which of the three models to call and in what order. I count this routing as part of the harness, and it moved the score the most. Using the starter model alone resulted in 0 solves, whereas using the standard model alone kept the solves at 12 or fewer. Adding the expert model raised the solves to up to 19, but the trade-off is that the expert model is costly.
 - In assignment 4, my first harness stayed at 12 solves or fewer. What I understood was that independent tries for every task are better than building on the old failed try. That change raised the solves to 12 to 18.
 - In assignment 5, my 13 harness versions scored between 24 and 40.
 
@@ -42,9 +42,9 @@ The number of open sessions refers to the number of agent conversations that the
 
 What I observed was that when 8 sessions were open at once, the hit rate (the share of prompt tokens the server reuses from its cache) was 0.88 to 0.91, and the median call was about 3 seconds. When I increased the number of open sessions to 25, the hit rate fell to 0.11 or less, and the median call time was about 21 seconds.
 
-What happened at 25 open sessions at once was that almost every call had to recompute the prompt that the server had already seen. 25 open at once produced no more tokens per second than 12 open. Why did this happen? This happened mainly because the KV pool was limited to 391k. At 25 open, the sessions' contexts (407k to 576k tokens) no longer fit in the pool, so stored prompts were removed from memory and had to be recomputed.
+What happened at 25 open sessions at once was that almost every call had to recompute the prompt that the server had already seen. 25 open at once produced no more tokens per second than 12 open. Why did this happen? This happened mainly because the KV pool was limited to 391k. At 25 open, the sessions' contexts (25 times the median prompt of my first harness, about 16k to 23k tokens each: 407k to 576k tokens in all) no longer fit in the pool, so stored prompts were removed from memory and had to be recomputed.
 
-The lesson learned was that memory sets a cliff, and compute sets the ceiling. Below the cliff, total decode tops out near 500 to 690 tokens per second, no matter how many sessions run. Fit needs room to spare. A 305k pool still lost part of its cache at 8 open, even though 8 sessions times the median prompt (252k to 287k) is below it.
+The lesson learned was that memory sets a cliff, and compute sets the ceiling. Below the cliff, total decode tops out near 500 to 690 tokens per second, no matter how many sessions run. Fit needs room to spare. A 305k pool (engine setups that left less GPU memory for the pool: a smaller memory share, or larger kernel weights) still lost part of its cache at 8 open (hit 0.78 to 0.87, against 0.95 to 0.96 with the 391k pool), even though 8 sessions times the median prompt (252k to 287k) is below it. This test replayed my later harness, whose prompts were longer, about 32k to 36k tokens each.
 
 Using these observations, I tuned the number of open sessions on the engine for assignment 4 and assignment 5. The key takeaway is to size the concurrency to memory first. The lever is fewer or shorter sessions, not faster computation. 
 
@@ -59,7 +59,7 @@ At 8 open sessions, the real and the replay hit rates matched (about 0.97), wher
 
 This benchmarking with made-up prompts does not reflect actual agentic serving. The benchmark sends the next request at once, whereas real agents pause for tool calls, which changes how long each session's prompt stays in the cache. Even the replay with 5.7-second pauses missed the real queue time at 25 open. Real pauses vary, and real runs also wait for grading.
 
-Based on this, I retested the engine changes by replaying my logged agent runs with their real tool gaps and a fresh, empty cache for every run. I also chose how many sessions to keep open from real agent runs, not from the synthetic benchmarks.
+Based on this, I retested the engine changes with a second replay: my later harness's logged tries, each with its own logged tool gaps (capped at 60 seconds), and a fresh, empty cache for every run. I ran it at 8 and 12 open only, where its hit rate (0.95 to 0.96 at 8 open) came close to the real runs' 0.97. I did not run it at 25 open, so I do not know whether real tool gaps fix the queue time there. I also chose how many sessions to keep open from real agent runs, not from the synthetic benchmarks.
 
 The takeaway: benchmark by replaying your own agent calls at the real context size and session count, and check the queue time on a real run.
 
