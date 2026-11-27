@@ -62,7 +62,7 @@ In Assignment 5, I started to set a time limit for each task. Since all the Term
 
 ### Tuning the Harness and Server Together
 
-More concurrency isn't always better. At first, in Assignment 4, I opened all 25 local tasks at once, and only 9/25 local tasks were solved. Based on the SGLang metrics, the average KV cache use hit 83%, and many model calls waited in the queue for a long time. When I reduced the task concurrency from 25 to 5 and the API concurrency from 25 to 8 (as in Assignment 3), the number of solved tasks went up to 17/25 and 18/25 tasks in two runs, and the average KV cache dropped to around 37%.
+More concurrency isn't always better. At first, in Assignment 4, I opened all 25 local tasks at once, and only 9/25 local tasks were solved (I only ran it once). Based on the SGLang metrics, the average KV cache use hit 83%, and many model calls waited in the queue for a long time. When I reduced the task concurrency from 25 to 5 and the API concurrency from 25 to 8 (as in Assignment 3), the number of solved tasks went up to 17/25 and 18/25 tasks in two runs, and the average KV cache dropped to around 37%.
 
 I spent a lot of time playing with different SGLang settings in Assignment 4. Small decode CUDA graph buckets made a single leaderboard run 29 minutes faster and solved one more task (though I did not repeat this experiment). FP4 KV was another useful tweak, increasing the KV pool from 358K to 540K tokens and reducing the number of lost prefix tokens from 12.0M to 7.4M.
 
