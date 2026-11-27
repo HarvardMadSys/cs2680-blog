@@ -9,7 +9,7 @@ draft: false
 
 Across Assignments 2–5, I worked on getting a coding agent to solve more tasks within limited time and cost budgets. That involved building the agent loop, deciding when to use a more expensive model, running a model server, and diagnosing why tasks failed.
 
-A number of helpful observations were made in the course of exploring the context around the model, including how edits were turned into a submitted patch, how conversations involved sharing GPU memory, and what actions the agent took following an incomplete answer. These assignments taught me to distinguish between getting a change to work, making the system faster, and improving task success. They also taught me to check whether a higher score was actually due to the change.
+I learned the most from the system around the model: how edits became a submitted patch, how concurrent conversations competed for GPU cache space, and how the agent responded to an incomplete answer. These assignments taught me to distinguish between getting a change to work, making the system faster, and improving task success. They also taught me to check whether a higher score was actually due to the change.
 
 ## 1. Check that the agent’s work actually reaches the evaluator
 
@@ -17,7 +17,7 @@ In Assignment 2, I built a coding-agent loop that could inspect a repository, ed
 
 On a local task, the patch-capture pipeline omitted two deleted files. The working directory contained the intended changes, but the submitted patch did not represent the complete result. All three previously failing tests still failed when evaluating that patch. After changing the capture step to use `git diff HEAD`, all three passed.
 
-The relevant distinction was between comparing the working tree with the staging area and comparing the current changes with `HEAD`. Looking only at the former can miss changes already represented in the staging area. The problem was in my patch pipeline, not evidence that Git generally ignores deleted files.
+The harness already ran `git add -N .` before generating the diff, so newly created, non-ignored files were included. However, this command also staged deletions, which plain `git diff` missed because it compared the working tree with the staging area. Retaining `git add -N .` and switching to `git diff HEAD` captured modified, newly created, and deleted text files. I also added a regression test to verify that all three types of changes appeared in the patch and that the patch applied to a fresh clone.
 
 This changed what I considered necessary to verify. Checking the files left by an agent was insufficient: I also needed to inspect the artifact that would actually be evaluated.
 
@@ -70,7 +70,7 @@ The server caches computation for previously processed tokens. An agent conversa
 
 The measurements were consistent with that problem: the higher-concurrency run had much more eviction and much less reuse. Keeping fewer conversations active helped the server reuse work instead of repeatedly processing context.
 
-This also exposed a measurement issue. A cache-hit gauge was close to 99.87%, while the token counters indicated only 30.8% reuse. Those values could not be treated as interchangeable descriptions of the workload. In a separate replay tool, an impossible reported hit rate of 307.3% turned out to be a denominator bug.
+This also exposed a measurement issue. SGLang's `sglang:cache_hit_rate` gauge reported 99.87% at the end of the baseline run, but it measured cache reuse in only the most recent prefill batch. For whole-run reuse, I calculated one minus the ratio of the change in `sglang:uncached_prompt_tokens_histogram_sum` to the change in `sglang:prompt_tokens_total`. This gave 30.8% reuse with 25 workers and 94.7% with eight workers. In a separate SGLang replay benchmark, an impossible reported hit rate of 307.3% resulted from using each conversation's first-turn prompt length for every subsequent turn in the denominator. Using the actual total prompt tokens gave a corrected rate of 18.4%.
 
 The lesson was to check what a metric counts before using it to explain performance. A reassuring dashboard value is not enough if the underlying workload tells a different story.
 
@@ -108,9 +108,9 @@ A live probe confirmed that the switch returned a valid tool call without reason
 
 That established that the mechanism worked. It did not establish improved task success.
 
-The 14 tasks in which recovery occurred produced no solves. A valid tool call means the agent can continue interacting with the environment; it does not mean the action is useful or that the task will finish correctly.
+The 14 tasks in which recovery occurred produced no solves. However, tasks with capped replies without tool calls rarely succeeded in the earlier runs either: 1 of 13 in the baseline and 2 of 18 in Trial 1. Of the 14 recovery tasks, 13 were also opened in at least one of the earlier runs, and none was solved there. Differences in task coverage and available execution time prevent a causal comparison. These results do not establish whether recovery helped or hurt task success. A valid tool call means the agent can continue interacting with the environment; it does not mean the action is useful or that the task will finish correctly.
 
-This became one of the clearest lessons of the project: recovering execution and recovering correctness are separate goals.
+This became one of the clearest lessons of the project: recovering execution and recovering correctness are separate goals. An alternative would be to retain a truncated or summarized version of the reasoning in the conversation history so the next request can build on earlier reasoning rather than start over. I did not test this approach, so whether it would improve task success remains an open question.
 
 ## 6. Failure handling needs to distinguish why a request stopped
 
@@ -134,8 +134,7 @@ Among the 41 tasks opened by both the baseline and Trial 2, each run solved 12. 
 
 Variation was visible in earlier assignments too. The same A3 submission was reported to score both 16/26 and 12/26. In A4, the same eight-worker configuration ranged from 16 to 21 solves across local runs.
 
-Local and leaderboard results also answered different questions. The local A5 runs had a two-hour limit and six live tasks. The official evaluation allowed a longer run. My final submission solved **30/89 Terminal-Bench tasks in 3 hours 13 minutes**, meeting the Accurate baseline. It separately solved **7/26 tasks in 2 hours 13 minutes** in the additional evaluation.
-
+Local and leaderboard results also answered different questions. The local A5 runs had a two-hour limit and six live tasks. The official evaluation allowed a longer run. My final submission solved **30/89 Terminal-Bench tasks in 3 hours 13 minutes**, meeting the course’s Accurate baseline of solving at least 30 of 89 tasks within six hours. It separately solved **7/26 tasks in 2 hours 13 minutes** in the additional evaluation.
 Those are the final outcomes, but they do not isolate the contribution of any individual change.
 
 ## What I would carry into the next project
@@ -148,4 +147,4 @@ Understanding those problems helped me make better decisions about what to chang
 
 ## AI use
 
-I used AI to polish my writing, and correct grammatical errors.
+I used AI coding tools to assist with implementing and debugging the agent harness, designing experiments, and analyzing results across Assignments 2–5. I also used AI to polish my writing and correct grammatical errors in this post.
