@@ -77,7 +77,7 @@ I ran each configuration twice on the same sixteen tasks:
 
 *Two runs per configuration. The second baseline finished in 38.0 minutes, faster than either B2 run; the interrupted run is marked with hatching.*
 
-After the first pair, B2 looked useful: 8/16 in 42.7 minutes versus 47.8, with about 21% less cumulative model time. The second baseline changed that interpretation. It finished in 38.0 minutes with the same 8/16 score, faster than either B2 run. Even the two baselines disagreed on four tasks. With that much variation, the first pair was not enough to attribute a gain to B2.
+After the first pair, B2 looked useful: 8/16 in 42.7 minutes versus 47.8, with about 21% less cumulative model time. The second baseline changed that interpretation. It finished in 38.0 minutes with the same 8/16 score, faster than either B2 run. Both B2 runs also used more cumulative model-request time than Baseline 2. Even the two baselines disagreed on four tasks. With that much variation, the first pair was not enough to attribute a gain to B2.
 
 B2 reduced requests lasting at least 100 seconds, but the truncation counts use different caps. In B2 1 and B2 2, respectively, 57 and 58 initial replies hit 4,096 tokens. Of the 55 and 56 rescue attempts, one in each run still hit 12,288 tokens. These give 58 and 59 capped replies in total, not a direct comparison with the baselines' 23 and 12 replies capped at 12,288. The capped replies consumed 2,986.76 and 3,163.55 cumulative model-request seconds.
 
